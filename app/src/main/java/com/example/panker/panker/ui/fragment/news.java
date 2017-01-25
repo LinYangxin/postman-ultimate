@@ -110,7 +110,7 @@ public class news extends basefragment implements View.OnClickListener {
                 public void done(AVObject avObject, AVException e) {
                     imgs[pos] = tmp.getString("url_pic");
                     url[pos] = tmp.getString("URL");
-                    Log.i("qqqqqqqqqqqqq",imgs[pos]);
+                    Log.i("qqqqqqqqqqq",imgs[pos]);
                     Log.i("wwwwwwwwwwwww",url[pos]);
                 }
             });
