@@ -1,0 +1,78 @@
+<resources xmlns:android="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="Mytheme" parent="android:Theme.NoTitleBar.Fullscreen">
+        <item name="android:windowBackground">@drawable/start</item>
+    </style>
+    <!--登陆界面输入框-->
+    <style name="login_EditText" parent="Base.V12.Widget.AppCompat.EditText">
+        <item name="android:maxLines">1</item>
+        <item name="android:width">250dp</item>
+        <item name="android:height">50dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLength">15</item>
+    </style>
+    <style name="login_EditText_long" parent="login_EditText">
+        <item name="android:maxLength">30</item>
+    </style>
+    <style name="public_Button" parent="Base.TextAppearance.AppCompat.Widget.Button">
+        <item name="android:shape">oval</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!--获取验证码按钮-->
+    <style name="check_Button" parent="Base.TextAppearance.AppCompat.Widget.Button">
+        <item name="android:height">30dp</item>
+    </style>
+    <!--注册界面的Linerlayout-->
+    <style name="sign_linearLayout">
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:background">@color/colorGley</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingLeft">15dp</item>
+    </style>
+    <!--弹出dialog-->
+    <style name="edit_AlertDialog_style" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- 是否启用标题栏 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 是否使用背景半透明 -->
+    </style>
+    <!--用户资料完善界面的TextView-->
+    <style name="complete_tv">
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textColor">@color/colorIvory</item>
+    </style>
+    <!--RatingBar-->
+    <style name="ratingbar">
+        <item name="android:height">50dp</item>
+        <item name="android:numStars">5</item>
+        <item name="android:stepSize">0.5</item>
+    </style>
+    <!--设置界面的TextView-->
+    <style name="setting_tv" parent="sign_linearLayout">
+        <item name="android:padding">15dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_marginBottom">0dp</item>
+    </style>
+    <!--SwitchButton-->
+    <style name="switchbutton">
+        <item name="android:switchMinWidth">50dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textOff">""</item><!-- 此设置不需要文字，只显示背景图的开关 -->
+        <item name="android:textOn">""</item>
+
+    </style>
+</resources>

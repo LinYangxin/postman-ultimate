@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/public_tittle"
+        layout="@layout/tittle" />
+
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorGley"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="8"
+            android:text="国家和地区"
+            android:textColor="@color/colorIvory" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"
+            android:text="中国大陆"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorGley"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="手机号码   "
+            android:textColor="@color/colorIvory" />
+
+        <EditText
+            android:id="@+id/sign_mobilephonenumber"
+            style="@style/login_EditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请输入手机号码" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorGley"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="0dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置密码  "
+            android:textColor="@color/colorIvory" />
+
+        <EditText
+            android:id="@+id/sign_pw"
+            style="@style/login_EditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请设置6-20位密码"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGley"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确认密码  "
+            android:textColor="@color/colorIvory" />
+
+        <EditText
+            android:id="@+id/sign_pwcheck"
+            style="@style/login_EditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请再次输入密码"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/sign_btn_nextstep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp"
+        android:text="下一步" />
+</LinearLayout>

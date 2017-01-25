@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<include layout="@layout/tittle"
+    android:id="@+id/public_tittle"/>
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@color/colorGley"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/throwing"
+            style="@style/complete_tv"/>
+        <RatingBar
+            android:id="@+id/throwing"
+            android:paddingTop="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:numStars="5"
+            android:stepSize="1"/>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorGley"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/catching"
+            style="@style/complete_tv" />
+        <RatingBar
+            android:id="@+id/catching"
+            android:paddingTop="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:numStars="5"
+            android:stepSize="1"/>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorGley"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/deffence"
+            style="@style/complete_tv" />
+        <RatingBar
+            android:id="@+id/D"
+            android:paddingTop="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:numStars="5"
+            android:stepSize="1"/>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorGley"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/offence"
+            style="@style/complete_tv" />
+        <RatingBar
+            android:id="@+id/O"
+            android:paddingTop="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:numStars="5"
+            android:stepSize="1"/>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorGley"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/speed"
+            style="@style/complete_tv" />
+        <RatingBar
+            android:id="@+id/speed"
+            android:paddingTop="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:numStars="5"
+            android:stepSize="1"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/public_tittle"
+        layout="@layout/tittle" />
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:background="@color/colorGley"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/complete_nickname"
+            style="@style/complete_tv" />
+        <EditText
+            android:id="@+id/sign_nickname"
+            style="@style/login_EditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/complete_nickname" />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorGley"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/complete_email"
+            style="@style/complete_tv" />
+        <EditText
+            android:id="@+id/sign_email"
+            style="@style/login_EditText_long"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/complete_email" />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorGley"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/complete_team"
+            style="@style/complete_tv" />
+        <EditText
+            android:id="@+id/sign_team"
+            style="@style/login_EditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/complete_team1" />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorGley"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/complete_sex"
+            style="@style/complete_tv"
+            android:layout_gravity="center"/>
+        <RadioGroup
+            android:id="@+id/sign_sex"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_margin="0dp">
+            <RadioButton
+                android:id="@+id/man"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="男"/>
+            <RadioButton
+                android:id="@+id/woman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="女"/>
+        </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorGley"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/throwing"
+            style="@style/complete_tv"/>
+        <RatingBar
+            android:id="@+id/throwing"
+            android:paddingTop="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:numStars="5"
+            android:stepSize="1"/>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:background="@color/colorGley"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/catching"
+            style="@style/complete_tv" />
+        <RatingBar
+            android:id="@+id/catching"
+            android:paddingTop="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:numStars="5"
+            android:stepSize="1"/>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:background="@color/colorGley"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/deffence"
+            style="@style/complete_tv" />
+        <RatingBar
+            android:id="@+id/D"
+            android:paddingTop="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:numStars="5"
+            android:stepSize="1"/>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:background="@color/colorGley"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/offence"
+            style="@style/complete_tv" />
+        <RatingBar
+            android:id="@+id/O"
+            android:paddingTop="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:numStars="5"
+            android:stepSize="1"/>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:background="@color/colorGley"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/speed"
+            style="@style/complete_tv" />
+        <RatingBar
+            android:id="@+id/speed"
+            android:paddingTop="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:numStars="5"
+            android:stepSize="1"/>
+    </LinearLayout>
+    <Button
+        android:fitsSystemWindows="true"
+        android:id="@+id/sign_btn_summit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/complete"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

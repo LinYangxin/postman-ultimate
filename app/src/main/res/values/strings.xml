@@ -1,0 +1,48 @@
+<resources>
+    <!--登陆界面-->
+    <string name="app_name">Panker</string>
+    <string name="login_user">手机号码/邮箱</string>
+    <string name="login_password">密码</string>
+    <string name="login">登录</string>
+    <string name="login_fogetpw">忘记密码?</string>
+    <string name="login_sign">新用户注册</string>
+    <string name="login_other">其他账户登录</string>
+    <!--资料完善-->
+    <string name="complete_nickname">您的昵称</string>
+    <string name="complete_email">您的邮箱</string>
+    <string name="complete_team">效力队伍</string>
+    <string name="complete_team1">您效力队伍</string>
+    <string name="complete_sex">您的性别</string>
+    <string name="throwing">扔盘</string>
+    <string name="catching">接盘</string>
+    <string name="speed">速度</string>
+    <string name="offence">进攻</string>
+    <string name="deffence">防守</string>
+    <string name="complete">完成注册</string>
+    <!--验证手机号码-->
+    <string name="verifyphone_text">我们已发送号码至你的手机，请输入验证码</string>
+    <string name="verifyphone_hint">请输入验证码</string>
+    <string name="verifyphone_btn">验证手机</string>
+    <!--重置密码-->
+    <string name="resetpassword">输入您要重置密码账户所绑定的手机号码或邮箱</string>
+    <string name="resetpassword_input">手机号码/邮箱</string>
+    <string name="resetpassword_nextstep">下一步</string>
+    <string name="resetpassword_newpw">新的6-20位密码</string>
+    <string name="help">&#x0009;&#x0009;&#x0009;&#x0009;&#x0009;短信验证由于运营商和渠道的限制，遵循以下原则:&#x000A;&#x000A;
+        一、1 分钟只能向同一个手机号码发送 1 条短信。&#x000A;&#x000A;
+        二、验证码短信每 30 分钟只能向同一个手机号码最多发送 2 条短信。&#x000A;&#x000A;
+        三、每天只能向同一个手机号码发送 5 条验证类短信、15 条通知类短信。&#x000A;&#x000A;
+        若造成不便，请谅解。</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string-array name="classify">
+        <item>全部商品</item>
+        <item>上衣</item>
+        <item>裤子</item>
+        <item>手套</item>
+        <item>袖套</item>
+        <item>鞋子</item>
+        <item>飞盘</item>
+        <item>角标</item>
+    </string-array>
+</resources>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/public_tittle"
+        layout="@layout/tittle" />
+
+    <RelativeLayout
+        style="@style/sign_linearLayout"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="省流量模式"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"/>
+
+        <Switch
+            android:layout_centerVertical="true"
+            style="@style/switchbutton"
+            android:layout_alignParentRight="true"
+            android:checked="false"
+            android:clickable="false" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#000000" />
+
+    <TextView
+        style="@style/setting_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="清空缓存" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#000000" />
+
+    <TextView
+        style="@style/setting_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="检查更新" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#000000" />
+
+    <TextView
+        style="@style/setting_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="意见反馈" />
+
+
+    <TextView
+        android:layout_marginTop="25dp"
+        style="@style/setting_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="联系我们" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#000000" />
+
+    <TextView
+        style="@style/setting_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="关于我们" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#000000" />
+    <Button
+        android:layout_marginTop="50dp"
+        style="@style/public_Button"
+        android:background="@color/PankerRed"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:text="退出当前账号"
+        android:id="@+id/btn_logout"/>
+</LinearLayout>

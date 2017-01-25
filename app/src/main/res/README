@@ -1,0 +1,11 @@
+ui包：用户ui界面，包含4个子包
+    1：activity包：
+        本包储存各类acitvity
+    2：adapter包：
+        本包储存各类Listview的adapter
+    3：fragment包：
+        本包储存四个大的界面，“我”，“交易区”，“资讯”，“比赛信息”
+
+    4：view包：
+        本包用以储存各类界面美化工具类
+uilt包：工具类包
