@@ -11,7 +11,7 @@ public class User {
     private static String Phonenumber, Email, Nickname, Myself, Team, Position;
     private static float O, D, Speed, Catching, Throwing;
     private static Bitmap head;
-    private static boolean isMan, isNew;
+    private static boolean isMan, isNew;//isNew用以判断是否加载头像
     private static AVUser myUser;
 
     public User() {

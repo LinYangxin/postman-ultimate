@@ -23,6 +23,7 @@ import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.GetDataCallback;
 import com.example.panker.panker.R;
+import com.example.panker.panker.uilt.Tools.DataManager;
 
 
 /**
@@ -32,14 +33,14 @@ public class Activity_splash extends Activity {
     private final String TAG = this.getClass().getSimpleName();
     private ImageView iv_start;
     private final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 1, REQUEST_CODE_CAMERA = 2;//用以动态获取权限
-    private boolean FinishLoading = false;
-    private boolean Finish=false;
-    private  Thread thread;
+    private static DataManager dataManager;//此处从服务器处加载数据。
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
+        dataManager = new DataManager();
+        dataManager.init();
         GetPomitssion(0);
     }
 
@@ -56,6 +57,7 @@ public class Activity_splash extends Activity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
+
                 AVUser currentUser = AVUser.getCurrentUser();
                 if (currentUser != null) {
                     // 跳转到首页

@@ -17,13 +17,14 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVOSCloud;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.GetDataCallback;
 import com.example.panker.panker.R;
 import com.example.panker.panker.ui.fragment.*;
 //import com.example.panker.panker.uilt.Tools.Head;
 import com.example.panker.panker.uilt.Tools.TittleManager;
-import com.example.panker.panker.uilt.Tools.User;
+import com.example.panker.panker.bean.User;
 import com.example.panker.panker.uilt.Tools.baseViewPager;
 
 import java.util.ArrayList;
@@ -39,14 +40,14 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
     private List<Fragment> fragments;
     private long firstTime = 0;
     private me d = new me();
-   // private Head head;
     private User user;
-    private LinearLayout roll;
+//    private LinearLayout roll;
     public static TittleManager tittleManager;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        AVOSCloud.setDebugLogEnabled(true);
         setContentView(R.layout.guide);
         initView();
         initEvent();
@@ -63,7 +64,6 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void done(byte[] bytes, AVException e) {
                             if (e == null) {
-                               //  head = new Head(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
                                 user.setHead(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
                             }
                         }
@@ -71,7 +71,6 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
                 else {
                     Resources res = getResources();
                     user.setHead(BitmapFactory.decodeResource(res, R.drawable.head));
-                 //   head=new Head(BitmapFactory.decodeResource(res, R.drawable.head));
                 }
 
             }
@@ -82,7 +81,7 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         fragments.add(new shopping());
         fragments.add(new game());
         fragments.add(d);
-        roll=(LinearLayout)findViewById(R.id.roll);
+//        roll=(LinearLayout)findViewById(R.id.roll);
         mNewBtn = (RadioButton) findViewById(R.id.RadioButton);
         mShopBtn = (RadioButton) findViewById(R.id.RadioButton2);
         mGameBtn = (RadioButton) findViewById(R.id.RadioButton3);
@@ -118,18 +117,22 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         switch (view.getId()) {
             case R.id.RadioButton:
                 viewPager.setCurrentItem(0, true);
+                findViewById(R.id.public_tittle).setVisibility(View.VISIBLE);
                 tittleManager.setTitleName("发现");
                 break;
             case R.id.RadioButton2:
                 viewPager.setCurrentItem(1, true);
-                tittleManager.setTitleName("商店");
+                findViewById(R.id.public_tittle).setVisibility(View.GONE);
+               // tittleManager.setTitleName("商店");
                 break;
             case R.id.RadioButton3:
                 viewPager.setCurrentItem(2, true);
+                findViewById(R.id.public_tittle).setVisibility(View.VISIBLE);
                 tittleManager.setTitleName("比赛");
                 break;
             case R.id.RadioButton4:
                 viewPager.setCurrentItem(3, true);
+                findViewById(R.id.public_tittle).setVisibility(View.VISIBLE);
                 tittleManager.setTitleName("我的");
                 break;
             case R.id.me_power:

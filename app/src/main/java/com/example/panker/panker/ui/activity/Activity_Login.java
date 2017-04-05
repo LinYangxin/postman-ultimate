@@ -1,14 +1,9 @@
 package com.example.panker.panker.ui.activity;
 
-import com.example.panker.panker.ui.fragment.me;
+//import com.example.panker.panker.bean.config;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,16 +26,7 @@ public class Activity_Login extends Activity implements View.OnClickListener {
     private String id;
     private TextView UserPw;
     private TextView UserId;
-    /*BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            // TODO Auto-generated method stub
-            AlertDialog.Builder ab = new AlertDialog.Builder(Activity_Login.this);
-            ab.setTitle("提示").setMessage("资料补充完成，请查收邮箱，完成邮箱核验").setPositiveButton("知道了", null).show();
-        }
-    };*/
-
+//    private config c =new config();
     private void initView() {
         fogetpw = (TextView) findViewById(R.id.Login_forgetpw);
         sign = (TextView) findViewById(R.id.Login_sign);

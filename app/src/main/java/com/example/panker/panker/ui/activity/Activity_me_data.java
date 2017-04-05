@@ -27,7 +27,7 @@ import com.avos.avoscloud.SaveCallback;
 import com.example.panker.panker.R;
 //import com.example.panker.panker.uilt.Tools.Head;
 import com.example.panker.panker.uilt.Tools.TittleManager;
-import com.example.panker.panker.uilt.Tools.User;
+import com.example.panker.panker.bean.User;
 
 
 import java.io.ByteArrayOutputStream;

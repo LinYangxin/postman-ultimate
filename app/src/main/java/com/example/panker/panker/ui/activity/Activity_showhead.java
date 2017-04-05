@@ -5,23 +5,20 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.panker.panker.R;
 import com.example.panker.panker.uilt.Tools.TittleManager;
-import com.example.panker.panker.uilt.Tools.User;
+import com.example.panker.panker.bean.User;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import static android.R.attr.path;
 import static android.os.Environment.getExternalStorageDirectory;
 
 /**

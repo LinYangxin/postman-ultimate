@@ -5,40 +5,41 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import android.text.TextUtils;
+import com.example.panker.panker.bean.News;
+import com.example.panker.panker.bean.Rollpage;
+import com.example.panker.panker.ui.adapter.news_adapter;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.animation.Animation;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.TranslateAnimation;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
 
 
-import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVObject;
-import com.avos.avoscloud.AVQuery;
-import com.avos.avoscloud.FindCallback;
-import com.avos.avoscloud.GetCallback;
-import com.avos.avoscloud.SaveCallback;
 import com.bumptech.glide.Glide;
 import com.example.panker.panker.R;
-import com.example.panker.panker.ui.activity.Activity_main;
 import com.example.panker.panker.ui.activity.Activity_web;
-import com.example.panker.panker.uilt.Tools.NetUtils;
-import com.example.panker.panker.uilt.Tools.TittleManager;
+import com.example.panker.panker.uilt.NewsListView.NewsListView;
+import com.example.panker.panker.uilt.Tools.DataManager;
 import com.example.panker.panker.uilt.rollviewpager.OnItemClickListener;
 import com.example.panker.panker.uilt.rollviewpager.RollPagerView;
 import com.example.panker.panker.uilt.rollviewpager.adapter.LoopPagerAdapter;
 import com.example.panker.panker.uilt.rollviewpager.hintview.IconHintView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.List;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_IDLE;
 
 
 /**
@@ -51,38 +52,39 @@ public class news extends basefragment implements View.OnClickListener {
     private RollPagerView mLoopViewPager;
     private TestLoopAdapter mLoopAdapter;
     private Handler handler = new Handler();
-    final String []ObjectId=new String[]{"587dc3d961ff4b00650b4f12","587dc3d5128fe1005703d300","587dc3d961ff4b00650b4f12"};
-    final String[] imgs  = new String[3];
-    final String[] url = new String[3];
+    private static DataManager dataManager = new DataManager();
+    private NewsListView mListView;
+    private news_adapter mAdapter;
+    private List<Rollpage> rollpages;
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mContent=inflater.inflate(R.layout.fragment_news,container,false);
-        mLoopViewPager= (RollPagerView) mContent.findViewById(R.id.loop_view_pager);
+        mContent = inflater.inflate(R.layout.fragment_news,container,false);
+        mLoopViewPager = (RollPagerView) mContent.findViewById(R.id.loop_view_pager);
+        mListView = (NewsListView)mContent.findViewById(R.id.news_list);
+        mAdapter = new news_adapter(mActivity,R.layout.news_listview,dataManager.getNews());
+        mListView.setAdapter(mAdapter);
+        mListView.setFocusable(false);
         return mContent;
     }
 
     @Override
     protected void initEvent() {
-        mLoopViewPager.setPlayDelay(1000);
         mLoopViewPager.setAdapter(mLoopAdapter = new TestLoopAdapter(mLoopViewPager));
         mLoopViewPager.setHintView(new IconHintView(mActivity,R.drawable.point_focus,R.drawable.point_normal));
         mLoopViewPager.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Toast.makeText(mActivity,"Item "+position+" clicked",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(mActivity,"Item "+position+" clicked",Toast.LENGTH_SHORT).show();
                 Intent i=new Intent(mActivity,Activity_web.class);
                 switch (position) {
                     case 0:
-                       // i.putExtra("url", "http://mp.weixin.qq.com/s/t0uWfNgb_KZdLmP08LRxvg");
-                        i.putExtra("url",url[0]);
+                        i.putExtra("url", rollpages.get(0).getUrl());
                         break;
                     case 1:
-                       // i.putExtra("url", "http://mp.weixin.qq.com/s/0GTUed75a5vQJW5gNMfQYA");
-                        i.putExtra("url",url[1]);
+                        i.putExtra("url",rollpages.get(1).getUrl());
                         break;
                     case 2:
-                        //i.putExtra("url", "http://mp.weixin.qq.com/s/Zv_8mvf5lA7ZvIVQu6kMPQ");
-                        i.putExtra("url",url[2]);
+                        i.putExtra("url",rollpages.get(2).getUrl());
                         break;
                 }
                 startActivity(i);
@@ -91,39 +93,39 @@ public class news extends basefragment implements View.OnClickListener {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                mLoopAdapter.setImgs(imgs);
+                String[] c = new String[3];
+                for(int i = 0;i<3;i++){
+                    c[i]=new String(rollpages.get(i).getImgs());
+                }
+                mLoopAdapter.setImgs(c);
+            }
+        });
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                News t = dataManager.getNews().get(i);
+                //Toast.makeText(mActivity, t.getNews_url(),Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(mActivity,Activity_web.class);
+                intent.putExtra("url", t.getNews_url());
+                startActivity(intent);
             }
         });
     }
 
     @Override
     public void onClick(View view) {
-
     }
+
     @Override
     public void initData(){
-        for(int i=0;i<3;i++) {
-            final AVObject tmp = AVObject.createWithoutData("rollview", ObjectId[i]);
-            final int pos = i;
-            tmp.fetchInBackground(new GetCallback<AVObject>() {
-                @Override
-                public void done(AVObject avObject, AVException e) {
-                    imgs[pos] = tmp.getString("url_pic");
-                    url[pos] = tmp.getString("URL");
-                    Log.i("qqqqqqqqqqq",imgs[pos]);
-                    Log.i("wwwwwwwwwwwww",url[pos]);
-                }
-            });
-        }
+        rollpages = dataManager.getRoll();
     }
     private class TestLoopAdapter extends LoopPagerAdapter {
         String[] imgs = new String[0];
-
         public void setImgs(String[] imgs){
             this.imgs = imgs;
             notifyDataSetChanged();
         }
-
 
         public TestLoopAdapter(RollPagerView viewPager) {
             super(viewPager);
@@ -144,8 +146,6 @@ public class news extends basefragment implements View.OnClickListener {
             view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             Glide.with(mActivity)
                     .load(imgs[position])
-                    // .placeholder(R.drawable.img4)
-                    // .error(R.drawable.img1)
                     .into(view);
             return view;
         }

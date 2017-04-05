@@ -11,12 +11,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.panker.panker.ui.activity.Activity_showhead;
-import com.example.panker.panker.uilt.Tools.User;
+import com.example.panker.panker.bean.User;
 import com.example.panker.panker.ui.activity.Activity_me_data;
 import com.example.panker.panker.ui.activity.Activity_me_power;
 import com.example.panker.panker.R;
 import com.example.panker.panker.ui.activity.Activity_me_setting;
-import com.example.panker.panker.uilt.Tools.TittleManager;
 
 /**
  * Created by Ivory on 2016/7/19.
@@ -25,7 +24,6 @@ import com.example.panker.panker.uilt.Tools.TittleManager;
  */
 public class me extends basefragment implements View.OnClickListener {
     private View mContent;
-
     private String nickname;
     private String team;
     public TextView tv_nickname,tv_team;

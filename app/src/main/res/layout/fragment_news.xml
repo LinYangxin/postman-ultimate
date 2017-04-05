@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:scrollbars="none"
+    android:fadingEdge="vertical">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/roll">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="vertical"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical">
         <com.example.panker.panker.uilt.rollviewpager.RollPagerView
             android:id="@+id/loop_view_pager"
             android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:rollviewpager_play_delay="3000" />
+        <com.example.panker.panker.uilt.NewsListView.NewsListView
+            android:scrollbars="none"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:rollviewpager_play_delay="3000"
-            />
+            android:id="@+id/news_list"/>
     </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"/>
-
-</LinearLayout>
+</ScrollView>
