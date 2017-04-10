@@ -7,7 +7,6 @@ import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
 import com.example.panker.panker.bean.News;
 import com.example.panker.panker.bean.Rollpage;
-import com.example.panker.panker.uilt.local_db.dataBase;
 
 import org.json.JSONObject;
 import java.util.ArrayList;
@@ -21,7 +20,6 @@ import java.util.List;
 public class DataManager {
     private static List<News> news = new ArrayList<>();//存放新闻实体的List
     private static List<Rollpage> roll = new ArrayList<>();//存放轮播图实体的List
-    private static dataBase mdataBase;
     //构造函数
     public  DataManager(){
     }
@@ -110,8 +108,8 @@ public class DataManager {
     public static List<Rollpage> getRoll(){ return roll; }
 
     //创建本地数据库
-    public static void Creat_dataBase(){
-        mdataBase.getWritableDatabase();
-    }
+    //public static void Creat_dataBase(){
+       // mdataBase.getWritableDatabase();
+   // }
     //更新本地数据库
 }
