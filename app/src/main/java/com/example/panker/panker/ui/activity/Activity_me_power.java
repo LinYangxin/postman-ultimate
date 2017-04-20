@@ -1,14 +1,19 @@
 package com.example.panker.panker.ui.activity;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.SaveCallback;
 import com.example.panker.panker.R;
+import com.example.panker.panker.uilt.Tools.SystemBarTintManager;
 import com.example.panker.panker.uilt.Tools.TittleManager;
 import com.example.panker.panker.bean.User;
 
@@ -113,4 +118,5 @@ public class Activity_me_power extends Activity implements RatingBar.OnRatingBar
                 break;
         }
     }
+
 }

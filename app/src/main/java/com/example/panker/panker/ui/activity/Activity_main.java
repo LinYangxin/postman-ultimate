@@ -1,5 +1,6 @@
 package com.example.panker.panker.ui.activity;
 
+import android.annotation.TargetApi;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -9,14 +10,18 @@ import android.database.Cursor;
 import android.database.DataSetObserver;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -29,6 +34,7 @@ import com.avos.avoscloud.GetDataCallback;
 import com.example.panker.panker.R;
 import com.example.panker.panker.ui.fragment.*;
 //import com.example.panker.panker.uilt.Tools.Head;
+import com.example.panker.panker.uilt.Tools.SystemBarTintManager;
 import com.example.panker.panker.uilt.Tools.TittleManager;
 import com.example.panker.panker.bean.User;
 import com.example.panker.panker.uilt.Tools.baseViewPager;
@@ -60,6 +66,18 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.guide);
         initView();
         initEvent();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            setTranslucentStatus(true);
+        }
+
+        SystemBarTintManager tintManager = new SystemBarTintManager(this);
+        tintManager.setStatusBarTintEnabled(true);
+        tintManager.setStatusBarTintResource(R.color.red_light);//通知栏所需颜色
+
+
+
+
     }
 
     private void initView() {
@@ -111,6 +129,28 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         group = (RadioGroup) findViewById(R.id.tab_btn_group);
         tittleManager=new TittleManager(this);
         tittleManager.setTitleStyle(TittleManager.TitleStyle.ONLY_TITLE,"发现");
+
+
+
+//        Window window = this.getWindow();
+////取消设置透明状态栏,使 ContentView 内容不再覆盖状态栏
+//        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//
+////需要设置这个 flag 才能调用 setStatusBarColor 来设置状态栏颜色
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+////设置状态栏颜色
+//        window.setStatusBarColor(statusColor);
+//
+//        ViewGroup mContentView = (ViewGroup) findViewById(Window.ID_ANDROID_CONTENT);
+//        View mChildView = mContentView.getChildAt(0);
+//        if (mChildView != null) {
+//            //注意不是设置 ContentView 的 FitsSystemWindows, 而是设置 ContentView 的第一个子 View . 预留出系统 View 的空间.
+//            ViewCompat.setFitsSystemWindows(mChildView, true);
+//        }
+
+
+
+
         helper=new SQLiteHelper(this);
 //        cursor=new Cursor() {
 //            @Override
@@ -434,4 +474,19 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         }
 
     }
+    @TargetApi(19)
+    private void setTranslucentStatus(boolean on) {
+        Window win = getWindow();
+        WindowManager.LayoutParams winParams = win.getAttributes();
+        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+        if (on) {
+            winParams.flags |= bits;
+        } else {
+            winParams.flags &= ~bits;
+        }
+        win.setAttributes(winParams);
+    }
+
+
+
 }

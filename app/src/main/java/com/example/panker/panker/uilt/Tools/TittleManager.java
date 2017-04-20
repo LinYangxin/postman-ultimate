@@ -75,19 +75,19 @@ public class TittleManager {
                 setCustomTitle(0, "", titleName, 0, "");
                 break;
             case ONLY_BACK:
-                setCustomTitle(R.drawable.tittle_back, "", titleName, 0, "");
+                setCustomTitle(R.drawable.tittle_image_back, "", titleName, 0, "");
                 setLeftTitleListener(mDefaultlistener);
                 break;
             case BACK_AND_FAVORITE:
-                setCustomTitle(R.drawable.tittle_back, "", titleName, R.drawable.tittle_yes_favorite, "");
+                setCustomTitle(R.drawable.tittle_image_back, "", titleName, R.drawable.tittle_yes_favorite, "");
                 setLeftTitleListener(mDefaultlistener);
                 break;
             case BACK_AND_SAVE:
-                setCustomTitle(R.drawable.tittle_back, "", titleName, 0, "保存");
+                setCustomTitle(R.drawable.tittle_image_back, "", titleName, 0, "保存");
                 setLeftTitleListener(mDefaultlistener);
                 break;
             case BACK_AND_STEP:
-                setCustomTitle(R.drawable.tittle_back,"",titleName,0,"下一步");
+                setCustomTitle(R.drawable.tittle_image_back,"",titleName,0,"下一步");
                 setRightTitleListener(mDefaultlistener);
                 break;
         }

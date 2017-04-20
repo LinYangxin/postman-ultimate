@@ -27,7 +27,7 @@ public class Activity_verifyPhone extends Activity implements View.OnClickListen
     private Button verify_btn;
     private  boolean FromSignIn=true;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verifyphone);
         initData();

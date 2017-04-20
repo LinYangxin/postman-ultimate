@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.panker.panker.R;
+import com.example.panker.panker.uilt.Tools.SystemBarTintManager;
 import com.example.panker.panker.uilt.Tools.TittleManager;
 
 /**
@@ -15,11 +16,13 @@ import com.example.panker.panker.uilt.Tools.TittleManager;
  */
 public class Activity_me_setting extends Activity implements View.OnClickListener {
     private TittleManager tittleManager;
+    private SystemBarTintManagerHelper systemBarTintManagerHelper;
     private Button btn_logout;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+        systemBarTintManagerHelper=new SystemBarTintManagerHelper(this);
         initView();
         initEvent();
     }

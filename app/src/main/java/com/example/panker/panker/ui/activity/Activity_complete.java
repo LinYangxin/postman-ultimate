@@ -3,6 +3,7 @@ package com.example.panker.panker.ui.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SaveCallback;
 import com.example.panker.panker.R;
+import com.example.panker.panker.uilt.Tools.SystemBarTintManager;
 import com.example.panker.panker.uilt.Tools.TittleManager;
 
 import java.util.regex.Matcher;
@@ -84,6 +86,7 @@ public class Activity_complete extends Activity implements View.OnClickListener,
         setContentView(R.layout.activity_complete);
         initView();
         initEvent();
+
     }
 
     @Override

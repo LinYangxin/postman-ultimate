@@ -33,6 +33,7 @@ public class Activity_Sign extends Activity implements View.OnClickListener {
     private void initView() {
         tittleManager = new TittleManager(this);
         tittleManager.setTitleStyle(TittleManager.TitleStyle.ONLY_BACK, "账号注册");
+
         mPhonenumber = (EditText) findViewById(R.id.sign_mobilephonenumber);
        // mUserId = (EditText) findViewById(R.id.sign_id);
         mPw = (EditText) findViewById(R.id.sign_pw);

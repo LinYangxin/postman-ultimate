@@ -26,6 +26,7 @@ import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.SaveCallback;
 import com.example.panker.panker.R;
 //import com.example.panker.panker.uilt.Tools.Head;
+import com.example.panker.panker.uilt.Tools.SystemBarTintManager;
 import com.example.panker.panker.uilt.Tools.TittleManager;
 import com.example.panker.panker.bean.User;
 
@@ -59,6 +60,7 @@ public class Activity_me_data extends Activity implements View.OnClickListener {
         initData();
         initView();
         initEvent();
+
     }
 
     private void initData() {

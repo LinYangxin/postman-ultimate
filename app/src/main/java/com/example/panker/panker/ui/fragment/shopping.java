@@ -155,6 +155,9 @@ public class shopping extends basefragment{
     private View mContent;
     private WebView webView;
     private static final String url = "https://shop.m.taobao.com/shop/shop_index.htm?spm=0.0.0.0&shop_id=36525342";
+    //private static final String url = "https://shop.m.jd.com/?shopId=1000007829";
+
+
     //https://weidian.com/?userid=317776890
     //https://shop36525342.taobao.com/?spm=a230r.7195193.1997079397.2.DzjUr4
     //https://shop.m.taobao.com/shop/shop_index.htm?spm=0.0.0.0&shop_id=36525342

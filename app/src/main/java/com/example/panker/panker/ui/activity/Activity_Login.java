@@ -3,6 +3,7 @@ package com.example.panker.panker.ui.activity;
 //import com.example.panker.panker.bean.config;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.LogInCallback;
 import com.example.panker.panker.R;
+import com.example.panker.panker.uilt.Tools.SystemBarTintManager;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,7 +32,7 @@ public class Activity_Login extends Activity implements View.OnClickListener {
     private void initView() {
         fogetpw = (TextView) findViewById(R.id.Login_forgetpw);
         sign = (TextView) findViewById(R.id.Login_sign);
-        Login = (Button) findViewById(R.id.login_btn);
+        Login = (Button) findViewById(R.id.login);
         UserId = (TextView) findViewById(R.id.login_id);
         UserPw = (TextView) findViewById(R.id.login_pw);
     }
@@ -59,6 +61,7 @@ public class Activity_Login extends Activity implements View.OnClickListener {
         });*/
         initView();
         initEvents();
+
     }
 
     public void onClick(View view) {
@@ -73,7 +76,7 @@ public class Activity_Login extends Activity implements View.OnClickListener {
                 Intent intent = new Intent(Activity_Login.this, Activity_Sign.class);
                 startActivity(intent);
                 break;
-            case R.id.login_btn:
+            case R.id.login:
                 login();
         }
     }

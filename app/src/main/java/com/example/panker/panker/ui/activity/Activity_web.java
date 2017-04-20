@@ -20,7 +20,7 @@ public class Activity_web extends Activity {
     private TittleManager tittleManager;
     private String url;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
         initData();

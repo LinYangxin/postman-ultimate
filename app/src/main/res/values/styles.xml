@@ -13,7 +13,7 @@
     <!--登陆界面输入框-->
     <style name="login_EditText" parent="Base.V12.Widget.AppCompat.EditText">
         <item name="android:maxLines">1</item>
-        <item name="android:width">250dp</item>
+        <item name="android:width">220dp</item>
         <item name="android:height">50dp</item>
         <item name="android:singleLine">true</item>
         <item name="android:maxLength">15</item>
@@ -75,4 +75,22 @@
         <item name="android:textOn">""</item>
 
     </style>
+    <!--圆角登陆按钮-->
+    <style name="common_button_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/selector_red_corners_button</item>
+        <item name="android:padding">6.0dip</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+
+    </style>
+    <!--白底输入框-->
+    <style name="white_edit_text">
+        <item name="android:background">@drawable/shape_edittext</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingLeft">15dp</item>
+    </style>
+
+
 </resources>

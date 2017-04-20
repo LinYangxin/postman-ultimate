@@ -4,10 +4,15 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorGley">#D3D3D3</color>
-    <color name="colorIvory">#FFFFF0</color>
+    <color name="colorIvory">#FFFFFF</color>
     <color name="PankerOrange">#EEA747</color>
     <color name="PankerYellow">#FDEF02</color>
     <color name="PankerButton">#FFEE40</color>
     <color name="PankerBackground">#FFF273</color>
     <color name="PankerRed">#dd4422</color>
+    <color name="red_dark">#ffb52121</color>
+    <color name="red_light">#ffcd2222</color>
+    <color name="red">#ce3d3a</color>
+    <color name="white_backgroud">#f4f2f5</color>
+    <color name="black_text">#000000</color>
 </resources>
