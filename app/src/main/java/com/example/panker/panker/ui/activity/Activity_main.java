@@ -14,19 +14,27 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
-
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVOSCloud;
 import com.avos.avoscloud.AVUser;
@@ -40,6 +48,7 @@ import com.example.panker.panker.bean.User;
 import com.example.panker.panker.uilt.Tools.baseViewPager;
 import com.example.panker.panker.uilt.local_db.SQLiteHelper;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,14 +57,15 @@ import java.util.List;
  */
 public class Activity_main extends AppCompatActivity implements View.OnClickListener,ViewPager.OnPageChangeListener {
     private baseViewPager viewPager;
-    private RadioGroup group;
-    private RadioButton mNewBtn, mShopBtn, mGameBtn, mBtn;
     private List<Fragment> fragments;
+   // private BottomNavigationBar mBottomNavigationBar;
     private long firstTime = 0;
     private me d = new me();
+    private game g = new game();
+    private shopping s = new shopping();
+    private news n = new news();
     private User user;
-    private Cursor cursor;
-//    private LinearLayout roll;
+    private TextView mTNews,mTShop,mTGame,mTMe;
     public static TittleManager tittleManager;
     public static SQLiteHelper helper;
     @Override
@@ -74,10 +84,6 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         SystemBarTintManager tintManager = new SystemBarTintManager(this);
         tintManager.setStatusBarTintEnabled(true);
         tintManager.setStatusBarTintResource(R.color.red_light);//通知栏所需颜色
-
-
-
-
     }
 
     private void initView() {
@@ -104,15 +110,10 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         });
         t.start();
         fragments = new ArrayList<>();
-        fragments.add(new news());
-        fragments.add(new shopping());
-        fragments.add(new game());
+        fragments.add(n);
+        fragments.add(s);
+        fragments.add(g);
         fragments.add(d);
-//        roll=(LinearLayout)findViewById(R.id.roll);
-        mNewBtn = (RadioButton) findViewById(R.id.RadioButton);
-        mShopBtn = (RadioButton) findViewById(R.id.RadioButton2);
-        mGameBtn = (RadioButton) findViewById(R.id.RadioButton3);
-        mBtn = (RadioButton) findViewById(R.id.RadioButton4);
         viewPager = (baseViewPager) findViewById(R.id.fragments_container);
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             public int getCount() {
@@ -126,313 +127,74 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         });
 
         viewPager.addOnPageChangeListener(this);
-        group = (RadioGroup) findViewById(R.id.tab_btn_group);
         tittleManager=new TittleManager(this);
-        tittleManager.setTitleStyle(TittleManager.TitleStyle.ONLY_TITLE,"发现");
-
-
-
-//        Window window = this.getWindow();
-////取消设置透明状态栏,使 ContentView 内容不再覆盖状态栏
-//        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//
-////需要设置这个 flag 才能调用 setStatusBarColor 来设置状态栏颜色
-//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-////设置状态栏颜色
-//        window.setStatusBarColor(statusColor);
-//
-//        ViewGroup mContentView = (ViewGroup) findViewById(Window.ID_ANDROID_CONTENT);
-//        View mChildView = mContentView.getChildAt(0);
-//        if (mChildView != null) {
-//            //注意不是设置 ContentView 的 FitsSystemWindows, 而是设置 ContentView 的第一个子 View . 预留出系统 View 的空间.
-//            ViewCompat.setFitsSystemWindows(mChildView, true);
-//        }
-
-
-
-
+        tittleManager.setTitleStyle(TittleManager.TitleStyle.ONLY_TITLE,"翼鲲飞盘");
         helper=new SQLiteHelper(this);
-//        cursor=new Cursor() {
-//            @Override
-//            public int getCount() {
-//                return 0;
-//            }
-//
-//            @Override
-//            public int getPosition() {
-//                return 0;
-//            }
-//
-//            @Override
-//            public boolean move(int offset) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean moveToPosition(int position) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean moveToFirst() {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean moveToLast() {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean moveToNext() {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean moveToPrevious() {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean isFirst() {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean isLast() {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean isBeforeFirst() {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean isAfterLast() {
-//                return false;
-//            }
-//
-//            @Override
-//            public int getColumnIndex(String columnName) {
-//                return 0;
-//            }
-//
-//            @Override
-//            public int getColumnIndexOrThrow(String columnName) throws IllegalArgumentException {
-//                return 0;
-//            }
-//
-//            @Override
-//            public String getColumnName(int columnIndex) {
-//                return null;
-//            }
-//
-//            @Override
-//            public String[] getColumnNames() {
-//                return new String[0];
-//            }
-//
-//            @Override
-//            public int getColumnCount() {
-//                return 0;
-//            }
-//
-//            @Override
-//            public byte[] getBlob(int columnIndex) {
-//                return new byte[0];
-//            }
-//
-//            @Override
-//            public String getString(int columnIndex) {
-//                return null;
-//            }
-//
-//            @Override
-//            public void copyStringToBuffer(int columnIndex, CharArrayBuffer buffer) {
-//
-//            }
-//
-//            @Override
-//            public short getShort(int columnIndex) {
-//                return 0;
-//            }
-//
-//            @Override
-//            public int getInt(int columnIndex) {
-//                return 0;
-//            }
-//
-//            @Override
-//            public long getLong(int columnIndex) {
-//                return 0;
-//            }
-//
-//            @Override
-//            public float getFloat(int columnIndex) {
-//                return 0;
-//            }
-//
-//            @Override
-//            public double getDouble(int columnIndex) {
-//                return 0;
-//            }
-//
-//            @Override
-//            public int getType(int columnIndex) {
-//                return 0;
-//            }
-//
-//            @Override
-//            public boolean isNull(int columnIndex) {
-//                return false;
-//            }
-//
-//            @Override
-//            public void deactivate() {
-//
-//            }
-//
-//            @Override
-//            public boolean requery() {
-//                return false;
-//            }
-//
-//            @Override
-//            public void close() {
-//
-//            }
-//
-//            @Override
-//            public boolean isClosed() {
-//                return false;
-//            }
-//
-//            @Override
-//            public void registerContentObserver(ContentObserver observer) {
-//
-//            }
-//
-//            @Override
-//            public void unregisterContentObserver(ContentObserver observer) {
-//
-//            }
-//
-//            @Override
-//            public void registerDataSetObserver(DataSetObserver observer) {
-//
-//            }
-//
-//            @Override
-//            public void unregisterDataSetObserver(DataSetObserver observer) {
-//
-//            }
-//
-//            @Override
-//            public void setNotificationUri(ContentResolver cr, Uri uri) {
-//
-//            }
-//
-//            @Override
-//            public Uri getNotificationUri() {
-//                return null;
-//            }
-//
-//            @Override
-//            public boolean getWantsAllOnMoveCalls() {
-//                return false;
-//            }
-//
-//            @Override
-//            public void setExtras(Bundle extras) {
-//
-//            }
-//
-//            @Override
-//            public Bundle getExtras() {
-//                return null;
-//            }
-//
-//            @Override
-//            public Bundle respond(Bundle extras) {
-//                return null;
-//            }
-//        };
-//       // helper.insert_users("15151829888",null,"Douer",0,0,null,null);
-//        String sql="select * from "+ helper.TABLE_NAME_Users;
-//        cursor=helper.query(sql,null);
-//        if(cursor.getCount()==0)
-//            System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+        mTNews = (TextView)findViewById(R.id.tv_news);
+        mTShop = (TextView)findViewById(R.id.tv_shop);
+        mTGame = (TextView)findViewById(R.id.tv_game);
+        mTMe = (TextView)findViewById(R.id.tv_me);
     }
 
     private void initEvent() {
-        mNewBtn.setOnClickListener(this);
-        mGameBtn.setOnClickListener(this);
-        mShopBtn.setOnClickListener(this);
-        mBtn.setOnClickListener(this);
-
+        mTNews.setOnClickListener(this);
+        mTShop.setOnClickListener(this);
+        mTGame.setOnClickListener(this);
+        mTMe.setOnClickListener(this);
+        setDefaultFragment();
     }
 
+    private void setDefaultFragment() {
+        //set the defalut tab state
+        setTabState(mTNews, R.drawable.news_black, ContextCompat.getColor(this,R.color.colorPrimary));
+    }
+    private void setTabState(TextView textView, int image, int color) {
+        textView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, image, 0, 0);//Call requires API level 17
+        textView.setTextColor(color);
+    }
     @Override
     public void onClick(View view) {
+        resetTabState();
         switch (view.getId()) {
-            case R.id.RadioButton:
+            case R.id.tv_news:
+                setTabState(mTNews, R.drawable.news_black, ContextCompat.getColor(this,R.color.colorPrimary));
                 viewPager.setCurrentItem(0, true);
-                findViewById(R.id.public_tittle).setVisibility(View.VISIBLE);
-                tittleManager.setTitleName("发现");
                 break;
-            case R.id.RadioButton2:
+            case R.id.tv_shop:
+                setTabState(mTShop, R.drawable.shoping_black, ContextCompat.getColor(this,R.color.colorPrimary));
                 viewPager.setCurrentItem(1, true);
-                findViewById(R.id.public_tittle).setVisibility(View.GONE);
-               // tittleManager.setTitleName("商店");
                 break;
-            case R.id.RadioButton3:
+            case R.id.tv_game:
+                setTabState(mTGame, R.drawable.game_black, ContextCompat.getColor(this,R.color.colorPrimary));
                 viewPager.setCurrentItem(2, true);
-                findViewById(R.id.public_tittle).setVisibility(View.VISIBLE);
-                tittleManager.setTitleName("比赛");
                 break;
-            case R.id.RadioButton4:
+            case R.id.tv_me:
+                setTabState(mTMe, R.drawable.me_black,ContextCompat.getColor(this,R.color.colorPrimary));
                 viewPager.setCurrentItem(3, true);
-                findViewById(R.id.public_tittle).setVisibility(View.VISIBLE);
-                tittleManager.setTitleName("我的");
                 break;
             case R.id.me_power:
                 Intent intent = new Intent(Activity_main.this, Activity_me_power.class);
                 startActivity(intent);
                 break;
         }
+    }
+    private void resetTabState() {
+        setTabState(mTNews, R.drawable.news_glay, R.color.black_light);
+        setTabState(mTShop, R.drawable.shoping_glay,  R.color.black_light);
+        setTabState(mTGame, R.drawable.game_glay, R.color.black_light);
+        setTabState(mTMe, R.drawable.me_glay, R.color.black_light);
 
     }
-
     @Override
     public void onPageScrollStateChanged(int arg0) {
-
-
     }
 
     @Override
     public void onPageScrolled(int arg0, float arg1, int arg2) {
-
     }
 
     @Override
     public void onPageSelected(int arg0) {
-        switch (arg0) {
-            case 0:
-                group.check(R.id.RadioButton);
-                break;
-            case 1:
-                group.check(R.id.RadioButton2);
-                break;
-            case 2:
-                group.check(R.id.RadioButton3);
-                break;
-            case 3:
-                group.check(R.id.RadioButton4);
-                break;
-            default:
-                break;
-        }
     }
 
     @Override
@@ -474,6 +236,7 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         }
 
     }
+    //通知栏颜色
     @TargetApi(19)
     private void setTranslucentStatus(boolean on) {
         Window win = getWindow();
@@ -486,7 +249,4 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         }
         win.setAttributes(winParams);
     }
-
-
-
 }

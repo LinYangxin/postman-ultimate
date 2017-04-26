@@ -91,6 +91,15 @@
         <item name="android:paddingRight">15dp</item>
         <item name="android:paddingLeft">15dp</item>
     </style>
-
+    <!--底部导航栏-->
+    <style name="viewpager_navigation_bar_tab_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:textColor">@color/black_light</item>
+        <item name="android:textSize">10sp</item>
+    </style>
 
 </resources>

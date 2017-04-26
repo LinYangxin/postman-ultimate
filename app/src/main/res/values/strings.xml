@@ -45,4 +45,8 @@
         <item>飞盘</item>
         <item>角标</item>
     </string-array>
+    <string name="item_news">发现</string>
+    <string name="item_shop">商店</string>
+    <string name="item_game">比赛</string>
+    <string name="item_me">我的</string>
 </resources>

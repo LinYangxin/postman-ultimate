@@ -3,32 +3,37 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="56dp"
+    android:layout_height="wrap_content"
+    tools:showIn="@layout/guide"
+    android:orientation="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
     android:background="@color/white_backgroud"
     android:orientation="horizontal"
-    tools:showIn="@layout/guide">
-
+    >
     <TextView
         android:id="@+id/tv_news"
         style="@style/viewpager_navigation_bar_tab_style"
-        android:drawableTop="@drawable/news_black"
+        android:drawableTop="@drawable/news_glay"
         android:text="@string/item_news"/>
 
     <TextView
         android:id="@+id/tv_shop"
         style="@style/viewpager_navigation_bar_tab_style"
-        android:drawableTop="@drawable/shoping_black"
+        android:drawableTop="@drawable/shoping_glay"
         android:text="@string/item_shop"/>
 
     <TextView
         android:id="@+id/tv_game"
         style="@style/viewpager_navigation_bar_tab_style"
-        android:drawableTop="@drawable/game_black"
-        android:text="@string/item_game"/>
+        android:drawableTop="@drawable/game_glay"
+        android:text="@string/item_game" />
 
     <TextView
         android:id="@+id/tv_me"
         style="@style/viewpager_navigation_bar_tab_style"
-        android:drawableTop="@drawable/me_black"
+        android:drawableTop="@drawable/me_glay"
         android:text="@string/item_me"/>
+</LinearLayout>
 </LinearLayout>

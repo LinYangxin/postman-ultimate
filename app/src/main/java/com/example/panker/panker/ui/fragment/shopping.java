@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -154,12 +155,8 @@ import java.util.Locale;
 public class shopping extends basefragment{
     private View mContent;
     private WebView webView;
-    private static final String url = "https://shop.m.taobao.com/shop/shop_index.htm?spm=0.0.0.0&shop_id=36525342";
-    //private static final String url = "https://shop.m.jd.com/?shopId=1000007829";
-
-
-    //https://weidian.com/?userid=317776890
-    //https://shop36525342.taobao.com/?spm=a230r.7195193.1997079397.2.DzjUr4
+    private static final String url = "http://bong.m.tmall.com/?spm=a220m.6910245.0.0.1mIxQn&shop_id=125704545";
+    //http://bong.m.tmall.com/?spm=a220m.6910245.0.0.1mIxQn&shop_id=125704545
     //https://shop.m.taobao.com/shop/shop_index.htm?spm=0.0.0.0&shop_id=36525342
     private static final String INJECTION_TOKEN = "**injection**";
     @Override
@@ -201,5 +198,9 @@ public class shopping extends basefragment{
         });
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
+        settings.setDisplayZoomControls(true);
+        settings.setSupportZoom(true);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        settings.setLoadWithOverviewMode(true);
     }
 }

@@ -15,45 +15,7 @@
         android:layout_height="0dp"
         android:layout_weight="1">
     </com.example.panker.panker.uilt.Tools.baseViewPager>
-    <RadioGroup
-        android:background="@android:color/background_light"
-        android:id="@+id/tab_btn_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/RadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="54dp"
-            android:layout_weight="1"
-            android:button="@null"
-            android:checked="true"
-            android:drawableBottom="@drawable/news_switch" />
-
-        <RadioButton
-            android:id="@+id/RadioButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="54dp"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableBottom="@drawable/shopping_switch" />
-
-        <RadioButton
-            android:id="@+id/RadioButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="54dp"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableBottom="@drawable/game_switch" />
-
-        <RadioButton
-            android:id="@+id/RadioButton4"
-            android:layout_width="wrap_content"
-            android:layout_height="54dp"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableBottom="@drawable/me_switch" />
-    </RadioGroup>
-
+    <include
+        layout="@layout/bottom"/>
 </LinearLayout>

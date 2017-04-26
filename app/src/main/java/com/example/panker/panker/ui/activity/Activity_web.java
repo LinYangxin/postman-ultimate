@@ -9,6 +9,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.example.panker.panker.R;
+import com.example.panker.panker.uilt.Tools.SystemBarTintManager;
 import com.example.panker.panker.uilt.Tools.TittleManager;
 
 /**
@@ -60,5 +61,6 @@ public class Activity_web extends Activity {
         });
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
+
     }
 }

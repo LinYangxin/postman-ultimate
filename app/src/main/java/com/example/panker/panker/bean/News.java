@@ -1,5 +1,10 @@
 package com.example.panker.panker.bean;
 
+import android.graphics.Bitmap;
+import android.graphics.Color;
+
+
+
 /**
  * Created by user on 2017/2/28.
  * 新闻实体类，包括新闻的标题，url和图片url以及概括
@@ -8,35 +13,46 @@ package com.example.panker.panker.bean;
 public class News {
     private String tittle;
     private String news_url;
-    private String news_img;
+    private Bitmap news_img;
     private String sumarize;
-    public News(String t,String u,String s){
-        tittle=t;
-        news_url = u;
-        sumarize = s;
+
+    public News(String t, String u, String s,Bitmap i) {
+        setTittl(t);
+        setNews_url(u);
+        setSumarize(s);
+        setNews_img(i);
     }
-    public News(){
+
+    public News() {
     }
-    public String getTittle(){
+
+    public String getTittle() {
         return tittle;
     }
 
-    public void setTittl(String tittle){
+    public void setTittl(String tittle) {
         this.tittle = tittle;
     }
 
     public String getNews_url() {
         return news_url;
     }
+
     public void setNews_url(String news_url) {
         this.news_url = news_url;
     }
 
-    public String getNews_img() {
+    public Bitmap getNews_img() {
+        if(news_img==null){
+            Bitmap bitmap = Bitmap.createBitmap(100 ,100,
+                    Bitmap.Config.ARGB_8888);
+            bitmap.eraseColor(Color.parseColor("#ce3d3a"));//填充颜色
+            return bitmap;
+        }
         return news_img;
     }
 
-    public void setNews_img(String news_img) {
+    public void setNews_img(Bitmap news_img) {
         this.news_img = news_img;
     }
 
