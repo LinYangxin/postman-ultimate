@@ -11,6 +11,7 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.GetDataCallback;
+import com.example.panker.panker.bean.Game;
 import com.example.panker.panker.bean.News;
 import com.example.panker.panker.bean.Rollpage;
 
@@ -34,7 +35,7 @@ import java.util.List;
 public class DataManager {
     private static List<News> news = new ArrayList<>();//存放新闻实体的List
     private static List<Rollpage> roll = new ArrayList<>();//存放轮播图实体的List
-    private static List<String> img_url = new ArrayList<>();
+    private static List<Game> game = new ArrayList<>();//存放比赛实体的List
     //构造函数
     public  DataManager(){
     }
@@ -43,10 +44,41 @@ public class DataManager {
     public void init(){
         getNewsData();
         getRollData();
-        getImg();
+        getGameData();
     }
-    private void getImg(){
 
+    //从服务器获取比赛的json
+    private static void getGameData(){
+        if(!game.isEmpty())
+            game.clear();
+        AVQuery<AVObject> avQuery = new AVQuery<>("Game");
+        avQuery.orderByDescending("updatedAt");
+        avQuery.findInBackground(new FindCallback<AVObject>() {
+            @Override
+            public void done(List<AVObject> list, AVException e) {
+                if (e == null) {
+                    for (AVObject t : list) {
+                        final String temp_name = t.getString("GameName");
+                        final String temp_state = t.getString("GameState");
+                        final String temp_url = t.getString("GameURL");
+                        final String temp_date = t.getString("GameDate");
+                        final int TOP = t.getInt("GameTop");
+                        AVFile img = t.getAVFile("GamePost");
+                        img.getDataInBackground(new GetDataCallback() {
+                            @Override
+                            public void done(byte[] bytes, AVException e) {
+                                Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                Game temp_game = new Game(temp_name, temp_url, temp_date, temp_state, bm);
+                                if(TOP==1)
+                                    game.add(0,temp_game);
+                                else
+                                    game.add(temp_game);
+                            }
+                        });
+                    }
+                }
+            }
+        });
     }
     //从服务器获取新闻的json
     private static void getNewsData(){
@@ -59,18 +91,18 @@ public class DataManager {
             public void done(List<AVObject> list, AVException e) {
                 if(e == null){
                     for(AVObject t : list){
-                        final String temp_info = String.valueOf(t);
+                        final String temp_tittle = t.getString("tittle");
+                        final String temp_sum = t.getString("news_Sumarize");
+                        final String temp_url = t.getString("news_URL");
                         AVFile img = t.getAVFile("Pic_news");
                         img.getDataInBackground(new GetDataCallback() {
                             @Override
                             public void done(byte[] bytes, AVException e) {
-                                String [] temp = getNewsInfo(temp_info);
                                 Bitmap bm=BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                                News q= new News(temp[0],temp[1],temp[2],bm);
+                                News q= new News(temp_tittle,temp_url,temp_sum,bm);
                                 news.add(q);
                             }
                         });
-                       // Log.e("news",temp[0]+"/"+temp[1]+"/"+temp[2]+"/"+temp[3])
                     }
                 }
             }
@@ -86,8 +118,9 @@ public class DataManager {
             public void done(List<AVObject> list, AVException e) {
                 if(e == null){
                     for(AVObject t : list){
-                        String [] temp = getRollInfo(String.valueOf(t));
-                        Rollpage q= new Rollpage(temp[0],temp[1]);
+                        final String temp_url = t.getString("URL");
+                        final String temp_url_pic = t.getString("url_pic");
+                        Rollpage q= new Rollpage(temp_url,temp_url_pic);
                         roll.add(q);
                     }
                 }
@@ -96,38 +129,36 @@ public class DataManager {
 
     }
 
-    //解析Json获取新闻   //参数1：json数据   //返回值String，获取的新闻URL
-    private static String[] getNewsInfo(String jsonData){
-        String [] back = {null,null,null,null};
-        try {
-            JSONObject json = new JSONObject(jsonData);
-            JSONObject array = json.getJSONObject("serverData");
-            back[3] = "https://dn-7v4zq0wj.qbox.me/eb29e518e99676a85456.png";
-            img_url.add(back[3]);
-            back[2] = array.getString("news_Sumarize");
-            back[1] = array.getString("news_URL");
-            back[0] = array.getString("tittle");
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return back;
-    }
+//    //解析Json获取新闻   //参数1：json数据   //返回值String，获取的新闻URL
+//    private static String[] getNewsInfo(String jsonData){
+//        String [] back = {null,null,null,null};
+//        try {
+//            JSONObject json = new JSONObject(jsonData);
+//            JSONObject array = json.getJSONObject("serverData");
+//            back[2] = array.getString("news_Sumarize");
+//            back[1] = array.getString("news_URL");
+//            back[0] = array.getString("tittle");
+//        } catch (Exception e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        return back;
+//    }
 
     //解析Json获取轮播图  //参数：json数据  //返回值String[2]，获取的轮播图的URL以及图片url
-    private static String[] getRollInfo(String jsonData){
-        String [] back = {null,null};
-        try {
-            JSONObject json = new JSONObject(jsonData);
-            JSONObject array = json.getJSONObject("serverData");
-            back[0] = array.getString("URL");
-            back[1] = array.getString("url_pic");
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return back;
-    }
+//    private static String[] getRollInfo(String jsonData){
+//        String [] back = {null,null};
+//        try {
+//            JSONObject json = new JSONObject(jsonData);
+//            JSONObject array = json.getJSONObject("serverData");
+//            back[0] = array.getString("URL");
+//            back[1] = array.getString("url_pic");
+//        } catch (Exception e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        return back;
+//    }
 
     //获取新闻的List，公开
     public static List<News> getNews(){
@@ -136,6 +167,13 @@ public class DataManager {
 
     //获取轮播图的List，公开
     public static List<Rollpage> getRoll(){ return roll; }
+
+    //获取比赛的list，公开
+
+    public static List<Game> getGame() {
+        return game;
+    }
+
 
     //创建本地数据库
     //public static void Creat_dataBase(){

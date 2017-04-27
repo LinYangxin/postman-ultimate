@@ -14,32 +14,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.view.animation.Animation;
-import android.view.animation.OvershootInterpolator;
-import android.view.animation.TranslateAnimation;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
 import com.example.panker.panker.R;
 import com.example.panker.panker.ui.activity.Activity_web;
-import com.example.panker.panker.uilt.NewsListView.NewsListView;
+import com.example.panker.panker.uilt.MyListView.MyListView;
 import com.example.panker.panker.uilt.Tools.DataManager;
 import com.example.panker.panker.uilt.rollviewpager.OnItemClickListener;
 import com.example.panker.panker.uilt.rollviewpager.RollPagerView;
 import com.example.panker.panker.uilt.rollviewpager.adapter.LoopPagerAdapter;
 import com.example.panker.panker.uilt.rollviewpager.hintview.IconHintView;
 import java.util.List;
-
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_IDLE;
 
 
 /**
@@ -53,14 +41,14 @@ public class news extends basefragment implements View.OnClickListener {
     private TestLoopAdapter mLoopAdapter;
     private Handler handler = new Handler();
     private static DataManager dataManager = new DataManager();
-    private NewsListView mListView;
+    private MyListView mListView;
     private news_adapter mAdapter;
     private List<Rollpage> rollpages;
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContent = inflater.inflate(R.layout.fragment_news,container,false);
         mLoopViewPager = (RollPagerView) mContent.findViewById(R.id.loop_view_pager);
-        mListView = (NewsListView)mContent.findViewById(R.id.news_list);
+        mListView = (MyListView)mContent.findViewById(R.id.news_list);
         mAdapter = new news_adapter(mActivity,R.layout.news_listview,dataManager.getNews());
         mListView.setAdapter(mAdapter);
         mListView.setFocusable(false);

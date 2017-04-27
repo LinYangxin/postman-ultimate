@@ -1,4 +1,4 @@
-package com.example.panker.panker.uilt.NewsListView;
+package com.example.panker.panker.uilt.MyListView;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -9,14 +9,14 @@ import android.widget.ListView;
  * 重写ListView以实现高度自适应
  */
 
-public class NewsListView extends ListView {
-    public NewsListView(Context context){
+public class MyListView extends ListView {
+    public MyListView(Context context){
         super(context);
     }
-    public NewsListView(Context context, AttributeSet attrs){
+    public MyListView(Context context, AttributeSet attrs){
         super(context,attrs);
     }
-    public NewsListView(Context context,AttributeSet attrs,int defStyle){
+    public MyListView(Context context, AttributeSet attrs, int defStyle){
         super(context,attrs,defStyle);
     }
 

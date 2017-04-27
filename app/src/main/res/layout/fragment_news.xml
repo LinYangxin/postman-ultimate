@@ -17,7 +17,7 @@
             android:layout_height="150dp"
             app:rollviewpager_play_delay="3000" />
 
-        <com.example.panker.panker.uilt.NewsListView.NewsListView
+        <com.example.panker.panker.uilt.MyListView.MyListView
             android:id="@+id/news_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

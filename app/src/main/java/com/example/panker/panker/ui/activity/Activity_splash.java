@@ -19,11 +19,15 @@ import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.GetDataCallback;
 import com.example.panker.panker.R;
 import com.example.panker.panker.uilt.Tools.DataManager;
+
+import java.util.List;
 
 
 /**
@@ -34,6 +38,7 @@ public class Activity_splash extends Activity {
     private ImageView iv_start;
     private final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 1, REQUEST_CODE_CAMERA = 2;//用以动态获取权限
     private static DataManager dataManager;//此处从服务器处加载数据。
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,28 +136,26 @@ public class Activity_splash extends Activity {
 
     private void Continued() {
         iv_start = (ImageView) findViewById(R.id.iv_start);
-        final AVObject tmp = AVObject.createWithoutData("Splash", "57ca5ddc7db2a200788c8715");
-        tmp.fetchInBackground(new GetCallback<AVObject>() {
+        AVQuery<AVObject> avQuery = new AVQuery<>("Splash");
+        avQuery.findInBackground(new FindCallback<AVObject>() {
             @Override
-            public void done(AVObject avObject, AVException e) {
-                if(tmp.getBoolean("updata"))
-                    tmp.getAVFile("Pic").getDataInBackground(new GetDataCallback() {
+            public void done(List<AVObject> list, AVException e) {
+                boolean flag = list.get(0).getBoolean("updata");
+                if (flag) {
+                    list.get(0).getAVFile("Pic").getDataInBackground(new GetDataCallback() {
                         @Override
                         public void done(byte[] bytes, AVException e) {
-                            if(e==null){
+                            if (e == null) {
                                 iv_start.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
                                 initImage();
                             }
-
                         }
                     });
-                else{
+                } else {
                     iv_start.setImageResource(R.drawable.start);
                     initImage();
-               }
-
+                }
             }
         });
-
     }
 }
