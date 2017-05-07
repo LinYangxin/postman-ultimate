@@ -3,15 +3,20 @@ package com.example.panker.panker.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.avos.avoscloud.AVCloud;
 import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVOSCloud;
 import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.RequestMobileCodeCallback;
 import com.avos.avoscloud.SignUpCallback;
 import com.example.panker.panker.R;
+import com.example.panker.panker.uilt.Tools.TimerCount;
 import com.example.panker.panker.uilt.Tools.TittleManager;
 
 import java.util.regex.Matcher;
@@ -26,8 +31,11 @@ public class Activity_Sign extends Activity implements View.OnClickListener {
    // private EditText mUserId;//验证码
     private EditText mPw;//设置密码
     private EditText mPwcheck;//确认密码
+    private EditText mVerifyNumber;
     private Button btn_nextstep;//下一步
-
+    private Button btn_VerifyNumber;
+    private static long lastClick;
+    private TimerCount btn_getVerifyNumber;
     //private boolean check_verify = false;//验证码验证状态
     //初始化界面ui
     private void initView() {
@@ -39,11 +47,15 @@ public class Activity_Sign extends Activity implements View.OnClickListener {
         mPw = (EditText) findViewById(R.id.sign_pw);
         mPwcheck = (EditText) findViewById(R.id.sign_pwcheck);
         btn_nextstep = (Button) findViewById(R.id.sign_btn_nextstep);
+        btn_VerifyNumber = (Button)findViewById(R.id.sign_btn_getVerifyNumber);
+        btn_getVerifyNumber = new TimerCount(60000,1000,btn_VerifyNumber);
+        mVerifyNumber = (EditText) findViewById(R.id.sign_verifyNumber);
     }
 
     //初始化事件
     private void initEvent() {
         btn_nextstep.setOnClickListener(this);
+        btn_VerifyNumber.setOnClickListener(this);
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -88,6 +100,16 @@ public class Activity_Sign extends Activity implements View.OnClickListener {
                     SignUp();
                 } else
                     Toast.makeText(Activity_Sign.this, "密码前后不一致或不符合格式要求", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.sign_btn_getVerifyNumber:
+                btn_getVerifyNumber.start();
+                Toast.makeText(Activity_Sign.this, "已发送验证码", Toast.LENGTH_SHORT).show();
+                try {
+                    lastClick = System.currentTimeMillis();
+                    //AVUser.requestMobilePhoneVerify(mPhonenumber.getText().toString());
+                    AVOSCloud.requestSMSCode(mPhonenumber.getText().toString());
+                }catch (Exception e){
+                }
                 break;
         }
     }
