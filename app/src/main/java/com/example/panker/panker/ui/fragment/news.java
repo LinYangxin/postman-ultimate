@@ -36,20 +36,23 @@ import java.util.List;
  * hahahaha
  */
 public class news extends basefragment implements View.OnClickListener {
-    private View mContent;
-    private RollPagerView mLoopViewPager;
-    private TestLoopAdapter mLoopAdapter;
+    private View mContent;//视图
+    private RollPagerView mLoopViewPager;//轮播图
+    private TestLoopAdapter mLoopAdapter;//轮播图的适配器
     private Handler handler = new Handler();
-    private static DataManager dataManager = new DataManager();
-    private MyListView mListView;
-    private news_adapter mAdapter;
-    private List<Rollpage> rollpages;
+    private static DataManager dataManager = new DataManager();//数据管理类，可通过该类获取新闻，资讯的数据
+    private MyListView mListView;//新闻的Listview，该类为ListView子类
+    private news_adapter mAdapter;//新闻的适配器
+    private List<Rollpage> rollpages;//存放轮播图的List
     @Override
+    /**
+     * 重写basefragment的initView函数
+     */
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContent = inflater.inflate(R.layout.fragment_news,container,false);
         mLoopViewPager = (RollPagerView) mContent.findViewById(R.id.loop_view_pager);
         mListView = (MyListView)mContent.findViewById(R.id.news_list);
-        mAdapter = new news_adapter(mActivity,R.layout.news_listview,dataManager.getNews());
+        mAdapter = new news_adapter(mActivity,R.layout.news_listview,dataManager.getNews());//新闻的适配器加载布局和数据
         mListView.setAdapter(mAdapter);
         mListView.setFocusable(false);
         return mContent;
@@ -59,10 +62,9 @@ public class news extends basefragment implements View.OnClickListener {
     protected void initEvent() {
         mLoopViewPager.setAdapter(mLoopAdapter = new TestLoopAdapter(mLoopViewPager));
         mLoopViewPager.setHintView(new IconHintView(mActivity,R.drawable.point_focus,R.drawable.point_normal));
-        mLoopViewPager.setOnItemClickListener(new OnItemClickListener() {
+        mLoopViewPager.setOnItemClickListener(new OnItemClickListener() {//轮播图加载点击事件监听及动作
             @Override
             public void onItemClick(int position) {
-               // Toast.makeText(mActivity,"Item "+position+" clicked",Toast.LENGTH_SHORT).show();
                 Intent i=new Intent(mActivity,Activity_web.class);
                 switch (position) {
                     case 0:
@@ -78,6 +80,7 @@ public class news extends basefragment implements View.OnClickListener {
                 startActivity(i);
             }
         });
+        //通过handler修改轮播图的图片
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -88,6 +91,7 @@ public class news extends basefragment implements View.OnClickListener {
                 mLoopAdapter.setImgs(c);
             }
         });
+        //对新闻的每一项的URL进行设置，通过调用Activity_web来跳转到网页
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -104,6 +108,9 @@ public class news extends basefragment implements View.OnClickListener {
     public void onClick(View view) {
     }
 
+    /**
+     * 初始化数据，重写父类initData，从dataManager中获取轮播图的相关信息，存放到rollpages这一ArrayList中。
+     */
     @Override
     public void initData(){
         rollpages = dataManager.getRoll();
