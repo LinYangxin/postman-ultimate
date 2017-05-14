@@ -14,12 +14,13 @@ import com.example.panker.panker.uilt.Tools.SystemBarTintManager;
  */
 
 public class SystemBarTintManagerHelper {
-    SystemBarTintManager tintManager;
+    public SystemBarTintManager tintManager;
     public SystemBarTintManagerHelper(Activity activity){
-        tintManager = new SystemBarTintManager(activity);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(true,activity);
         }
+        tintManager = new SystemBarTintManager(activity);
         tintManager.setStatusBarTintEnabled(true);
         tintManager.setStatusBarTintResource(R.color.red_light);
     }

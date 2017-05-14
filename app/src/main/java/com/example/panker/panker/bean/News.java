@@ -15,15 +15,24 @@ public class News {
     private String news_url;
     private Bitmap news_img;
     private String sumarize;
-
-    public News(String t, String u, String s,Bitmap i) {
+    private String news_date;
+    public News(String t, String u, String s,String a,Bitmap i) {
         setTittl(t);
         setNews_url(u);
         setSumarize(s);
         setNews_img(i);
+        setNews_date(a);
     }
 
     public News() {
+    }
+
+    public String getNews_date() {
+        return news_date;
+    }
+
+    public void setNews_date(String news_date) {
+        this.news_date = news_date;
     }
 
     public String getTittle() {

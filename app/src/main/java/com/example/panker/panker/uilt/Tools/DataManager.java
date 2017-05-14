@@ -94,12 +94,13 @@ public class DataManager {
                         final String temp_tittle = t.getString("tittle");
                         final String temp_sum = t.getString("news_Sumarize");
                         final String temp_url = t.getString("news_URL");
+                        final String temp_date = CheckHelper.Date2String(t.getDate("updatedAt"));
                         AVFile img = t.getAVFile("Pic_news");
                         img.getDataInBackground(new GetDataCallback() {
                             @Override
                             public void done(byte[] bytes, AVException e) {
                                 Bitmap bm=BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                                News q= new News(temp_tittle,temp_url,temp_sum,bm);
+                                News q= new News(temp_tittle,temp_url,temp_sum,temp_date,bm);
                                 news.add(q);
                             }
                         });

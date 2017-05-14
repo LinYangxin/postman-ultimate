@@ -7,6 +7,8 @@ package com.example.panker.panker.uilt.Tools;
  */
 
 import com.example.panker.panker.R;
+import com.example.panker.panker.ui.activity.SystemBarTintManagerHelper;
+
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -19,7 +21,7 @@ import android.widget.TextView;
 public class TittleManager {
     private Activity mActivity;
     private LinearLayout mLeftLayout, mRightLayout;
-
+    private SystemBarTintManagerHelper systemBarTintManagerHelper;
     private ImageView mLeftTitleView;
     private TextView mLeftTitleText;
     private ImageView mRightTitleView;
@@ -40,20 +42,21 @@ public class TittleManager {
         BACK_AND_STEP, //返回与下一步
     }
 
-    /**
-     * 此fragment用于主界面，无返回键
-     *
-     * @param view
-     */
-    public TittleManager(View view) {
-        mTitleName = (TextView) view.findViewById(R.id.title_name);
-        mLeftLayout = (LinearLayout) view.findViewById(R.id.tittle_left_layout);
-        mRightLayout = (LinearLayout) view.findViewById(R.id.tltie_right_layout);
-        mLeftTitleView = (ImageView) view.findViewById(R.id.tittle_left_image);
-        mLeftTitleText = (TextView) view.findViewById(R.id.tittle_left_text);
-        mRightTitleView = (ImageView) view.findViewById(R.id.title_right_image);
-        mRightTitleText = (TextView) view.findViewById(R.id.title_right_text);
-    }
+//    /**
+//     * 此fragment用于主界面，无返回键
+//     *
+//     * @param view
+//     */
+//    public TittleManager(View view) {
+//        mTitleName = (TextView) view.findViewById(R.id.title_name);
+//        mLeftLayout = (LinearLayout) view.findViewById(R.id.tittle_left_layout);
+//        mRightLayout = (LinearLayout) view.findViewById(R.id.tltie_right_layout);
+//        mLeftTitleView = (ImageView) view.findViewById(R.id.tittle_left_image);
+//        mLeftTitleText = (TextView) view.findViewById(R.id.tittle_left_text);
+//        mRightTitleView = (ImageView) view.findViewById(R.id.title_right_image);
+//        mRightTitleText = (TextView) view.findViewById(R.id.title_right_text);
+//
+//    }
 
     public TittleManager(Activity activity) {
         mActivity = activity;
@@ -65,7 +68,7 @@ public class TittleManager {
         mLeftTitleText = (TextView) activity.findViewById(R.id.tittle_left_text);
         mRightTitleView = (ImageView) activity.findViewById(R.id.title_right_image);
         mRightTitleText = (TextView) activity.findViewById(R.id.title_right_text);
-
+        systemBarTintManagerHelper = new SystemBarTintManagerHelper(activity);
     }
 
     public void setTitleStyle(TitleStyle flag, String titleName) {

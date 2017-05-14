@@ -68,6 +68,7 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
     private TextView mTNews,mTShop,mTGame,mTMe;
     public static TittleManager tittleManager;
     public static SQLiteHelper helper;
+    //private SystemBarTintManagerHelper tintManagerHelper;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,14 +77,14 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.guide);
         initView();
         initEvent();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            setTranslucentStatus(true);
-        }
-
-        SystemBarTintManager tintManager = new SystemBarTintManager(this);
-        tintManager.setStatusBarTintEnabled(true);
-        tintManager.setStatusBarTintResource(R.color.red_light);//通知栏所需颜色
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            tintManager.setTranslucentStatus(true,this);
+//
+//        }
+//
+//        tintManager.setStatusBarTintEnabled(true);
+//        tintManager.setStatusBarTintResource(R.color.red_light);//通知栏所需颜色
     }
 
     private void initView() {
@@ -134,6 +135,7 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         mTShop = (TextView)findViewById(R.id.tv_shop);
         mTGame = (TextView)findViewById(R.id.tv_game);
         mTMe = (TextView)findViewById(R.id.tv_me);
+       // tintManagerHelper = new SystemBarTintManagerHelper(this);
     }
 
     private void initEvent() {
@@ -236,17 +238,17 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         }
 
     }
-    //通知栏颜色
-    @TargetApi(19)
-    private void setTranslucentStatus(boolean on) {
-        Window win = getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-        if (on) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
-        }
-        win.setAttributes(winParams);
-    }
+//    //通知栏颜色
+//    @TargetApi(19)
+//    private void setTranslucentStatus(boolean on) {
+//        Window win = getWindow();
+//        WindowManager.LayoutParams winParams = win.getAttributes();
+//        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+//        if (on) {
+//            winParams.flags |= bits;
+//        } else {
+//            winParams.flags &= ~bits;
+//        }
+//        win.setAttributes(winParams);
+//    }
 }

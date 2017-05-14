@@ -1,6 +1,7 @@
 package com.example.panker.panker.ui.activity;
 
 //import com.example.panker.panker.bean.config;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
@@ -14,6 +15,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.LogInCallback;
 import com.example.panker.panker.R;
+import com.example.panker.panker.uilt.Tools.CheckHelper;
 import com.example.panker.panker.uilt.Tools.SystemBarTintManager;
 
 import java.util.regex.Matcher;
@@ -28,7 +30,8 @@ public class Activity_Login extends Activity implements View.OnClickListener {
     private String id;
     private TextView UserPw;
     private TextView UserId;
-//    private config c =new config();
+
+    //    private config c =new config();
     private void initView() {
         fogetpw = (TextView) findViewById(R.id.Login_forgetpw);
         sign = (TextView) findViewById(R.id.Login_sign);
@@ -41,8 +44,8 @@ public class Activity_Login extends Activity implements View.OnClickListener {
         fogetpw.setOnClickListener(this);
         sign.setOnClickListener(this);
         Login.setOnClickListener(this);
-       // IntentFilter filter = new IntentFilter(Activity_complete.action);
-      //  registerReceiver(broadcastReceiver, filter);
+        // IntentFilter filter = new IntentFilter(Activity_complete.action);
+        //  registerReceiver(broadcastReceiver, filter);
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -68,7 +71,7 @@ public class Activity_Login extends Activity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.Login_forgetpw:
                 //Toast.makeText(this, "forget", Toast.LENGTH_SHORT).show();
-                Intent intent1=new Intent(Activity_Login.this,Activity_resetPassword.class);
+                Intent intent1 = new Intent(Activity_Login.this, Activity_resetPassword.class);
                 startActivity(intent1);
                 break;
             case R.id.Login_sign:
@@ -83,7 +86,7 @@ public class Activity_Login extends Activity implements View.OnClickListener {
 
     protected void onDestroy() {
         super.onDestroy();
-      //  unregisterReceiver(broadcastReceiver);
+        //  unregisterReceiver(broadcastReceiver);
     }
 
     ;
@@ -93,16 +96,16 @@ public class Activity_Login extends Activity implements View.OnClickListener {
         if (id.isEmpty()) {
             Toast.makeText(Activity_Login.this, "账号密码不能为空", Toast.LENGTH_SHORT).show();
         } else {
-            if (isMobileNumberValid(id)) {
+            if (CheckHelper.isMobileNumberValid(id)) {
                 AVUser.loginByMobilePhoneNumberInBackground(id, UserPw.getText().toString(), new LogInCallback<AVUser>() {
                     @Override
                     public void done(AVUser avUser, AVException e) {
                         if (e == null) {
-                            Intent intent=new Intent(Activity_Login.this,Activity_main.class);
+                            Intent intent = new Intent(Activity_Login.this, Activity_main.class);
                             startActivity(intent);
                             Activity_Login.this.finish();
                         } else {
-                            Toast.makeText(Activity_Login.this, "账号不存在或密码错误", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Activity_Login.this, CheckHelper.getCodeFromServer(e), Toast.LENGTH_SHORT).show();
                             AVUser.logOut();
                         }
                     }
@@ -113,30 +116,16 @@ public class Activity_Login extends Activity implements View.OnClickListener {
                     public void done(AVUser avUser, AVException e) {
                         if (e == null) {
                             Toast.makeText(Activity_Login.this, "login success", Toast.LENGTH_SHORT).show();
-                            Intent intent=new Intent(Activity_Login.this,Activity_main.class);
+                            Intent intent = new Intent(Activity_Login.this, Activity_main.class);
                             startActivity(intent);
                             Activity_Login.this.finish();
                         } else {
-                            Toast.makeText(Activity_Login.this, "账号不存在或密码错误", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Activity_Login.this, CheckHelper.getCodeFromServer(e), Toast.LENGTH_SHORT).show();
                             AVUser.logOut();
                         }
                     }
                 });
             }
         }
-    }
-
-
-    public static boolean isMobileNumberValid(String mobiles) {
-        Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(17[1,3,5-8])|(14[5,7,9])|(18[0,2-9]))\\d{8}$");
-        Matcher m = p.matcher(mobiles);
-        return m.matches();
-    }
-
-    //验证是否为邮箱
-    public static boolean isEmailValid(String email) {
-        Pattern p = Pattern.compile("^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$");
-        Matcher m = p.matcher(email);
-        return m.matches();
     }
 }
