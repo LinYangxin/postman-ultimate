@@ -84,8 +84,8 @@ public class DataManager {
     private static void getNewsData(){
         if(!news.isEmpty())
             news.clear();
-        AVQuery<AVObject> avQuery = new AVQuery<>("news");
-        avQuery.orderByDescending("updatedAt");
+        AVQuery<AVObject> avQuery = new AVQuery<>("news");//使用AVQuery查询服务器中news表
+        avQuery.orderByDescending("updatedAt");//以更新顺序排列
         avQuery.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {

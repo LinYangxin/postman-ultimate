@@ -17,6 +17,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SaveCallback;
 import com.example.panker.panker.R;
+import com.example.panker.panker.uilt.Tools.CheckHelper;
 import com.example.panker.panker.uilt.Tools.SystemBarTintManager;
 import com.example.panker.panker.uilt.Tools.TittleManager;
 
@@ -96,7 +97,7 @@ public class Activity_complete extends Activity implements View.OnClickListener,
         String tmp_team = team.getText().toString();
         if (tmp_email == null || tmp_nickname == null || tmp_email == null || tmp_email.isEmpty() || tmp_nickname.isEmpty() || tmp_team.isEmpty() || TextUtils.isEmpty(tmp_email) || TextUtils.isEmpty(tmp_email) || TextUtils.isEmpty(tmp_nickname)) {
             Toast.makeText(this, "请完善资料", Toast.LENGTH_SHORT).show();
-        } else if (isEmailValid(tmp_email)) {
+        } else if (CheckHelper.isEmailValid(tmp_email)) {
             AVUser.getCurrentUser().put("nickname", tmp_nickname);
             AVUser.getCurrentUser().setEmail(tmp_email);
             AVUser.getCurrentUser().put("team", tmp_team);
@@ -150,10 +151,10 @@ public class Activity_complete extends Activity implements View.OnClickListener,
         }
     }
 
-    //验证是否为邮箱
-    public static boolean isEmailValid(String email) {
-        Pattern p = Pattern.compile("^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$");
-        Matcher m = p.matcher(email);
-        return m.matches();
-    }
+//    //验证是否为邮箱
+//    public static boolean isEmailValid(String email) {
+//        Pattern p = Pattern.compile("^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$");
+//        Matcher m = p.matcher(email);
+//        return m.matches();
+//    }
 }

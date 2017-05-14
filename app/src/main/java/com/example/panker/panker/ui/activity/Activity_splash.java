@@ -64,7 +64,7 @@ public class Activity_splash extends Activity {
             public void onAnimationEnd(Animation animation) {
 
                 AVUser currentUser = AVUser.getCurrentUser();
-                if (currentUser != null) {
+                if (currentUser != null&&currentUser.isMobilePhoneVerified()) {
                     // 跳转到首页
                     startActivity(Activity_main.class);
                 } else {

@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/complete_nickname" />
     </LinearLayout>
+
     <LinearLayout
         style="@style/sign_linearLayout"
         android:layout_width="match_parent"
@@ -40,10 +41,11 @@
         android:orientation="horizontal">
 
         <TextView
+            style="@style/complete_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/complete_email"
-            style="@style/complete_tv" />
+            android:text="@string/complete_email" />
+
         <EditText
             android:id="@+id/sign_email"
             style="@style/login_EditText_long"
@@ -51,6 +53,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/complete_email" />
     </LinearLayout>
+
     <LinearLayout
         style="@style/sign_linearLayout"
         android:layout_width="match_parent"
