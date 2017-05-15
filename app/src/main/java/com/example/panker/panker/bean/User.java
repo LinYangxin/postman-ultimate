@@ -3,6 +3,7 @@ package com.example.panker.panker.bean;
 import android.graphics.Bitmap;
 
 import com.avos.avoscloud.AVUser;
+import com.example.panker.panker.uilt.Tools.PankerHelper;
 
 /**
  * Created by user on 2016/9/10.

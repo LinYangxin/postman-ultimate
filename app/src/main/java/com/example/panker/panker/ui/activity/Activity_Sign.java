@@ -3,31 +3,21 @@ package com.example.panker.panker.ui.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.avos.avoscloud.AVCloud;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVMobilePhoneVerifyCallback;
-import com.avos.avoscloud.AVOSCloud;
 import com.avos.avoscloud.AVUser;
-import com.avos.avoscloud.RequestEmailVerifyCallback;
-import com.avos.avoscloud.RequestMobileCodeCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.SignUpCallback;
 import com.example.panker.panker.R;
-import com.example.panker.panker.uilt.Tools.CheckHelper;
+import com.example.panker.panker.uilt.Tools.PankerHelper;
 import com.example.panker.panker.uilt.Tools.TimerCount;
 import com.example.panker.panker.uilt.Tools.TittleManager;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by user on 2016/7/15.
@@ -123,18 +113,18 @@ public class Activity_Sign extends Activity implements View.OnClickListener {
                     Toast.makeText(Activity_Sign.this, "邮箱不能为空", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                if (!CheckHelper.isEmailValid(t3)) {
+                if (!PankerHelper.isEmailValid(t3)) {
                     Toast.makeText(Activity_Sign.this, "邮箱格式有误", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                if (CheckHelper.isRightPassword(t1, t2)) {
+                if (PankerHelper.isRightPassword(t1, t2)) {
                     SignUp();
                 } else
                     Toast.makeText(Activity_Sign.this, "密码前后不一致或不符合格式要求", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.sign_btn_getVerifyNumber:
                 String p = mPhonenumber.getText().toString();
-                if (CheckHelper.isMobileNumberValid(p) && !p.isEmpty()) {
+                if (PankerHelper.isMobileNumberValid(p) && !p.isEmpty()) {
                     final AVUser user = new AVUser();
                     user.setUsername(mPhonenumber.getText().toString());
                     user.setPassword("888888888");

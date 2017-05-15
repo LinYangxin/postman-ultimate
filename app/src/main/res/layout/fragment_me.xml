@@ -1,75 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <RelativeLayout
-        android:clickable="true"
         android:id="@+id/rl"
+        style="@style/sign_linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/sign_linearLayout">
+        android:layout_height="180dp"
+        android:addStatesFromChildren="false"
+        android:alpha="50"
+        android:background="@drawable/logo"
+        android:clickable="true"
+        android:paddingBottom="0dp">
+
         <ImageView
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:src="@drawable/head"
             android:id="@+id/me_head"
-            android:layout_marginBottom="12dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="12dp"
             android:layout_marginTop="12dp"
-            android:layout_marginRight="12dp"/>
-        <LinearLayout
+            android:background="@drawable/shape_conners_rollpages" />
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/me_head"
-            android:layout_marginLeft="10dp">
+            android:layout_below="@+id/me_head"
+            android:layout_centerVertical="true">
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/middle"
+                android:layout_toStartOf="@+id/middle"
+                android:gravity="right">
+
+                <TextView
+                    android:id="@+id/me_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="nickname"
+                    android:textColor="@color/black_not_important"/>
+            </LinearLayout>
+
             <TextView
+                android:id="@+id/middle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/me_nickname" />
+                android:layout_centerHorizontal="true"
+                android:text="   |   "
+                android:textColor="@color/black_not_important"/>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/middle"
+                android:layout_toRightOf="@+id/middle"
+                android:gravity="left">
+
+                <TextView
+                    android:id="@+id/me_team"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="team"
+                    android:textColor="@color/black_not_important"/>
+            </LinearLayout>
+
             <TextView
+                android:id="@+id/me_myself"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/me_team"
-                android:layout_marginTop="5dp"/>
-        </LinearLayout>
+                android:layout_below="@+id/middle"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
+                android:text="这个人很懒，什么都没留下"
+                android:textColor="@color/black_not_important"/>
+        </RelativeLayout>
     </RelativeLayout>
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/sign_linearLayout"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
         android:id="@+id/me_power"
-        android:clickable="true">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/power"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="能力值"
-            android:layout_gravity="center_vertical"/>
-    </LinearLayout>
-    <LinearLayout
+        style="@style/sign_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/sign_linearLayout"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:orientation="horizontal">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/game"/>
+            android:src="@drawable/power" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="比赛记录"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:text="能力值" />
     </LinearLayout>
+
+    <LinearLayout
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/game" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="比赛记录" />
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

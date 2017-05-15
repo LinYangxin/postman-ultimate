@@ -3,7 +3,6 @@ package com.example.panker.panker.ui.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,12 +16,8 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SaveCallback;
 import com.example.panker.panker.R;
-import com.example.panker.panker.uilt.Tools.CheckHelper;
-import com.example.panker.panker.uilt.Tools.SystemBarTintManager;
+import com.example.panker.panker.uilt.Tools.PankerHelper;
 import com.example.panker.panker.uilt.Tools.TittleManager;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by user on 2016/7/19...
@@ -97,7 +92,7 @@ public class Activity_complete extends Activity implements View.OnClickListener,
         String tmp_team = team.getText().toString();
         if (tmp_email == null || tmp_nickname == null || tmp_email == null || tmp_email.isEmpty() || tmp_nickname.isEmpty() || tmp_team.isEmpty() || TextUtils.isEmpty(tmp_email) || TextUtils.isEmpty(tmp_email) || TextUtils.isEmpty(tmp_nickname)) {
             Toast.makeText(this, "请完善资料", Toast.LENGTH_SHORT).show();
-        } else if (CheckHelper.isEmailValid(tmp_email)) {
+        } else if (PankerHelper.isEmailValid(tmp_email)) {
             AVUser.getCurrentUser().put("nickname", tmp_nickname);
             AVUser.getCurrentUser().setEmail(tmp_email);
             AVUser.getCurrentUser().put("team", tmp_team);

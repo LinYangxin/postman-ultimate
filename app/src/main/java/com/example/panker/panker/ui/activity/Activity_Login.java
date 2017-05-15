@@ -4,7 +4,6 @@ package com.example.panker.panker.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,11 +14,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.LogInCallback;
 import com.example.panker.panker.R;
-import com.example.panker.panker.uilt.Tools.CheckHelper;
-import com.example.panker.panker.uilt.Tools.SystemBarTintManager;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.example.panker.panker.uilt.Tools.PankerHelper;
 
 /**
  * Created by user on 2016/7/14
@@ -96,7 +91,7 @@ public class Activity_Login extends Activity implements View.OnClickListener {
         if (id.isEmpty()) {
             Toast.makeText(Activity_Login.this, "账号密码不能为空", Toast.LENGTH_SHORT).show();
         } else {
-            if (CheckHelper.isMobileNumberValid(id)) {
+            if (PankerHelper.isMobileNumberValid(id)) {
                 AVUser.loginByMobilePhoneNumberInBackground(id, UserPw.getText().toString(), new LogInCallback<AVUser>() {
                     @Override
                     public void done(AVUser avUser, AVException e) {
@@ -105,7 +100,7 @@ public class Activity_Login extends Activity implements View.OnClickListener {
                             startActivity(intent);
                             Activity_Login.this.finish();
                         } else {
-                            Toast.makeText(Activity_Login.this, CheckHelper.getCodeFromServer(e), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Activity_Login.this, PankerHelper.getCodeFromServer(e), Toast.LENGTH_SHORT).show();
                             AVUser.logOut();
                         }
                     }
@@ -120,7 +115,7 @@ public class Activity_Login extends Activity implements View.OnClickListener {
                             startActivity(intent);
                             Activity_Login.this.finish();
                         } else {
-                            Toast.makeText(Activity_Login.this, CheckHelper.getCodeFromServer(e), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Activity_Login.this, PankerHelper.getCodeFromServer(e), Toast.LENGTH_SHORT).show();
                             AVUser.logOut();
                         }
                     }

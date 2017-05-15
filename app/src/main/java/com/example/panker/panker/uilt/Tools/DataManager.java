@@ -3,7 +3,6 @@ package com.example.panker.panker.uilt.Tools;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFile;
@@ -15,15 +14,6 @@ import com.example.panker.panker.bean.Game;
 import com.example.panker.panker.bean.News;
 import com.example.panker.panker.bean.Rollpage;
 
-import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,7 +84,7 @@ public class DataManager {
                         final String temp_tittle = t.getString("tittle");
                         final String temp_sum = t.getString("news_Sumarize");
                         final String temp_url = t.getString("news_URL");
-                        final String temp_date = CheckHelper.Date2String(t.getDate("updatedAt"));
+                        final String temp_date = PankerHelper.Date2String(t.getDate("updatedAt"));
                         AVFile img = t.getAVFile("Pic_news");
                         img.getDataInBackground(new GetDataCallback() {
                             @Override

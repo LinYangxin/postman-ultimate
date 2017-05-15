@@ -1,5 +1,13 @@
 package com.example.panker.panker.uilt.Tools;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
+
 import com.avos.avoscloud.AVException;
 
 import java.text.DateFormat;
@@ -11,7 +19,7 @@ import java.util.regex.Pattern;
  * Created by user on 2017/5/13.
  */
 
-public class CheckHelper {
+public class PankerHelper {
     /**
      * 验证手机号是否符合大陆的标准格式
      *
@@ -61,5 +69,31 @@ public class CheckHelper {
     public static String Date2String(Date date){
         String s = DateFormat.getDateInstance().format(date);
         return s;
+    }
+    /**
+     * 获取圆角位图的方法
+     *
+     * @param bitmap
+     *            需要转化成圆角的位图
+     * @param pixels
+     *            圆角的度数，数值越大，圆角越大
+     * @return 处理后的圆角位图
+     */
+    public static Bitmap toRoundCornerImage(Bitmap bitmap, int pixels) {
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        final RectF rectF = new RectF(rect);
+        final float roundPx = pixels;
+        // 抗锯齿
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+        return output;
     }
 }

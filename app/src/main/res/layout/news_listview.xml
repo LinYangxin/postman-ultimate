@@ -43,7 +43,6 @@
                 android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
                 android:textColor="@color/black_dark"
                 android:textSize="17sp" />
-
             <TextView
                 android:id="@+id/sumarize"
                 android:layout_width="wrap_content"

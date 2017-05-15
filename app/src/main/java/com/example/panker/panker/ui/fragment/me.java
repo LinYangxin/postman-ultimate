@@ -23,6 +23,7 @@ import com.example.panker.panker.ui.activity.Activity_me_data;
 import com.example.panker.panker.ui.activity.Activity_me_power;
 import com.example.panker.panker.R;
 import com.example.panker.panker.ui.activity.Activity_me_setting;
+import com.example.panker.panker.uilt.Tools.PankerHelper;
 
 import static com.example.panker.panker.ui.activity.Activity_main.helper;
 
@@ -33,39 +34,40 @@ import static com.example.panker.panker.ui.activity.Activity_main.helper;
  */
 public class me extends basefragment implements View.OnClickListener {
     private View mContent;
-    private String nickname;
-    private String team;
-    public TextView tv_nickname,tv_team;
-    private LinearLayout me_power,me_setting;
+    private String nickname,team,myself;
+    public TextView tv_nickname, tv_team, tv_myself;
+    private LinearLayout me_power, me_setting;
     private RelativeLayout me_data;
-    public  ImageView me_head;
+    public ImageView me_head;
     private User user;
     private Cursor cursor;
+
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mContent=inflater.inflate(R.layout.fragment_me,container,false);
-        me_head=(ImageView)mContent.findViewById(R.id.me_head);
-        tv_nickname=(TextView)mContent.findViewById(R.id.me_nickname);
-        tv_team=(TextView)mContent.findViewById(R.id.me_team);
-        tv_nickname.setText("昵称："+nickname);
-            tv_team.setText("效力于："+team);
-        me_power=(LinearLayout)mContent.findViewById(R.id.me_power);
-        me_setting=(LinearLayout)mContent.findViewById(R.id.me_setting);
-        me_data=(RelativeLayout)mContent.findViewById(R.id.rl);
-        if(user.getFlag()==false){
-            me_head.setImageBitmap(user.getHead());
-        }
+        mContent = inflater.inflate(R.layout.fragment_me, container, false);
+        me_head = (ImageView) mContent.findViewById(R.id.me_head);
+        tv_nickname = (TextView) mContent.findViewById(R.id.me_nickname);
+        tv_team = (TextView) mContent.findViewById(R.id.me_team);
+        tv_myself = (TextView) mContent.findViewById(R.id.me_myself);
+        tv_nickname.setText(nickname);
+        tv_team.setText(team);
+        tv_myself.setText(myself);
+        me_power = (LinearLayout) mContent.findViewById(R.id.me_power);
+        me_setting = (LinearLayout) mContent.findViewById(R.id.me_setting);
+        me_data = (RelativeLayout) mContent.findViewById(R.id.rl);
+        me_head.setImageBitmap(PankerHelper.toRoundCornerImage(user.getHead(), 90));
 
         return mContent;
     }
 
     @Override
     protected void initData() {
-       // head=new Head(0);
+        // head=new Head(0);
         super.initData();
-        user=new User();
-        nickname=user.getNickname();
-        team=user.getTeam();
+        user = new User();
+        nickname = user.getNickname();
+        team = user.getTeam();
+        myself = user.getMyself();
     }
 
     @Override
@@ -79,22 +81,22 @@ public class me extends basefragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         Intent intent;
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.me_power:
-                intent=new Intent(mActivity,Activity_me_power.class);
+                intent = new Intent(mActivity, Activity_me_power.class);
                 startActivity(intent);
                 break;
             case R.id.rl:
-                intent=new Intent(mActivity, Activity_me_data.class);
-                startActivityForResult(intent,0);
+                intent = new Intent(mActivity, Activity_me_data.class);
+                startActivityForResult(intent, 0);
                 break;
             case R.id.me_setting:
-                intent=new Intent(mActivity, Activity_me_setting.class);
-                startActivityForResult(intent,0);
+                intent = new Intent(mActivity, Activity_me_setting.class);
+                startActivityForResult(intent, 0);
                 break;
             case R.id.me_head:
-                intent=new Intent(mActivity, Activity_showhead.class);
-                startActivityForResult(intent,0);
+                intent = new Intent(mActivity, Activity_showhead.class);
+                startActivityForResult(intent, 0);
                 break;
         }
     }
