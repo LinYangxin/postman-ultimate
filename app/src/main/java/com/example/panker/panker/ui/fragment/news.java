@@ -2,6 +2,7 @@ package com.example.panker.panker.ui.fragment;
 
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -16,6 +17,9 @@ import android.view.ViewGroup;
 
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ScrollView;
 
 
 import com.bumptech.glide.Glide;
@@ -23,11 +27,17 @@ import com.example.panker.panker.R;
 import com.example.panker.panker.ui.activity.Activity_web;
 import com.example.panker.panker.uilt.MyListView.MyListView;
 import com.example.panker.panker.uilt.Tools.DataManager;
+import com.example.panker.panker.uilt.Tools.SystemBarTintManager;
 import com.example.panker.panker.uilt.rollviewpager.OnItemClickListener;
 import com.example.panker.panker.uilt.rollviewpager.RollPagerView;
 import com.example.panker.panker.uilt.rollviewpager.adapter.LoopPagerAdapter;
 import com.example.panker.panker.uilt.rollviewpager.hintview.IconHintView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+
 import java.util.List;
+
+import static java.lang.Thread.sleep;
 
 
 /**
@@ -44,6 +54,8 @@ public class news extends basefragment implements View.OnClickListener {
     private MyListView mListView;//新闻的Listview，该类为ListView子类
     private news_adapter mAdapter;//新闻的适配器
     private List<Rollpage> rollpages;//存放轮播图的List
+
+    private PullToRefreshScrollView pullToRefreshScrollView;
     @Override
     /**
      * 重写basefragment的initView函数
@@ -55,6 +67,7 @@ public class news extends basefragment implements View.OnClickListener {
         mAdapter = new news_adapter(mActivity,R.layout.news_listview,dataManager.getNews());//新闻的适配器加载布局和数据
         mListView.setAdapter(mAdapter);
         mListView.setFocusable(false);
+        pullToRefreshScrollView=(PullToRefreshScrollView) mContent.findViewById(R.id.pull_to_refresh_scrollView);
         return mContent;
     }
 
@@ -101,6 +114,33 @@ public class news extends basefragment implements View.OnClickListener {
                 intent.putExtra("url", t.getNews_url());
                 startActivity(intent);
             }
+        });
+
+        //这几个刷新Label的设置
+        pullToRefreshScrollView.getLoadingLayoutProxy().setLastUpdatedLabel("lastUpdateLabel");
+        pullToRefreshScrollView.getLoadingLayoutProxy().setPullLabel("PULLLABLE");
+        pullToRefreshScrollView.getLoadingLayoutProxy().setRefreshingLabel("refreshingLabel");
+        pullToRefreshScrollView.getLoadingLayoutProxy().setReleaseLabel("releaseLabel");
+
+        //上拉、下拉设定
+       // pullToRefreshScrollView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
+        pullToRefreshScrollView.setMode(PullToRefreshBase.Mode.BOTH);
+
+        //上拉监听函数
+        pullToRefreshScrollView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
+                System.out.println("ddddddddddd下拉nnnnnnnnn");
+                new GetDataTask().execute();
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
+                System.out.println("上拉fffffffffffffffffff");
+                new GetDataTask().execute();
+
+            }
+
         });
     }
 
@@ -151,4 +191,38 @@ public class news extends basefragment implements View.OnClickListener {
         }
 
     }
+    private class GetDataTask extends AsyncTask<Void, Void, LinearLayout> {
+
+        @Override
+        protected LinearLayout doInBackground(Void... params) {
+            // Simulates a background job.
+//            try {
+//                Thread.sleep(4000);
+//                LinearLayout lin=viewSingleItem();
+//                return lin;
+//            } catch (InterruptedException e) {
+//                Log.e("msg","GetDataTask:" + e.getMessage());
+//            }
+//            return null;
+            try {
+                sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("asdfgghfhdjsk执行刷新函数gfhdjskbc");
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(LinearLayout result) {
+            // Call onRefreshComplete when the list has been refreshed.
+            //在更新UI后，无需其它Refresh操作，系统会自己加载新的listView
+            System.out.println("刷新完成");
+            pullToRefreshScrollView.onRefreshComplete();
+
+
+            super.onPostExecute(result);
+        }
+    }
 }
+
