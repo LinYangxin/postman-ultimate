@@ -10,6 +10,7 @@ import com.example.panker.panker.R;
 import com.example.panker.panker.ui.activity.SystemBarTintManagerHelper;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
@@ -39,7 +40,9 @@ public class TittleManager {
         ONLY_BACK, // 有标题和左边的按钮（返回）
         BACK_AND_FAVORITE, // 返回与喜欢
         BACK_AND_SAVE, // 返回与保存
-        BACK_AND_STEP, //返回与下一步
+        BACK_AND_STEP,//返回与下一步
+        LEFT_WITHOUT_IMG,
+        ONLY_SETTING;//
     }
 
 //    /**
@@ -93,6 +96,14 @@ public class TittleManager {
                 setCustomTitle(R.drawable.tittle_image_back,"",titleName,0,"下一步");
                 setRightTitleListener(mDefaultlistener);
                 break;
+            case ONLY_SETTING:
+                setCustomTitle(R.drawable.tools, "", titleName, 0, "");
+                setLeftTitleListener(mDefaultlistener);
+                break;
+            case LEFT_WITHOUT_IMG:
+                setCustomTitle(0, "", titleName, 0, "");
+                setLeftTitleListener(mDefaultlistener);
+                break;
         }
     }
 
@@ -135,7 +146,9 @@ public class TittleManager {
             mRightLayout.setVisibility(View.GONE);
         }
     }
-
+    public void setLeftImage(){
+        mLeftTitleView.setVisibility(View.VISIBLE);
+    }
     public void setLeftText(String text) {
         mLeftTitleText.setText(text);
     }

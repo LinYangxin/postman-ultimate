@@ -34,7 +34,7 @@
     <!--注册界面的Linerlayout-->
     <style name="sign_linearLayout">
         <item name="android:fitsSystemWindows">true</item>
-        <item name="android:background">@color/colorGley</item>
+        <item name="android:background">@color/white_backgroud</item>
         <item name="android:paddingRight">15dp</item>
         <item name="android:paddingLeft">15dp</item>
     </style>
@@ -101,5 +101,13 @@
         <item name="android:textColor">@color/black_light</item>
         <item name="android:textSize">10sp</item>
     </style>
-
+    <!--我的界面的textview-->
+    <style name="me_textview">
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:paddingStart">50dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/black_dark</item>
+    </style>
 </resources>

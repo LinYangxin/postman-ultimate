@@ -42,6 +42,7 @@ import com.avos.avoscloud.GetDataCallback;
 import com.example.panker.panker.R;
 import com.example.panker.panker.ui.fragment.*;
 //import com.example.panker.panker.uilt.Tools.Head;
+import com.example.panker.panker.uilt.Tools.PankerHelper;
 import com.example.panker.panker.uilt.Tools.SystemBarTintManager;
 import com.example.panker.panker.uilt.Tools.TittleManager;
 import com.example.panker.panker.bean.User;
@@ -60,13 +61,13 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
     private List<Fragment> fragments;
    // private BottomNavigationBar mBottomNavigationBar;
     private long firstTime = 0;
-    private me d = new me();
-    private game g = new game();
-    private shopping s = new shopping();
-    private news n = new news();
+    private me Me = new me();
+    private game Game = new game();
+    private shopping Shop = new shopping();
+    private news News = new news();
     private User user;
     private TextView mTNews,mTShop,mTGame,mTMe;
-    public static TittleManager tittleManager;
+    public  TittleManager tittleManager;
     public static SQLiteHelper helper;
     //private SystemBarTintManagerHelper tintManagerHelper;
     @Override
@@ -77,14 +78,6 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.guide);
         initView();
         initEvent();
-//
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            tintManager.setTranslucentStatus(true,this);
-//
-//        }
-//
-//        tintManager.setStatusBarTintEnabled(true);
-//        tintManager.setStatusBarTintResource(R.color.red_light);//通知栏所需颜色
     }
 
     private void initView() {
@@ -111,10 +104,10 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         });
         t.start();
         fragments = new ArrayList<>();
-        fragments.add(n);
-        fragments.add(s);
-        fragments.add(g);
-        fragments.add(d);
+        fragments.add(News);
+        fragments.add(Shop);
+        fragments.add(Game);
+        fragments.add(Me);
         viewPager = (baseViewPager) findViewById(R.id.fragments_container);
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             public int getCount() {
@@ -135,7 +128,6 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         mTShop = (TextView)findViewById(R.id.tv_shop);
         mTGame = (TextView)findViewById(R.id.tv_game);
         mTMe = (TextView)findViewById(R.id.tv_me);
-       // tintManagerHelper = new SystemBarTintManagerHelper(this);
     }
 
     private void initEvent() {
@@ -174,10 +166,10 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
                 setTabState(mTMe, R.drawable.me_black,ContextCompat.getColor(this,R.color.colorPrimary));
                 viewPager.setCurrentItem(3, true);
                 break;
-            case R.id.me_power:
-                Intent intent = new Intent(Activity_main.this, Activity_me_power.class);
-                startActivity(intent);
-                break;
+//            case R.id.me_power:
+//                Intent intent = new Intent(Activity_main.this, Activity_me_power.class);
+//                startActivity(intent);
+//                break;
         }
     }
     private void resetTabState() {
@@ -222,11 +214,12 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode) {
             case 1:
-                String tmp = "昵称：" + user.getNickname();
-                d.tv_nickname.setText(tmp);
-                String string = "效力于：" + user.getTeam();
-                d.tv_team.setText(string);
-                d.me_head.setImageBitmap(user.getHead());
+                String tmp = user.getNickname();
+                Me.tv_nickname.setText(tmp);
+                String string = user.getTeam();
+                Me.tv_team.setText(string);
+                Me.me_head.setImageBitmap(PankerHelper.toRoundCornerImage(user.getHead(),180));
+                Me.tv_myself.setText(user.getMyself());
                 break;
             case 2:
                 fragments.clear();
@@ -238,17 +231,4 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         }
 
     }
-//    //通知栏颜色
-//    @TargetApi(19)
-//    private void setTranslucentStatus(boolean on) {
-//        Window win = getWindow();
-//        WindowManager.LayoutParams winParams = win.getAttributes();
-//        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-//        if (on) {
-//            winParams.flags |= bits;
-//        } else {
-//            winParams.flags &= ~bits;
-//        }
-//        win.setAttributes(winParams);
-//    }
 }

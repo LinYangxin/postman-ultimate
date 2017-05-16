@@ -44,7 +44,7 @@ public class Activity_me_data extends Activity implements View.OnClickListener {
     //private AVUser myUser;
     private String[] text = new String[7];
     private TextView tv_0, tv_1, tv_2, tv_3, tv_4, tv_5, tv_6;
-    private RelativeLayout rl_head, rl_nickname, rl_myself, rl_team, rl_sex, rl_position, rl_phone, rl_email;
+    private RelativeLayout rl_head, rl_nickname, rl_myself, rl_team, rl_sex, rl_position, rl_phone, rl_email,rl_power;
     private final int REQUEST_NICKNAME = 0, REQUEST_PHONE = 1, REQUEST_EMAIL = 2, REQUEST_TEAM = 3, REQUEST_MYSELF = 6, NOTHING = 999;
     private final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 1, REQUEST_CODE_CAMERA = 2;//用以动态获取权限
     private final int REQUEST_BY_CAMERA = 110, REQUEST_BY_GALLERY = 111, REQUEST_BY_CROP = 112;
@@ -108,6 +108,7 @@ public class Activity_me_data extends Activity implements View.OnClickListener {
         rl_position = (RelativeLayout) findViewById(R.id.rl_position);
         rl_phone = (RelativeLayout) findViewById(R.id.rl_phone);
         rl_email = (RelativeLayout) findViewById(R.id.rl_email);
+        rl_power = (RelativeLayout) findViewById(R.id.rl_power);
         head.setImageBitmap(user.getHead());
     }
 
@@ -120,6 +121,7 @@ public class Activity_me_data extends Activity implements View.OnClickListener {
         rl_position.setOnClickListener(this);
         rl_phone.setOnClickListener(this);
         rl_email.setOnClickListener(this);
+        rl_power.setOnClickListener(this);
         tittleManager.setLeftTitleListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -222,6 +224,10 @@ public class Activity_me_data extends Activity implements View.OnClickListener {
                 break;
             case R.id.rl_position:
                 setPosition();
+                break;
+            case R.id.rl_power:
+                intent = new Intent(this, Activity_me_power.class);
+                startActivity(intent);
                 break;
         }
     }

@@ -41,33 +41,32 @@
                 android:maxLines="2"
                 android:minLines="2"
                 android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                android:textColor="@color/black_dark"
-                android:textSize="17sp" />
+                android:textColor="@color/black_light"
+                android:textSize="15sp" />
             <TextView
                 android:id="@+id/sumarize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
                 android:maxLines="1"
                 android:text="sumarize"
                 android:textColor="@color/PankerRed"
-                android:textSize="13sp"
-                android:layout_alignParentBottom="true"
+                android:textSize="12sp"
+                android:drawableStart="@drawable/pin"
+                android:gravity="center_vertical"
+                android:layout_alignBottom="@+id/news_img"
                 android:layout_alignStart="@+id/tittle" />
 
             <TextView
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:maxLines="1"
                 android:text="2017.5.1"
                 android:textColor="@color/black_not_important"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 android:layout_alignBaseline="@+id/sumarize"
                 android:layout_alignBottom="@+id/sumarize"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"/>
+                android:layout_alignParentEnd="true" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

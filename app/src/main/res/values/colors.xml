@@ -9,7 +9,7 @@
     <color name="PankerYellow">#FDEF02</color>
     <color name="PankerButton">#FFEE40</color>
     <color name="PankerBackground">#FFF273</color>
-    <color name="PankerRed">#dd4422</color>
+    <color name="PankerRed">#ce3d3a</color>
     <color name="red_dark">#ffb52121</color>
     <color name="red_light">#ffcd2222</color>
     <color name="red">#ce3d3a</color>
@@ -19,4 +19,5 @@
     <color name="black_light">#666666</color>
     <color name="black_not_important">#b2b2b2</color>
     <color name="black_line">#1affffff</color>
+    <color name="PankerGley">#cccccc</color>
 </resources>

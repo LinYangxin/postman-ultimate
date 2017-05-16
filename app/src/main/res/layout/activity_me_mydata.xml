@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <include
         android:id="@+id/public_tittle"
@@ -34,14 +34,14 @@
 
     <View
         android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#000000"/>
+        android:layout_height="0.3dp"
+        android:background="@color/black_not_important" />
 
     <RelativeLayout
+        android:id="@+id/rl_nickname"
         style="@style/sign_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/rl_nickname"
         android:clickable="true">
 
         <TextView
@@ -55,13 +55,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-             />
+            android:layout_centerVertical="true" />
     </RelativeLayout>
+
     <View
         android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#000000"/>
+        android:layout_height="0.3dp"
+        android:background="@color/black_not_important" />
+
     <RelativeLayout
         android:id="@+id/rl_phone"
         style="@style/sign_linearLayout"
@@ -72,21 +73,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="手机"
-             />
+            android:text="手机" />
 
         <TextView
             android:id="@+id/tv_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-             />
+            android:layout_centerVertical="true" />
     </RelativeLayout>
+
     <View
         android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#000000"/>
+        android:layout_height="0.3dp"
+        android:background="@color/black_not_important" />
+
     <RelativeLayout
         android:id="@+id/rl_email"
         style="@style/sign_linearLayout"
@@ -104,19 +105,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-             />
+            android:layout_centerVertical="true" />
     </RelativeLayout>
+
     <View
         android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#000000"/>
+        android:layout_height="0.3dp"
+        android:background="@color/black_not_important" />
+
     <RelativeLayout
         android:id="@+id/rl_team"
-        android:clickable="true"
         style="@style/sign_linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:clickable="true">
 
         <TextView
             android:layout_width="wrap_content"
@@ -129,16 +131,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            />
+            android:layout_centerVertical="true" />
     </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/black_not_important" />
 
     <RelativeLayout
         android:id="@+id/rl_sex"
         style="@style/sign_linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp">
+        android:layout_height="50dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -151,13 +156,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            />
+            android:layout_centerVertical="true" />
     </RelativeLayout>
+
     <View
         android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#000000"/>
+        android:layout_height="0.3dp"
+        android:background="@color/black_not_important" />
+
     <RelativeLayout
         android:id="@+id/rl_position"
         style="@style/sign_linearLayout"
@@ -175,18 +181,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-             />
+            android:layout_centerVertical="true" />
     </RelativeLayout>
+
     <View
         android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#000000"/>
+        android:layout_height="0.3dp"
+        android:background="@color/black_not_important" />
+
     <RelativeLayout
+        android:id="@+id/rl_myself"
         style="@style/sign_linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/rl_myself">
+        android:layout_height="50dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -199,7 +206,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            />
+            android:layout_centerVertical="true" />
     </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/black_not_important" />
+
+    <RelativeLayout
+        android:id="@+id/rl_power"
+        style="@style/sign_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="能力值" />
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/black_not_important" />
 </LinearLayout>

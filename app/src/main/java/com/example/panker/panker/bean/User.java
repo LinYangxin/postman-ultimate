@@ -11,7 +11,7 @@ import com.example.panker.panker.uilt.Tools.PankerHelper;
 public class User {
     private static String Phonenumber, Email, Nickname, Myself, Team, Position;
     private static float O, D, Speed, Catching, Throwing;
-    private static Bitmap head;
+    private static Bitmap head;//,background;
     private static boolean isMan, isNew;//isNew用以判断是否加载头像
     private static AVUser myUser;
 
@@ -37,6 +37,14 @@ public class User {
     public static AVUser getMyUser() {
         return myUser;
     }
+
+//    public static Bitmap getBackground() {
+//        return background;
+//    }
+//
+//    public static void setBackground(Bitmap background) {
+//        User.background = background;
+//    }
 
     public static boolean getSex(){
     return isMan;

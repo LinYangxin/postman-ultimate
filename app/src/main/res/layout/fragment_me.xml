@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white_backgroud">
 
     <RelativeLayout
         android:id="@+id/rl"
         style="@style/sign_linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="200dp"
         android:addStatesFromChildren="false"
         android:alpha="50"
         android:background="@drawable/logo"
@@ -23,7 +24,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="5dp"
             android:layout_marginRight="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/shape_conners_rollpages" />
 
         <RelativeLayout
@@ -46,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="nickname"
-                    android:textColor="@color/black_not_important"/>
+                    android:textColor="@color/black_not_important" />
             </LinearLayout>
 
             <TextView
@@ -55,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="   |   "
-                android:textColor="@color/black_not_important"/>
+                android:textColor="@color/black_not_important" />
 
             <LinearLayout
                 android:layout_width="100dp"
@@ -71,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="team"
-                    android:textColor="@color/black_not_important"/>
+                    android:textColor="@color/black_not_important" />
             </LinearLayout>
 
             <TextView
@@ -82,97 +83,79 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="3dp"
                 android:text="这个人很懒，什么都没留下"
-                android:textColor="@color/black_not_important"/>
+                android:textColor="@color/black_not_important" />
         </RelativeLayout>
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/me_power"
-        style="@style/sign_linearLayout"
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/black_not_important" />
+
+    <TextView
+        style="@style/me_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
-        android:orientation="horizontal">
+        android:drawableLeft="@drawable/note"
+        android:drawableStart="@drawable/note"
+        android:text="联系人" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/power" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/black_not_important" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="能力值" />
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/sign_linearLayout"
+    <TextView
+        style="@style/me_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:drawableLeft="@drawable/scales"
+        android:drawableStart="@drawable/scales"
+        android:text="比赛记录" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/game" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/black_not_important" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="比赛记录" />
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        style="@style/me_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/sign_linearLayout"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/deal"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="交易记录"
-            android:layout_gravity="center_vertical"/>
-    </LinearLayout>
-    <LinearLayout
+        android:drawableLeft="@drawable/record_game"
+        android:drawableStart="@drawable/record_game"
+        android:text="交易记录" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/black_not_important" />
+
+    <TextView
+        style="@style/me_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/sign_linearLayout"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/favorite"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="收藏"
-            android:layout_gravity="center_vertical"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/me_setting"
+        android:drawableLeft="@drawable/heart"
+        android:drawableStart="@drawable/heart"
+        android:text="收藏" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/black_not_important" />
+
+    <TextView
+        android:id="@+id/me_edit"
+        style="@style/me_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/sign_linearLayout"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/setting"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="设置"
-            android:layout_gravity="center_vertical"/>
-    </LinearLayout>
+        android:drawableLeft="@drawable/pencil"
+        android:drawableStart="@drawable/pencil"
+        android:text="编辑资料" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/black_not_important" />
 </LinearLayout>

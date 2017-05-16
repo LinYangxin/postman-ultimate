@@ -35,8 +35,8 @@ import static com.example.panker.panker.ui.activity.Activity_main.helper;
 public class me extends basefragment implements View.OnClickListener {
     private View mContent;
     private String nickname,team,myself;
-    public TextView tv_nickname, tv_team, tv_myself;
-    private LinearLayout me_power, me_setting;
+    public TextView tv_nickname, tv_team, tv_myself,mEdit;
+//    private LinearLayout me_power, me_setting;
     private RelativeLayout me_data;
     public ImageView me_head;
     private User user;
@@ -49,13 +49,15 @@ public class me extends basefragment implements View.OnClickListener {
         tv_nickname = (TextView) mContent.findViewById(R.id.me_nickname);
         tv_team = (TextView) mContent.findViewById(R.id.me_team);
         tv_myself = (TextView) mContent.findViewById(R.id.me_myself);
+        mEdit = (TextView)mContent.findViewById(R.id.me_edit);
         tv_nickname.setText(nickname);
         tv_team.setText(team);
         tv_myself.setText(myself);
-        me_power = (LinearLayout) mContent.findViewById(R.id.me_power);
-        me_setting = (LinearLayout) mContent.findViewById(R.id.me_setting);
+
+//        me_power = (LinearLayout) mContent.findViewById(R.id.me_power);
+//        me_setting = (LinearLayout) mContent.findViewById(R.id.me_setting);
         me_data = (RelativeLayout) mContent.findViewById(R.id.rl);
-        me_head.setImageBitmap(PankerHelper.toRoundCornerImage(user.getHead(), 90));
+        me_head.setImageBitmap(PankerHelper.toRoundCornerImage(user.getHead(), 180));
 
         return mContent;
     }
@@ -72,28 +74,29 @@ public class me extends basefragment implements View.OnClickListener {
 
     @Override
     protected void initEvent() {
-        me_power.setOnClickListener(this);
+//        me_power.setOnClickListener(this);
         me_data.setOnClickListener(this);
-        me_setting.setOnClickListener(this);
+//        me_setting.setOnClickListener(this);
         me_head.setOnClickListener(this);
+        mEdit.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
-            case R.id.me_power:
-                intent = new Intent(mActivity, Activity_me_power.class);
-                startActivity(intent);
-                break;
-            case R.id.rl:
+//            case R.id.me_power:
+//                intent = new Intent(mActivity, Activity_me_power.class);
+//                startActivity(intent);
+//                break;
+            case R.id.me_edit:
                 intent = new Intent(mActivity, Activity_me_data.class);
                 startActivityForResult(intent, 0);
                 break;
-            case R.id.me_setting:
-                intent = new Intent(mActivity, Activity_me_setting.class);
-                startActivityForResult(intent, 0);
-                break;
+//            case R.id.me_setting:
+//                intent = new Intent(mActivity, Activity_me_setting.class);
+//                startActivityForResult(intent, 0);
+//                break;
             case R.id.me_head:
                 intent = new Intent(mActivity, Activity_showhead.class);
                 startActivityForResult(intent, 0);
