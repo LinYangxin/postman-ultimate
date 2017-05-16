@@ -29,6 +29,7 @@ import com.example.panker.panker.R;
 import com.example.panker.panker.ui.activity.Activity_web;
 import com.example.panker.panker.uilt.MyListView.MyListView;
 import com.example.panker.panker.uilt.Tools.DataManager;
+import com.example.panker.panker.uilt.Tools.PankerHelper;
 import com.example.panker.panker.uilt.Tools.SystemBarTintManager;
 import com.example.panker.panker.uilt.rollviewpager.OnItemClickListener;
 import com.example.panker.panker.uilt.rollviewpager.RollPagerView;
@@ -39,6 +40,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
 import java.util.List;
 
+import static com.example.panker.panker.uilt.Tools.DataManager.getNews;
 import static java.lang.Thread.sleep;
 
 
@@ -52,7 +54,7 @@ public class news extends basefragment implements View.OnClickListener {
     private RollPagerView mLoopViewPager;//轮播图
     private TestLoopAdapter mLoopAdapter;//轮播图的适配器
     private Handler handler = new Handler();
-    private static DataManager dataManager = new DataManager();//数据管理类，可通过该类获取新闻，资讯的数据
+    //private static DataManager dataManager = new DataManager();//数据管理类，可通过该类获取新闻，资讯的数据
     private MyListView mListView;//新闻的Listview，该类为ListView子类
     private news_adapter mAdapter;//新闻的适配器
     private List<Rollpage> rollpages;//存放轮播图的List
@@ -66,7 +68,7 @@ public class news extends basefragment implements View.OnClickListener {
         mContent = inflater.inflate(R.layout.fragment_news,container,false);
         mLoopViewPager = (RollPagerView) mContent.findViewById(R.id.loop_view_pager);
         mListView = (MyListView)mContent.findViewById(R.id.news_list);
-        mAdapter = new news_adapter(mActivity,R.layout.news_listview,dataManager.getNews());//新闻的适配器加载布局和数据
+        mAdapter = new news_adapter(mActivity,R.layout.news_listview, DataManager.getNews());//新闻的适配器加载布局和数据
         mListView.setAdapter(mAdapter);
         mListView.setFocusable(false);
         pullToRefreshScrollView=(PullToRefreshScrollView) mContent.findViewById(R.id.pull_to_refresh_scrollView);
@@ -111,7 +113,7 @@ public class news extends basefragment implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 ((TextView)view.findViewById(R.id.tittle)).setTextColor(ContextCompat.getColor(mActivity,R.color.black_not_important));//点击后弱化标题
-                News t = dataManager.getNews().get(i);
+                News t = getNews().get(i);
                 //Toast.makeText(mActivity, t.getNews_url(),Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(mActivity,Activity_web.class);
                 intent.putExtra("url", t.getNews_url());
@@ -120,10 +122,10 @@ public class news extends basefragment implements View.OnClickListener {
         });
 
         //这几个刷新Label的设置
-        pullToRefreshScrollView.getLoadingLayoutProxy().setLastUpdatedLabel("lastUpdateLabel");
-        pullToRefreshScrollView.getLoadingLayoutProxy().setPullLabel("PULLLABLE");
-        pullToRefreshScrollView.getLoadingLayoutProxy().setRefreshingLabel("refreshingLabel");
-        pullToRefreshScrollView.getLoadingLayoutProxy().setReleaseLabel("releaseLabel");
+        pullToRefreshScrollView.getLoadingLayoutProxy().setLastUpdatedLabel(PankerHelper.SystemTime2String((DataManager.lastUpdateAt)));
+        pullToRefreshScrollView.getLoadingLayoutProxy().setPullLabel("拉动加载更多");
+        pullToRefreshScrollView.getLoadingLayoutProxy().setRefreshingLabel("正在刷新");
+        pullToRefreshScrollView.getLoadingLayoutProxy().setReleaseLabel("aaa");
 
         //上拉、下拉设定
        // pullToRefreshScrollView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
@@ -135,7 +137,8 @@ public class news extends basefragment implements View.OnClickListener {
             public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
                 System.out.println("ddddddddddd下拉nnnnnnnnn");
                 //new GetDataTask().execute();
-                if(dataManager.getNewsData()==true){
+                if(DataManager.getNewsData()==true){
+                    pullToRefreshScrollView.getLoadingLayoutProxy().setLastUpdatedLabel(PankerHelper.SystemTime2String((DataManager.lastUpdateAt)));
                     mAdapter.notifyDataSetChanged();
                     new GetDataTask().execute();
 //                    mAdapter.notifyDataSetChanged();
@@ -153,7 +156,8 @@ public class news extends basefragment implements View.OnClickListener {
             public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
                 System.out.println("上拉fffffffffffffffffff");
 //                 new GetDataTask().execute();
-                if (dataManager.getNewsData() == true) {
+                if (DataManager.getNewsData() == true) {
+                    pullToRefreshScrollView.getLoadingLayoutProxy().setLastUpdatedLabel(PankerHelper.SystemTime2String((DataManager.lastUpdateAt)));
                     mAdapter.notifyDataSetChanged();
                     new GetDataTask().execute();
 
@@ -180,7 +184,7 @@ public class news extends basefragment implements View.OnClickListener {
      */
     @Override
     public void initData(){
-        rollpages = dataManager.getRoll();
+        rollpages = DataManager.getRoll();
     }
     private class TestLoopAdapter extends LoopPagerAdapter {
         String[] imgs = new String[0];

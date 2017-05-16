@@ -6,6 +6,9 @@ import android.database.CharArrayBuffer;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.DataSetObserver;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -57,8 +60,8 @@ public class me extends basefragment implements View.OnClickListener {
 //        me_power = (LinearLayout) mContent.findViewById(R.id.me_power);
 //        me_setting = (LinearLayout) mContent.findViewById(R.id.me_setting);
         me_data = (RelativeLayout) mContent.findViewById(R.id.rl);
+        me_data.setBackground(PankerHelper.bitmap2drawable(user.getBackground()));
         me_head.setImageBitmap(PankerHelper.toRoundCornerImage(user.getHead(), 180));
-
         return mContent;
     }
 

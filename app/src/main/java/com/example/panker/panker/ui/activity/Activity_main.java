@@ -85,7 +85,7 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
             @Override
             public void run() {
                 user=new User();
-                user.init();
+               // user.init();
                 if (user.getFlag() == false)
                     user.getMyUser().getAVFile("head").getDataInBackground(new GetDataCallback() {
                         @Override
@@ -99,10 +99,24 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
                     Resources res = getResources();
                     user.setHead(BitmapFactory.decodeResource(res, R.drawable.head));
                 }
-
+                if(user.getHasBackground()) {
+                    user.getMyUser().getAVFile("background").getDataInBackground(new GetDataCallback() {
+                        @Override
+                        public void done(byte[] bytes, AVException e) {
+                            if (e == null && bytes != null) {
+                                user.setBackground(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                            }
+                        }
+                    });
+                }
+                else{
+                    Resources res = getResources();
+                    user.setBackground(BitmapFactory.decodeResource(res, R.drawable.test));
+                }
             }
         });
         t.start();
+
         fragments = new ArrayList<>();
         fragments.add(News);
         fragments.add(Shop);

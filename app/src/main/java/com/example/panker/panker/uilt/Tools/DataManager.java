@@ -27,6 +27,7 @@ public class DataManager {
     private static List<Rollpage> roll = new ArrayList<>();//存放轮播图实体的List
     private static List<Game> game = new ArrayList<>();//存放比赛实体的List
     public static int getTimes = -1;
+    public static long lastUpdateAt = 0;
     //构造函数
     public  DataManager(){
     }
@@ -77,6 +78,7 @@ public class DataManager {
     }
     //从服务器获取新闻的json
     public static boolean getNewsData(){
+        lastUpdateAt = System.currentTimeMillis();
         getTimes++;
         if(getTimes==0 && !news.isEmpty())
             news.clear();

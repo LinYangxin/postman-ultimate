@@ -2,15 +2,23 @@ package com.example.panker.panker.uilt.Tools;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.IntRange;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.avos.avoscloud.AVException;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -95,5 +103,16 @@ public class PankerHelper {
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(bitmap, rect, rect, paint);
         return output;
+    }
+
+    //bitmap2drawable
+    public static Drawable bitmap2drawable(Bitmap bitmap){
+        return new BitmapDrawable(bitmap);
+    }
+
+    public static String SystemTime2String(long time){
+        SimpleDateFormat formatter = new SimpleDateFormat("HH时mm分ss秒");
+        Date date = new Date(time);
+        return formatter.format(date);
     }
 }
