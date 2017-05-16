@@ -10,6 +10,7 @@ import com.example.panker.panker.bean.News;
 import com.example.panker.panker.bean.Rollpage;
 import com.example.panker.panker.ui.adapter.news_adapter;
 
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
@@ -108,6 +110,7 @@ public class news extends basefragment implements View.OnClickListener {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ((TextView)view.findViewById(R.id.tittle)).setTextColor(ContextCompat.getColor(mActivity,R.color.black_not_important));//点击后弱化标题
                 News t = dataManager.getNews().get(i);
                 //Toast.makeText(mActivity, t.getNews_url(),Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(mActivity,Activity_web.class);
