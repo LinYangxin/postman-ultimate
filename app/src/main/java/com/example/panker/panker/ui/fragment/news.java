@@ -134,15 +134,39 @@ public class news extends basefragment implements View.OnClickListener {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
                 System.out.println("ddddddddddd下拉nnnnnnnnn");
-                new GetDataTask().execute();
+                //new GetDataTask().execute();
+                if(dataManager.getNewsData()==true){
+                    mAdapter.notifyDataSetChanged();
+                    new GetDataTask().execute();
+//                    mAdapter.notifyDataSetChanged();
+//                    try {
+//                        sleep(1000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    pullToRefreshScrollView.onRefreshComplete();
+//
+                }
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
                 System.out.println("上拉fffffffffffffffffff");
-                new GetDataTask().execute();
+//                 new GetDataTask().execute();
+                if (dataManager.getNewsData() == true) {
+                    mAdapter.notifyDataSetChanged();
+                    new GetDataTask().execute();
 
+//                    mAdapter.notifyDataSetChanged();
+//                    try {
+//                        sleep(1000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    pullToRefreshScrollView.onRefreshComplete();
+                }
             }
+
 
         });
     }

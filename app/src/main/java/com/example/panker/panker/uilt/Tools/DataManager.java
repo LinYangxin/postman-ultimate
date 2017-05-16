@@ -26,6 +26,7 @@ public class DataManager {
     private static List<News> news = new ArrayList<>();//存放新闻实体的List
     private static List<Rollpage> roll = new ArrayList<>();//存放轮播图实体的List
     private static List<Game> game = new ArrayList<>();//存放比赛实体的List
+    public static int getTimes = -1;
     //构造函数
     public  DataManager(){
     }
@@ -35,14 +36,17 @@ public class DataManager {
         getNewsData();
         getRollData();
         getGameData();
+
     }
 
     //从服务器获取比赛的json
     private static void getGameData(){
+
         if(!game.isEmpty())
             game.clear();
         AVQuery<AVObject> avQuery = new AVQuery<>("Game");
         avQuery.orderByDescending("updatedAt");
+
         avQuery.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {
@@ -69,13 +73,17 @@ public class DataManager {
                 }
             }
         });
+
     }
     //从服务器获取新闻的json
-    private static void getNewsData(){
-        if(!news.isEmpty())
+    public static boolean getNewsData(){
+        getTimes++;
+        if(getTimes==0 && !news.isEmpty())
             news.clear();
         AVQuery<AVObject> avQuery = new AVQuery<>("news");//使用AVQuery查询服务器中news表
         avQuery.orderByDescending("updatedAt");//以更新顺序排列
+        avQuery.skip(getTimes * 8);
+        avQuery.limit(8);
         avQuery.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {
@@ -98,6 +106,7 @@ public class DataManager {
                 }
             }
         });
+        return  true;
     }
 
     //从服务器获取轮播图的json
