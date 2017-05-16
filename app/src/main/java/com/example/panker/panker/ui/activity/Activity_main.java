@@ -67,7 +67,7 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
     private news News = new news();
     private User user;
     private TextView mTNews,mTShop,mTGame,mTMe;
-    public  TittleManager tittleManager;
+    private  TittleManager tittleManager;
     public static SQLiteHelper helper;
     //private SystemBarTintManagerHelper tintManagerHelper;
     @Override
@@ -122,7 +122,7 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
 
         viewPager.addOnPageChangeListener(this);
         tittleManager=new TittleManager(this);
-        tittleManager.setTitleStyle(TittleManager.TitleStyle.ONLY_TITLE,"翼鲲飞盘");
+        tittleManager.setTitleStyle(TittleManager.TitleStyle.ONLY_SETTING,"翼鲲飞盘");
         helper=new SQLiteHelper(this);
         mTNews = (TextView)findViewById(R.id.tv_news);
         mTShop = (TextView)findViewById(R.id.tv_shop);
@@ -141,6 +141,7 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
     private void setDefaultFragment() {
         //set the defalut tab state
         setTabState(mTNews, R.drawable.news_black, ContextCompat.getColor(this,R.color.colorPrimary));
+        tittleManager.setLeftImage(View.GONE);
     }
     private void setTabState(TextView textView, int image, int color) {
         textView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, image, 0, 0);//Call requires API level 17
@@ -151,18 +152,22 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
         resetTabState();
         switch (view.getId()) {
             case R.id.tv_news:
+                tittleManager.setLeftImage(View.GONE);
                 setTabState(mTNews, R.drawable.news_black, ContextCompat.getColor(this,R.color.colorPrimary));
                 viewPager.setCurrentItem(0, true);
                 break;
             case R.id.tv_shop:
+                tittleManager.setLeftImage(View.GONE);
                 setTabState(mTShop, R.drawable.shoping_black, ContextCompat.getColor(this,R.color.colorPrimary));
                 viewPager.setCurrentItem(1, true);
                 break;
             case R.id.tv_game:
+                tittleManager.setLeftImage(View.GONE);
                 setTabState(mTGame, R.drawable.game_black, ContextCompat.getColor(this,R.color.colorPrimary));
                 viewPager.setCurrentItem(2, true);
                 break;
             case R.id.tv_me:
+                tittleManager.setLeftImage(View.VISIBLE);
                 setTabState(mTMe, R.drawable.me_black,ContextCompat.getColor(this,R.color.colorPrimary));
                 viewPager.setCurrentItem(3, true);
                 break;

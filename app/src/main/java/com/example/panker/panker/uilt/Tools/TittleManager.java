@@ -7,9 +7,11 @@ package com.example.panker.panker.uilt.Tools;
  */
 
 import com.example.panker.panker.R;
+import com.example.panker.panker.ui.activity.Activity_me_setting;
 import com.example.panker.panker.ui.activity.SystemBarTintManagerHelper;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -98,7 +100,13 @@ public class TittleManager {
                 break;
             case ONLY_SETTING:
                 setCustomTitle(R.drawable.tools, "", titleName, 0, "");
-                setLeftTitleListener(mDefaultlistener);
+                setLeftTitleListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(mActivity, Activity_me_setting.class);
+                        mActivity.startActivityForResult(intent, 0);
+                    }
+                });
                 break;
             case LEFT_WITHOUT_IMG:
                 setCustomTitle(0, "", titleName, 0, "");
@@ -146,8 +154,16 @@ public class TittleManager {
             mRightLayout.setVisibility(View.GONE);
         }
     }
-    public void setLeftImage(){
-        mLeftTitleView.setVisibility(View.VISIBLE);
+    public void setLeftImage(int i){
+        switch (i){
+            case View.GONE:
+                mLeftTitleView.setVisibility(View.GONE);break;
+            case View.INVISIBLE:
+                mLeftTitleView.setVisibility(View.INVISIBLE);break;
+            case View.VISIBLE:
+                mLeftTitleView.setVisibility(View.VISIBLE);break;
+        }
+
     }
     public void setLeftText(String text) {
         mLeftTitleText.setText(text);
