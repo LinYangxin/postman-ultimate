@@ -1,8 +1,17 @@
 package com.example.panker.panker.bean;
 
+import android.app.Activity;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 
+import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.GetDataCallback;
+import com.bumptech.glide.load.engine.Resource;
+import com.example.panker.panker.R;
+import com.example.panker.panker.ui.activity.Activity_main;
 import com.example.panker.panker.uilt.Tools.PankerHelper;
 
 /**
@@ -11,16 +20,46 @@ import com.example.panker.panker.uilt.Tools.PankerHelper;
 public class User {
     private static String Phonenumber, Email, Nickname, Myself, Team, Position;
     private static float O, D, Speed, Catching, Throwing;
-    private static Bitmap head ,background;
-    private static boolean isMan, isNew,hasBackground;//isNew用以判断是否加载头像
+    private static Bitmap head, background;
+    private static boolean isMan, hasHead, hasBackground;//isNew用以判断是否加载头像
     private static AVUser myUser;
 
     public User() {
-        init();
     }
+
+    public User(Activity activity) {
+        init();
+        if (hasHead) {
+            myUser.getAVFile("head").getDataInBackground(new GetDataCallback() {
+                @Override
+                public void done(byte[] bytes, AVException e) {
+                    if (e == null) {
+                        setHead(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                    }
+                }
+            });
+        } else {
+            Resources res = activity.getResources();
+            setHead(BitmapFactory.decodeResource(res, R.drawable.head));
+        }
+        if (hasBackground) {
+            myUser.getAVFile("bg").getDataInBackground(new GetDataCallback() {
+                @Override
+                public void done(byte[] bytes, AVException e) {
+                    if (e == null) {
+                        setBackground(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                    }
+                }
+            });
+        } else {
+            Resources res = activity.getResources();
+            setBackground(BitmapFactory.decodeResource(res, R.drawable.test));
+        }
+    }
+
     public void init() {
         myUser = AVUser.getCurrentUser();
-        Myself=myUser.getString("myself");
+        Myself = myUser.getString("myself");
         Phonenumber = myUser.getMobilePhoneNumber();
         Email = myUser.getEmail();
         Nickname = myUser.getString("nickname");
@@ -32,7 +71,7 @@ public class User {
         Catching = (float) myUser.getDouble("catching");
         Throwing = (float) myUser.getDouble("throwing");
         isMan = myUser.getBoolean("isMan");
-        isNew=myUser.getBoolean("newSign");
+        hasHead = myUser.getBoolean("hasHead");
         hasBackground = myUser.getBoolean("hasBackground");
     }
 
@@ -40,15 +79,15 @@ public class User {
         return myUser;
     }
 
-    public static void setHasBackground(boolean hasBackground) {
-        User.hasBackground = hasBackground;
-    }
-
-    public static boolean getHasBackground() {
-        return hasBackground;
-    }
-
-    public  static Bitmap getBackground() {
+    //    public static void setHasBackground(boolean hasBackground) {
+//        User.hasBackground = hasBackground;
+//    }
+//
+//    public static boolean getHasBackground() {
+//        return hasBackground;
+//    }
+//
+    public static Bitmap getBackground() {
         return background;
     }
 
@@ -56,12 +95,13 @@ public class User {
         User.background = background;
     }
 
-    public static boolean getSex(){
-    return isMan;
-}
-    public static boolean getFlag(){
-        return isNew;
+    public static boolean getSex() {
+        return isMan;
     }
+
+    //    public static boolean getFlag(){
+//        return isNew;
+//    }
     public static String getPhonenumber() {
         return Phonenumber;
     }
@@ -89,6 +129,7 @@ public class User {
     public static float getCatching() {
         return Catching;
     }
+
     public static float getD() {
         return D;
     }
@@ -106,6 +147,12 @@ public class User {
     }
 
     public static Bitmap getHead() {
+        if (head == null) {
+            Bitmap bitmap = Bitmap.createBitmap(50, 50,
+                    Bitmap.Config.ARGB_8888);
+            bitmap.eraseColor(Color.parseColor("#FF0000"));//填充颜色
+            return bitmap;
+        }
         return head;
     }
 
@@ -156,10 +203,16 @@ public class User {
     public static void setThrowing(float throwing) {
         Throwing = throwing;
     }
-    public static  void setFlag(boolean t){
-        isNew=t;
+
+    public static void setHasHead(boolean t) {
+        hasHead = t;
     }
-    public static void setSex(boolean t){
-        isMan=t;
+
+    public static void setHasBackground(boolean t) {
+        hasBackground = t;
+    }
+
+    public static void setSex(boolean t) {
+        isMan = t;
     }
 }

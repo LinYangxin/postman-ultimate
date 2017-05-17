@@ -4,23 +4,11 @@
         "source": "E:\\Panker_Android\\pullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\indicator_arrow.png"
     },
     {
-        "merged": "C:\\Users\\51646\\Documents\\Panker_Android\\pullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_rotate.png",
-        "source": "C:\\Users\\51646\\Documents\\Panker_Android\\pullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_rotate.png"
-    },
-    {
         "merged": "E:\\Panker_Android\\pullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_rotate.png",
         "source": "E:\\Panker_Android\\pullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_rotate.png"
     },
     {
         "merged": "E:\\Panker_Android\\pullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png",
         "source": "E:\\Panker_Android\\pullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_flip.png"
-    },
-    {
-        "merged": "C:\\Users\\51646\\Documents\\Panker_Android\\pullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png",
-        "source": "C:\\Users\\51646\\Documents\\Panker_Android\\pullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_flip.png"
-    },
-    {
-        "merged": "C:\\Users\\51646\\Documents\\Panker_Android\\pullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\indicator_arrow.png",
-        "source": "C:\\Users\\51646\\Documents\\Panker_Android\\pullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\indicator_arrow.png"
     }
 ]

@@ -13,9 +13,9 @@
         android:layout_height="200dp"
         android:addStatesFromChildren="false"
         android:alpha="50"
-        android:background="@drawable/test"
         android:clickable="true"
-        android:paddingBottom="0dp">
+        android:paddingBottom="0dp"
+        android:background="@drawable/test">
 
         <ImageView
             android:id="@+id/me_head"
@@ -25,7 +25,8 @@
             android:layout_marginBottom="5dp"
             android:layout_marginRight="12dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/shape_conners_rollpages" />
+            android:background="@drawable/shape_conners_rollpages"
+            android:src="@drawable/head"/>
 
         <RelativeLayout
             android:layout_width="wrap_content"

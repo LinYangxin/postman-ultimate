@@ -107,7 +107,10 @@ public class PankerHelper {
 
     //bitmap2drawable
     public static Drawable bitmap2drawable(Bitmap bitmap){
-        return new BitmapDrawable(bitmap);
+        BitmapDrawable bd = new BitmapDrawable(bitmap);
+        Drawable d = (Drawable) bd;
+        return d;
+      //  return new BitmapDrawable(bitmap);
     }
 
     public static String SystemTime2String(long time){
@@ -115,4 +118,6 @@ public class PankerHelper {
         Date date = new Date(time);
         return formatter.format(date);
     }
+
+
 }

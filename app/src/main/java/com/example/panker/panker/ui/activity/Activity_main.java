@@ -8,10 +8,12 @@ import android.database.CharArrayBuffer;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.DataSetObserver;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
@@ -36,9 +38,11 @@ import android.widget.Toast;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.AVOSCloud;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.GetDataCallback;
+import com.avos.avoscloud.SaveCallback;
 import com.example.panker.panker.R;
 import com.example.panker.panker.ui.fragment.*;
 //import com.example.panker.panker.uilt.Tools.Head;
@@ -49,6 +53,9 @@ import com.example.panker.panker.bean.User;
 import com.example.panker.panker.uilt.Tools.baseViewPager;
 import com.example.panker.panker.uilt.local_db.SQLiteHelper;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,53 +77,20 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
     private  TittleManager tittleManager;
     public static SQLiteHelper helper;
     //private SystemBarTintManagerHelper tintManagerHelper;
+    private final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 1, REQUEST_CODE_CAMERA = 2;//用以动态获取权限
+    private final int REQUEST_BY_CAMERA = 110, REQUEST_BY_GALLERY = 111, REQUEST_BY_CROP = 112;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         AVOSCloud.setDebugLogEnabled(true);
         setContentView(R.layout.guide);
+        user=new User(this);
         initView();
         initEvent();
     }
 
     private void initView() {
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                user=new User();
-               // user.init();
-                if (user.getFlag() == false)
-                    user.getMyUser().getAVFile("head").getDataInBackground(new GetDataCallback() {
-                        @Override
-                        public void done(byte[] bytes, AVException e) {
-                            if (e == null) {
-                                user.setHead(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-                            }
-                        }
-                    });
-                else {
-                    Resources res = getResources();
-                    user.setHead(BitmapFactory.decodeResource(res, R.drawable.head));
-                }
-                if(user.getHasBackground()) {
-                    user.getMyUser().getAVFile("background").getDataInBackground(new GetDataCallback() {
-                        @Override
-                        public void done(byte[] bytes, AVException e) {
-                            if (e == null && bytes != null) {
-                                user.setBackground(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-                            }
-                        }
-                    });
-                }
-                else{
-                    Resources res = getResources();
-                    user.setBackground(BitmapFactory.decodeResource(res, R.drawable.test));
-                }
-            }
-        });
-        t.start();
-
         fragments = new ArrayList<>();
         fragments.add(News);
         fragments.add(Shop);

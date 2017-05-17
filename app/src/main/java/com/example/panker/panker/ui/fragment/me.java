@@ -1,7 +1,11 @@
 package com.example.panker.panker.ui.fragment;
 
+import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.CharArrayBuffer;
 import android.database.ContentObserver;
 import android.database.Cursor;
@@ -10,7 +14,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.avos.avoscloud.AVUser;
 import com.example.panker.panker.ui.activity.Activity_showhead;
@@ -27,6 +38,8 @@ import com.example.panker.panker.ui.activity.Activity_me_power;
 import com.example.panker.panker.R;
 import com.example.panker.panker.ui.activity.Activity_me_setting;
 import com.example.panker.panker.uilt.Tools.PankerHelper;
+
+import java.io.File;
 
 import static com.example.panker.panker.ui.activity.Activity_main.helper;
 
@@ -40,11 +53,10 @@ public class me extends basefragment implements View.OnClickListener {
     private String nickname,team,myself;
     public TextView tv_nickname, tv_team, tv_myself,mEdit;
 //    private LinearLayout me_power, me_setting;
-    private RelativeLayout me_data;
+    public RelativeLayout me_data;
     public ImageView me_head;
     private User user;
     private Cursor cursor;
-
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContent = inflater.inflate(R.layout.fragment_me, container, false);
@@ -60,6 +72,7 @@ public class me extends basefragment implements View.OnClickListener {
 //        me_power = (LinearLayout) mContent.findViewById(R.id.me_power);
 //        me_setting = (LinearLayout) mContent.findViewById(R.id.me_setting);
         me_data = (RelativeLayout) mContent.findViewById(R.id.rl);
+//        Toast.makeText(mActivity,user.getBackground().toString(),Toast.LENGTH_LONG).show();
         me_data.setBackground(PankerHelper.bitmap2drawable(user.getBackground()));
         me_head.setImageBitmap(PankerHelper.toRoundCornerImage(user.getHead(), 180));
         return mContent;
@@ -69,7 +82,7 @@ public class me extends basefragment implements View.OnClickListener {
     protected void initData() {
         // head=new Head(0);
         super.initData();
-        user = new User();
+        user = new User(mActivity);
         nickname = user.getNickname();
         team = user.getTeam();
         myself = user.getMyself();
@@ -88,22 +101,18 @@ public class me extends basefragment implements View.OnClickListener {
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
-//            case R.id.me_power:
-//                intent = new Intent(mActivity, Activity_me_power.class);
-//                startActivity(intent);
-//                break;
+            case R.id.rl:
+                Toast.makeText(mActivity,"hahah",Toast.LENGTH_SHORT).show();
+                break;
             case R.id.me_edit:
                 intent = new Intent(mActivity, Activity_me_data.class);
                 startActivityForResult(intent, 0);
                 break;
-//            case R.id.me_setting:
-//                intent = new Intent(mActivity, Activity_me_setting.class);
-//                startActivityForResult(intent, 0);
-//                break;
             case R.id.me_head:
                 intent = new Intent(mActivity, Activity_showhead.class);
                 startActivityForResult(intent, 0);
                 break;
         }
     }
+
 }

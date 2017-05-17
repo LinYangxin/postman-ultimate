@@ -298,12 +298,12 @@ public class Activity_me_data extends Activity implements View.OnClickListener {
 
                     AVFile file = new AVFile("head.png", img_data);
                     user.getMyUser().put("head", file);
-                    user.getMyUser().put("newSign", false);
+                    user.getMyUser().put("hasHead", true);
                     user.getMyUser().saveInBackground(new SaveCallback() {
                         @Override
                         public void done(AVException e) {
                             user.setHead(bm);
-                            user.setFlag(false);
+                            user.setHasHead(true);
                             Toast.makeText(Activity_me_data.this, "保存成功", Toast.LENGTH_SHORT).show();
                         }
                     });
