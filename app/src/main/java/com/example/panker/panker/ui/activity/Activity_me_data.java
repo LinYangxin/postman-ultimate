@@ -26,6 +26,7 @@ import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.SaveCallback;
 import com.example.panker.panker.R;
 //import com.example.panker.panker.uilt.Tools.Head;
+import com.example.panker.panker.uilt.Tools.PankerHelper;
 import com.example.panker.panker.uilt.Tools.SystemBarTintManager;
 import com.example.panker.panker.uilt.Tools.TittleManager;
 import com.example.panker.panker.bean.User;
@@ -45,9 +46,6 @@ public class Activity_me_data extends Activity implements View.OnClickListener {
     private String[] text = new String[7];
     private TextView tv_0, tv_1, tv_2, tv_3, tv_4, tv_5, tv_6;
     private RelativeLayout rl_head, rl_nickname, rl_myself, rl_team, rl_sex, rl_position, rl_phone, rl_email,rl_power;
-    private final int REQUEST_NICKNAME = 0, REQUEST_PHONE = 1, REQUEST_EMAIL = 2, REQUEST_TEAM = 3, REQUEST_MYSELF = 6, NOTHING = 999;
-    private final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 1, REQUEST_CODE_CAMERA = 2;//用以动态获取权限
-    private final int REQUEST_BY_CAMERA = 110, REQUEST_BY_GALLERY = 111, REQUEST_BY_CROP = 112;
     private ImageView head;
     //private Head new_head;
     protected static Uri tempUri;
@@ -139,7 +137,7 @@ public class Activity_me_data extends Activity implements View.OnClickListener {
             Uri u = Uri.fromFile(f);
             intent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, u);
-            startActivityForResult(intent, REQUEST_BY_CAMERA);
+            startActivityForResult(intent, PankerHelper.REQUEST_BY_CAMERA);
         } catch (ActivityNotFoundException e) {
 
             Toast.makeText(Activity_me_data.this, "没有找到储存目录", Toast.LENGTH_LONG).show();
@@ -149,7 +147,7 @@ public class Activity_me_data extends Activity implements View.OnClickListener {
     private void SetHeadFromGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
-        startActivityForResult(intent, REQUEST_BY_GALLERY);
+        startActivityForResult(intent, PankerHelper.REQUEST_BY_GALLERY);
     }
 
     public void GetPomitssion() {
@@ -163,7 +161,7 @@ public class Activity_me_data extends Activity implements View.OnClickListener {
                                 if (Build.VERSION.SDK_INT >= 23) {
                                     int checkCallPhonePermission = ContextCompat.checkSelfPermission(Activity_me_data.this, Manifest.permission.CAMERA);
                                     if (checkCallPhonePermission != PackageManager.PERMISSION_GRANTED) {
-                                        ActivityCompat.requestPermissions(Activity_me_data.this, new String[]{Manifest.permission.CAMERA}, REQUEST_CODE_CAMERA);
+                                        ActivityCompat.requestPermissions(Activity_me_data.this, new String[]{Manifest.permission.CAMERA}, PankerHelper.REQUEST_CODE_CAMERA);
                                         return;
                                     } else {
                                         SetHeadFromCamera();  // 开启图片选择器
@@ -177,7 +175,7 @@ public class Activity_me_data extends Activity implements View.OnClickListener {
                                 if (Build.VERSION.SDK_INT >= 23) {
                                     int checkCallPhonePermission = ContextCompat.checkSelfPermission(Activity_me_data.this, Manifest.permission.READ_EXTERNAL_STORAGE);
                                     if (checkCallPhonePermission != PackageManager.PERMISSION_GRANTED) {
-                                        ActivityCompat.requestPermissions(Activity_me_data.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_READ_EXTERNAL_STORAGE);
+                                        ActivityCompat.requestPermissions(Activity_me_data.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PankerHelper.REQUEST_CODE_READ_EXTERNAL_STORAGE);
                                         return;
                                     } else {
                                         SetHeadFromGallery();  // 开启图片选择器
@@ -236,31 +234,31 @@ public class Activity_me_data extends Activity implements View.OnClickListener {
         switch (requestCode) {
             case 1:
                 switch (resultCode) {
-                    case REQUEST_NICKNAME:
+                    case PankerHelper.REQUEST_NICKNAME:
                         text[0] = user.getNickname();
                         tv_0.setText(text[0]);
                         break;
-                    case REQUEST_PHONE:
+                    case PankerHelper.REQUEST_PHONE:
                         text[1] = user.getPhonenumber();
                         tv_1.setText(text[1]);
                         break;
-                    case REQUEST_EMAIL:
+                    case PankerHelper.REQUEST_EMAIL:
                         text[2] = user.getEmail();
                         tv_2.setText(text[2]);
                         break;
-                    case REQUEST_TEAM:
+                    case PankerHelper.REQUEST_TEAM:
                         text[3] = user.getTeam();
                         tv_3.setText(text[3]);
                         break;
-                    case REQUEST_MYSELF:
+                    case PankerHelper.REQUEST_MYSELF:
                         text[6] = user.getMyself();
                         tv_6.setText(text[6]);
                         break;
-                    case NOTHING:
+                    case PankerHelper.NOTHING:
                         break;
                 }
                 break;
-            case REQUEST_BY_CAMERA:
+            case PankerHelper.REQUEST_BY_CAMERA:
                 if(resultCode==RESULT_OK){
                     File f = new File(Environment.getExternalStorageDirectory()
                             + "/" + "Panker" + "/" + "head.png");
@@ -275,14 +273,14 @@ public class Activity_me_data extends Activity implements View.OnClickListener {
                     }
                 }
                 break;
-            case REQUEST_BY_GALLERY:
+            case PankerHelper.REQUEST_BY_GALLERY:
                 if (data == null) {
                     break;
                 } else {
                     startImageZoom(data.getData());
                 }
                 break;
-            case REQUEST_BY_CROP:
+            case PankerHelper.REQUEST_BY_CROP:
                 if (data == null) {
                     return;
                 } else {
@@ -481,13 +479,13 @@ public class Activity_me_data extends Activity implements View.OnClickListener {
         intent.putExtra("outputX", 350);
         intent.putExtra("outputY", 350);
         intent.putExtra("return-data", true);
-        startActivityForResult(intent, REQUEST_BY_CROP);
+        startActivityForResult(intent, PankerHelper.REQUEST_BY_CROP);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
-            case REQUEST_CODE_READ_EXTERNAL_STORAGE:
+            case PankerHelper.REQUEST_CODE_READ_EXTERNAL_STORAGE:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     SetHeadFromGallery();
                 } else {
@@ -496,7 +494,7 @@ public class Activity_me_data extends Activity implements View.OnClickListener {
                             .show();
                 }
                 break;
-            case REQUEST_CODE_CAMERA:
+            case PankerHelper.REQUEST_CODE_CAMERA:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     SetHeadFromCamera();
                 } else {

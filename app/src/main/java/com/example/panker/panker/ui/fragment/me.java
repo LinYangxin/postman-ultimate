@@ -101,9 +101,6 @@ public class me extends basefragment implements View.OnClickListener {
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
-            case R.id.rl:
-                Toast.makeText(mActivity,"hahah",Toast.LENGTH_SHORT).show();
-                break;
             case R.id.me_edit:
                 intent = new Intent(mActivity, Activity_me_data.class);
                 startActivityForResult(intent, 0);
@@ -112,7 +109,28 @@ public class me extends basefragment implements View.OnClickListener {
                 intent = new Intent(mActivity, Activity_showhead.class);
                 startActivityForResult(intent, 0);
                 break;
+            case R.id.rl:
+                Toast.makeText(mActivity,"hahah",Toast.LENGTH_SHORT).show();
+                setBackground();
+                break;
         }
     }
-
+    private void setBackground() {
+        CharSequence[] items = {"相册", "相机"};
+        new AlertDialog.Builder(mActivity)
+                .setTitle("选择图片来源")
+                .setItems(items, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        if( which == 0 ){
+                            Intent intent = new Intent(Intent.ACTION_PICK);
+                            intent.setType("image/*");
+                            startActivityForResult(intent, PankerHelper.REQUEST_BY_GALLERY);
+                        }else{
+                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivityForResult(intent, PankerHelper.REQUEST_CODE_CAMERA);
+                        }
+                    }
+                })
+                .create().show();
+    }
 }

@@ -28,6 +28,9 @@ import java.util.regex.Pattern;
  */
 
 public class PankerHelper {
+    public static final int REQUEST_NICKNAME = 0, REQUEST_PHONE = 1, REQUEST_EMAIL = 2, REQUEST_TEAM = 3, REQUEST_MYSELF = 6, NOTHING = 999;
+    public static final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 1, REQUEST_CODE_CAMERA = 2;//用以动态获取权限
+    public static final int REQUEST_BY_CAMERA = 110, REQUEST_BY_GALLERY = 111, REQUEST_BY_CROP = 112;
     /**
      * 验证手机号是否符合大陆的标准格式
      *
