@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:fadingEdge="vertical"
     android:scrollbars="none">
-    <com.example.panker.panker.uilt.MyListView.MyListView
+    <ultimate.uilt.MyListView.MyListView
         android:id="@+id/game_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

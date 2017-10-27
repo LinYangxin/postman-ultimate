@@ -9,12 +9,12 @@
         android:id="@+id/public_tittle"
         layout="@layout/tittle" />
 
-    <com.example.panker.panker.uilt.Tools.baseViewPager
+    <ultimate.uilt.Tools.baseViewPager
         android:id="@+id/fragments_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-    </com.example.panker.panker.uilt.Tools.baseViewPager>
+    </ultimate.uilt.Tools.baseViewPager>
 
     <include
         layout="@layout/bottom"/>

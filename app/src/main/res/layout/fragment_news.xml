@@ -12,7 +12,7 @@
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:scrollbars="vertical">
-        <com.example.panker.panker.uilt.rollviewpager.RollPagerView
+        <ultimate.uilt.rollviewpager.RollPagerView
             android:id="@+id/loop_view_pager"
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -22,7 +22,7 @@
             android:paddingRight="5dp"
             android:paddingBottom="0dp" />
 
-        <com.example.panker.panker.uilt.MyListView.MyListView
+        <ultimate.uilt.MyListView.MyListView
             android:id="@+id/news_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
