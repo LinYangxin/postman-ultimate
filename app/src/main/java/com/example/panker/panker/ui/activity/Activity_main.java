@@ -112,7 +112,7 @@ public class Activity_main extends AppCompatActivity implements View.OnClickList
 
         viewPager.addOnPageChangeListener(this);
         tittleManager = new TittleManager(this);
-        tittleManager.setTitleStyle(TittleManager.TitleStyle.ONLY_SETTING, "翼鲲飞盘");
+        tittleManager.setTitleStyle(TittleManager.TitleStyle.ONLY_SETTING, "极限飞盘");
         helper = new SQLiteHelper(this);
         mTNews = (TextView) findViewById(R.id.tv_news);
         mTShop = (TextView) findViewById(R.id.tv_shop);
