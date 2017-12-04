@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/postman.iml" filepath="$PROJECT_DIR$/postman.iml" />
+      <module fileurl="file://$PROJECT_DIR$/postman-ultimate.iml" filepath="$PROJECT_DIR$/postman-ultimate.iml" />
       <module fileurl="file://$PROJECT_DIR$/pullToRefreshLibrary/pullToRefreshLibrary.iml" filepath="$PROJECT_DIR$/pullToRefreshLibrary/pullToRefreshLibrary.iml" />
     </modules>
   </component>
