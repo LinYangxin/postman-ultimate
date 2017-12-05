@@ -9,19 +9,20 @@ import android.graphics.Color;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.GetDataCallback;
-import com.example.panker.ultimate.R;
+import com.example.postman.ultimate.R;
 
 /**
  * Created by user on 2016/9/10.
  */
 public class User {
-    private static String Phonenumber, Email, Nickname, Myself, Team, Position;
-    private static float O, D, Speed, Catching, Throwing;
-    private static Bitmap head, background;
-    private static boolean isMan, hasHead, hasBackground;//isNew用以判断是否加载头像
-    private static AVUser myUser;
+    private  String phoneNumber, email, nickname, myself, team, position;
+    private  float offensive, defense, speed, catching, throwing;
+    private  Bitmap head, background;
+    private  boolean isMan, hasHead, hasBackground;//isNew用以判断是否加载头像
+    private  AVUser myUser;
 
     public User() {
+//        init();
     }
 
     public User(Activity activity) {
@@ -56,94 +57,86 @@ public class User {
 
     public void init() {
         myUser = AVUser.getCurrentUser();
-        Myself = myUser.getString("myself");
-        Phonenumber = myUser.getMobilePhoneNumber();
-        Email = myUser.getEmail();
-        Nickname = myUser.getString("nickname");
-        Team = myUser.getString("team");
-        Position = myUser.getString("position");
-        O = (float) myUser.getDouble("O");
-        D = (float) myUser.getDouble("D");
-        Speed = (float) myUser.getDouble("speed");
-        Catching = (float) myUser.getDouble("catching");
-        Throwing = (float) myUser.getDouble("throwing");
+        myself = myUser.getString("myself");
+        phoneNumber = myUser.getMobilePhoneNumber();
+        email = myUser.getEmail();
+        nickname = myUser.getString("nickname");
+        team = myUser.getString("team");
+        position = myUser.getString("position");
+        offensive = (float) myUser.getDouble("O");
+        defense = (float) myUser.getDouble("D");
+        speed = (float) myUser.getDouble("speed");
+        catching = (float) myUser.getDouble("catching");
+        throwing = (float) myUser.getDouble("throwing");
         isMan = myUser.getBoolean("isMan");
         hasHead = myUser.getBoolean("hasHead");
         hasBackground = myUser.getBoolean("hasBackground");
     }
 
-    public static AVUser getMyUser() {
+    public  AVUser getMyUser() {
         return myUser;
     }
 
-    //    public static void setHasBackground(boolean hasBackground) {
-//        User.hasBackground = hasBackground;
-//    }
-//
-//    public static boolean getHasBackground() {
-//        return hasBackground;
-//    }
-//
-    public static Bitmap getBackground() {
+    public  Bitmap getBackground() {
         return background;
     }
 
-    public static void setBackground(Bitmap background) {
-        User.background = background;
+    public  void setBackground(Bitmap background) {
+        this.background = background;
     }
 
-    public static boolean getSex() {
-        return isMan;
+    public  String getSex() {
+        if(isMan)
+            return "男";
+        else
+            return "女";
     }
 
-    //    public static boolean getFlag(){
-//        return isNew;
-//    }
-    public static String getPhonenumber() {
-        return Phonenumber;
+    public  String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public static String getEmail() {
-        return Email;
+    public  String getEmail() {
+        return email;
     }
 
-    public static String getMyself() {
-        return Myself;
+    public  String getMyself() {
+        return myself;
     }
 
-    public static String getNickname() {
-        return Nickname;
+    public  String getNickname() {
+        return nickname;
     }
 
-    public static String getPosition() {
-        return Position;
+    public  String getPosition() {
+        return position;
     }
 
-    public static String getTeam() {
-        return Team;
+    public  String getTeam() {
+        return team;
     }
 
-    public static float getCatching() {
-        return Catching;
+    public  float getCatching() {
+        return catching;
     }
 
-    public static float getD() {
-        return D;
+    public  float getD() {
+        return defense;
     }
 
-    public static float getO() {
-        return O;
+    public  float getO() {
+        return offensive;
     }
 
-    public static float getSpeed() {
-        return Speed;
+    public  float getSpeed() {
+        return speed;
     }
 
-    public static float getThrowing() {
-        return Throwing;
+    public  float getThrowing() {
+        return throwing;
     }
 
-    public static Bitmap getHead() {
+    public  Bitmap getHead() {
         if (head == null) {
             Bitmap bitmap = Bitmap.createBitmap(50, 50,
                     Bitmap.Config.ARGB_8888);
@@ -153,63 +146,63 @@ public class User {
         return head;
     }
 
-    public static void setCatching(float catching) {
-        Catching = catching;
+    public  void setCatching(float catching) {
+        this.catching = catching;
     }
 
-    public static void setD(float d) {
-        D = d;
+    public  void setD(float defense) {
+        this.defense = defense;
     }
 
-    public static void setEmail(String email) {
-        Email = email;
+    public  void setEmail(String email) {
+        this.email = email;
     }
 
-    public static void setHead(Bitmap head) {
-        User.head = head;
+    public  void setHead(Bitmap head) {
+        this.head = head;
     }
 
-    public static void setMyself(String myself) {
-        Myself = myself;
+    public  void setMyself(String myself) {
+        this.myself = myself;
     }
 
-    public static void setNickname(String nickname) {
-        Nickname = nickname;
+    public  void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public static void setO(float o) {
-        O = o;
+    public  void setO(float offensive) {
+        this.offensive = offensive;
     }
 
-    public static void setPhonenumber(String phonenumber) {
-        Phonenumber = phonenumber;
+    public  void setPhonenumber(String phonenumber) {
+        phoneNumber = phonenumber;
     }
 
-    public static void setPosition(String position) {
-        Position = position;
+    public  void setPosition(String position) {
+        this.position = position;
     }
 
-    public static void setSpeed(float speed) {
-        Speed = speed;
+    public  void setSpeed(float speed) {
+        this.speed = speed;
     }
 
-    public static void setTeam(String team) {
-        Team = team;
+    public  void setTeam(String team) {
+        this.team = team;
     }
 
-    public static void setThrowing(float throwing) {
-        Throwing = throwing;
+    public  void setThrowing(float throwing) {
+        this.throwing = throwing;
     }
 
-    public static void setHasHead(boolean t) {
+    public  void setHasHead(boolean t) {
         hasHead = t;
     }
 
-    public static void setHasBackground(boolean t) {
+    public  void setHasBackground(boolean t) {
         hasBackground = t;
     }
 
-    public static void setSex(boolean t) {
+    public  void setSex(boolean t) {
         isMan = t;
     }
 }

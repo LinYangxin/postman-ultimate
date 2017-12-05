@@ -24,10 +24,11 @@ import android.widget.Toast;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.SaveCallback;
-import com.example.panker.ultimate.R;
+import com.example.postman.ultimate.R;
 //import com.example.ultimate.ultimate.uilt.Tools.Head;
-import ultimate.uilt.tools.PankerHelper;
-import ultimate.uilt.tools.TittleManager;
+import ultimate.uilt.tools.DataManager;
+import ultimate.uilt.tools.PostmanHelper;
+import ultimate.uilt.tools.TitleManager;
 import ultimate.bean.User;
 
 
@@ -40,15 +41,15 @@ import java.io.FileNotFoundException;
  * Created by user on 2016/8/24......
  **/
 public class Data extends Activity implements View.OnClickListener {
-    private TittleManager tittleManager;
+    private TitleManager titleManager;
     //private AVUser myUser;
     private String[] text = new String[7];
-    private TextView tv_0, tv_1, tv_2, tv_3, tv_4, tv_5, tv_6;
-    private RelativeLayout rl_head, rl_nickname, rl_myself, rl_team, rl_sex, rl_position, rl_phone, rl_email,rl_power;
+    private TextView tvNickname, tvPhoneNumber, tvEmail, tvTeam, tvSex, tvPosition, tvMyself;
+    private RelativeLayout rlHead, rlNickname, rlMyself, rlTeam, rlSex, rlPosition, rlPhone, rlEmail,rlPower;
     private ImageView head;
     //private Head new_head;
     protected static Uri tempUri;
-    private User user;
+    //private User user;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,65 +62,60 @@ public class Data extends Activity implements View.OnClickListener {
     }
 
     private void initData() {
-        user = new User();
        // new_head = new Head(0);
         for (int i = 0; i < 7; i++) {
             text[i] = new String();
         }
-        text[0] = user.getNickname();
-        text[1] = user.getPhonenumber();
-        text[2] = user.getEmail();
-        text[3] = user.getTeam();
-        if (user.getSex()) {
-            text[4] = "男";
-        } else {
-            text[4] = "女";
-        }
-        text[5] = user.getPosition();
-        text[6] = user.getMyself();
+        text[0] = DataManager.user.getNickname();
+        text[1] = DataManager.user.getPhoneNumber();
+        text[2] = DataManager.user.getEmail();
+        text[3] = DataManager.user.getTeam();
+        text[4] = DataManager.user.getSex();
+        text[5] = DataManager.user.getPosition();
+        text[6] = DataManager.user.getMyself();
     }
 
     private void initView() {
-        tittleManager = new TittleManager(this);
-        tittleManager.setTitleStyle(TittleManager.TitleStyle.ONLY_BACK, "个人资料");
+        titleManager = new TitleManager(this);
+        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_BACK, "个人资料");
         head = (ImageView) findViewById(R.id.head);
-        tv_0 = (TextView) findViewById(R.id.tv_0);
-        tv_1 = (TextView) findViewById(R.id.tv_1);
-        tv_2 = (TextView) findViewById(R.id.tv_2);
-        tv_3 = (TextView) findViewById(R.id.tv_3);
-        tv_4 = (TextView) findViewById(R.id.tv_4);
-        tv_5 = (TextView) findViewById(R.id.tv_5);
-        tv_6 = (TextView) findViewById(R.id.tv_6);
-        tv_0.setText(text[0]);
-        tv_1.setText(text[1]);
-        tv_2.setText(text[2]);
-        tv_3.setText(text[3]);
-        tv_4.setText(text[4]);
-        tv_5.setText(text[5]);
-        tv_6.setText(text[6]);
-        rl_head = (RelativeLayout) findViewById(R.id.rl_head);
-        rl_nickname = (RelativeLayout) findViewById(R.id.rl_nickname);
-        rl_myself = (RelativeLayout) findViewById(R.id.rl_myself);
-        rl_team = (RelativeLayout) findViewById(R.id.rl_team);
-        rl_sex = (RelativeLayout) findViewById(R.id.rl_sex);
-        rl_position = (RelativeLayout) findViewById(R.id.rl_position);
-        rl_phone = (RelativeLayout) findViewById(R.id.rl_phone);
-        rl_email = (RelativeLayout) findViewById(R.id.rl_email);
-        rl_power = (RelativeLayout) findViewById(R.id.rl_power);
-        head.setImageBitmap(user.getHead());
+        tvNickname = (TextView) findViewById(R.id.tvNickname);
+        tvPhoneNumber = (TextView) findViewById(R.id.tvPhoneNumber);
+        tvEmail = (TextView) findViewById(R.id.tvEmail);
+        tvTeam = (TextView) findViewById(R.id.tvTeam);
+        tvSex = (TextView) findViewById(R.id.tvSex);
+        tvPosition = (TextView) findViewById(R.id.tvPositon);
+        tvMyself = (TextView) findViewById(R.id.tvMyself);
+        tvNickname.setText(text[0]);
+        tvPhoneNumber.setText(text[1]);
+        tvEmail.setText(text[2]);
+        tvTeam.setText(text[3]);
+        tvSex.setText(text[4]);
+        tvPosition.setText(text[5]);
+        tvMyself.setText(text[6]);
+        rlHead = (RelativeLayout) findViewById(R.id.rlHead);
+        rlNickname = (RelativeLayout) findViewById(R.id.rlNickname);
+        rlMyself = (RelativeLayout) findViewById(R.id.rlMyself);
+        rlTeam = (RelativeLayout) findViewById(R.id.rlTeam);
+        rlSex = (RelativeLayout) findViewById(R.id.rlSex);
+        rlPosition = (RelativeLayout) findViewById(R.id.rlPosition);
+        rlPhone = (RelativeLayout) findViewById(R.id.rlPhoneNumber);
+        rlEmail = (RelativeLayout) findViewById(R.id.rlEmail);
+        rlPower = (RelativeLayout) findViewById(R.id.rlPower);
+        head.setImageBitmap(DataManager.user.getHead());
     }
 
     private void initEvent() {
-        rl_head.setOnClickListener(this);
-        rl_nickname.setOnClickListener(this);
-        rl_myself.setOnClickListener(this);
-        rl_team.setOnClickListener(this);
-        rl_sex.setOnClickListener(this);
-        rl_position.setOnClickListener(this);
-        rl_phone.setOnClickListener(this);
-        rl_email.setOnClickListener(this);
-        rl_power.setOnClickListener(this);
-        tittleManager.setLeftTitleListener(new View.OnClickListener() {
+        rlHead.setOnClickListener(this);
+        rlNickname.setOnClickListener(this);
+        rlMyself.setOnClickListener(this);
+        rlTeam.setOnClickListener(this);
+        rlSex.setOnClickListener(this);
+        rlPosition.setOnClickListener(this);
+        rlPhone.setOnClickListener(this);
+        rlEmail.setOnClickListener(this);
+        rlPower.setOnClickListener(this);
+        titleManager.setLeftTitleListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
@@ -129,14 +125,14 @@ public class Data extends Activity implements View.OnClickListener {
 
     private void SetHeadFromCamera() {
         try {
-            File dir = new File(Environment.getExternalStorageDirectory() + "/Panker");
+            File dir = new File(Environment.getExternalStorageDirectory() + "/Ultimate");
             if (!dir.exists()) dir.mkdirs();
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             File f = new File(dir, "head.png");//localTempImgDir和localTempImageFileName是自己定义的名字
             Uri u = Uri.fromFile(f);
             intent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, u);
-            startActivityForResult(intent, PankerHelper.REQUEST_BY_CAMERA);
+            startActivityForResult(intent, PostmanHelper.REQUEST_BY_CAMERA);
         } catch (ActivityNotFoundException e) {
 
             Toast.makeText(Data.this, "没有找到储存目录", Toast.LENGTH_LONG).show();
@@ -146,7 +142,7 @@ public class Data extends Activity implements View.OnClickListener {
     private void SetHeadFromGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
-        startActivityForResult(intent, PankerHelper.REQUEST_BY_GALLERY);
+        startActivityForResult(intent, PostmanHelper.REQUEST_BY_GALLERY);
     }
 
     public void GetPomitssion() {
@@ -160,7 +156,7 @@ public class Data extends Activity implements View.OnClickListener {
                                 if (Build.VERSION.SDK_INT >= 23) {
                                     int checkCallPhonePermission = ContextCompat.checkSelfPermission(Data.this, Manifest.permission.CAMERA);
                                     if (checkCallPhonePermission != PackageManager.PERMISSION_GRANTED) {
-                                        ActivityCompat.requestPermissions(Data.this, new String[]{Manifest.permission.CAMERA}, PankerHelper.REQUEST_CODE_CAMERA);
+                                        ActivityCompat.requestPermissions(Data.this, new String[]{Manifest.permission.CAMERA}, PostmanHelper.REQUEST_CODE_CAMERA);
                                         return;
                                     } else {
                                         SetHeadFromCamera();  // 开启图片选择器
@@ -174,7 +170,7 @@ public class Data extends Activity implements View.OnClickListener {
                                 if (Build.VERSION.SDK_INT >= 23) {
                                     int checkCallPhonePermission = ContextCompat.checkSelfPermission(Data.this, Manifest.permission.READ_EXTERNAL_STORAGE);
                                     if (checkCallPhonePermission != PackageManager.PERMISSION_GRANTED) {
-                                        ActivityCompat.requestPermissions(Data.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PankerHelper.REQUEST_CODE_READ_EXTERNAL_STORAGE);
+                                        ActivityCompat.requestPermissions(Data.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PostmanHelper.REQUEST_CODE_READ_EXTERNAL_STORAGE);
                                         return;
                                     } else {
                                         SetHeadFromGallery();  // 开启图片选择器
@@ -193,36 +189,36 @@ public class Data extends Activity implements View.OnClickListener {
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
-            case R.id.rl_head:
+            case R.id.rlHead:
                 GetPomitssion();
                 break;
-            case R.id.rl_nickname:
+            case R.id.rlNickname:
                 intent = new Intent(Data.this, Nickname.class);
                 startActivityForResult(intent, 1);
                 break;
-            case R.id.rl_phone:
+            case R.id.rlPhoneNumber:
                 intent = new Intent(Data.this, ResetPhone.class);
                 startActivityForResult(intent, 1);
                 break;
-            case R.id.rl_myself:
+            case R.id.rlMyself:
                 intent = new Intent(Data.this, Myself.class);
                 startActivityForResult(intent, 1);
                 break;
-            case R.id.rl_team:
+            case R.id.rlTeam:
                 intent = new Intent(Data.this, Team.class);
                 startActivityForResult(intent, 1);
                 break;
-            case R.id.rl_email:
+            case R.id.rlEmail:
                 intent = new Intent(Data.this, Email.class);
                 startActivityForResult(intent, 1);
                 break;
-            case R.id.rl_sex:
+            case R.id.rlSex:
                 setSex();
                 break;
-            case R.id.rl_position:
+            case R.id.rlPosition:
                 setPosition();
                 break;
-            case R.id.rl_power:
+            case R.id.rlPower:
                 intent = new Intent(this, Power.class);
                 startActivity(intent);
                 break;
@@ -233,34 +229,34 @@ public class Data extends Activity implements View.OnClickListener {
         switch (requestCode) {
             case 1:
                 switch (resultCode) {
-                    case PankerHelper.REQUEST_NICKNAME:
-                        text[0] = user.getNickname();
-                        tv_0.setText(text[0]);
+                    case PostmanHelper.REQUEST_NICKNAME:
+                        text[0] = DataManager.user.getNickname();
+                        tvNickname.setText(text[0]);
                         break;
-                    case PankerHelper.REQUEST_PHONE:
-                        text[1] = user.getPhonenumber();
-                        tv_1.setText(text[1]);
+                    case PostmanHelper.REQUEST_PHONE:
+                        text[1] = DataManager.user.getPhoneNumber();
+                        tvPhoneNumber.setText(text[1]);
                         break;
-                    case PankerHelper.REQUEST_EMAIL:
-                        text[2] = user.getEmail();
-                        tv_2.setText(text[2]);
+                    case PostmanHelper.REQUEST_EMAIL:
+                        text[2] = DataManager.user.getEmail();
+                        tvEmail.setText(text[2]);
                         break;
-                    case PankerHelper.REQUEST_TEAM:
-                        text[3] = user.getTeam();
-                        tv_3.setText(text[3]);
+                    case PostmanHelper.REQUEST_TEAM:
+                        text[3] = DataManager.user.getTeam();
+                        tvTeam.setText(text[3]);
                         break;
-                    case PankerHelper.REQUEST_MYSELF:
-                        text[6] = user.getMyself();
-                        tv_6.setText(text[6]);
+                    case PostmanHelper.REQUEST_MYSELF:
+                        text[6] = DataManager.user.getMyself();
+                        tvMyself.setText(text[6]);
                         break;
-                    case PankerHelper.NOTHING:
+                    case PostmanHelper.NOTHING:
                         break;
                 }
                 break;
-            case PankerHelper.REQUEST_BY_CAMERA:
+            case PostmanHelper.REQUEST_BY_CAMERA:
                 if(resultCode==RESULT_OK){
                     File f = new File(Environment.getExternalStorageDirectory()
-                            + "/" + "Panker" + "/" + "head.png");
+                            + "/" + "Postman" + "/" + "head.png");
                     try {
                         Uri u = Uri.parse(android.provider.MediaStore.Images.Media.insertImage(getContentResolver(),
                                         f.getAbsolutePath(), null, null));
@@ -272,14 +268,14 @@ public class Data extends Activity implements View.OnClickListener {
                     }
                 }
                 break;
-            case PankerHelper.REQUEST_BY_GALLERY:
+            case PostmanHelper.REQUEST_BY_GALLERY:
                 if (data == null) {
                     break;
                 } else {
                     startImageZoom(data.getData());
                 }
                 break;
-            case PankerHelper.REQUEST_BY_CROP:
+            case PostmanHelper.REQUEST_BY_CROP:
                 if (data == null) {
                     return;
                 } else {
@@ -294,13 +290,13 @@ public class Data extends Activity implements View.OnClickListener {
                     img_data = os.toByteArray();
 
                     AVFile file = new AVFile("head.png", img_data);
-                    user.getMyUser().put("head", file);
-                    user.getMyUser().put("hasHead", true);
-                    user.getMyUser().saveInBackground(new SaveCallback() {
+                    DataManager.user.getMyUser().put("head", file);
+                    DataManager.user.getMyUser().put("hasHead", true);
+                    DataManager.user.getMyUser().saveInBackground(new SaveCallback() {
                         @Override
                         public void done(AVException e) {
-                            user.setHead(bm);
-                            user.setHasHead(true);
+                            DataManager.user.setHead(bm);
+                            DataManager.user.setHasHead(true);
                             Toast.makeText(Data.this, "保存成功", Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -318,7 +314,7 @@ public class Data extends Activity implements View.OnClickListener {
 
     private void setSex() {
         int selected;
-        if (user.getSex())
+        if (DataManager.user.getSex()=="男")
             selected = 0;
         else
             selected = 1;
@@ -326,51 +322,40 @@ public class Data extends Activity implements View.OnClickListener {
                 new String[]{"男", "女"}, selected,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
+                        String tempSex;
                         switch (which) {
-                            case 0:
-                                user.getMyUser().put("isMan", true);
-                                user.getMyUser().saveInBackground(new SaveCallback() {
-                                    @Override
-                                    public void done(AVException e) {
-                                        if (e == null) {
-                                            text[4] = "男";
-                                            tv_4.setText(text[4]);
-                                            user.setSex(true);
-                                            Toast.makeText(Data.this, "修改成功", Toast.LENGTH_SHORT).show();
-
-                                        } else {
-                                            Toast.makeText(Data.this, "失败", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                                dialog.dismiss();
-                                break;
                             case 1:
-                                user.getMyUser().put("isMan", false);
-                                user.getMyUser().saveInBackground(new SaveCallback() {
-                                    @Override
-                                    public void done(AVException e) {
-                                        if (e == null) {
-                                            text[4] = "女";
-                                            tv_4.setText(text[4]);
-                                            user.setSex(false);
-                                            Toast.makeText(Data.this, "修改成功", Toast.LENGTH_SHORT).show();
-
-                                        } else {
-                                            Toast.makeText(Data.this, "失败", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                                dialog.dismiss();
+                                tempSex = "女";
+                                break;
+                            default:
+                                tempSex = "男";
                                 break;
                         }
+                        Boolean temp = tempSex=="男"?true:false;
+                        DataManager.user.getMyUser().put("isMan", temp);
+                        final  String  t = tempSex;
+                        DataManager.user.getMyUser().saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(AVException e) {
+                                if (e == null) {
+                                    text[4] = t;
+                                    tvSex.setText(text[4]);
+                                    DataManager.user.setSex(true);
+                                    Toast.makeText(Data.this, "修改成功", Toast.LENGTH_SHORT).show();
+
+                                } else {
+                                    Toast.makeText(Data.this, "失败", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        dialog.dismiss();
                     }
                 }).show();
     }
 
     private void setPosition() {
         int p;
-        switch (user.getPosition()) {
+        switch (DataManager.user.getPosition()) {
             case "Cutter":
                 p = 0;
                 break;
@@ -391,80 +376,41 @@ public class Data extends Activity implements View.OnClickListener {
                 new String[]{"Cutter", "Handler", "I don't know", "Cutter & Handler"}, p,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
+                        String tempPosition;
                         switch (which) {
                             case 0:
-                                user.getMyUser().put("position", "Cutter");
-                                user.getMyUser().saveInBackground(new SaveCallback() {
-                                    @Override
-                                    public void done(AVException e) {
-                                        if (e == null) {
-                                            text[5] = "Cutter";
-                                            tv_5.setText(text[5]);
-                                            user.setPosition(text[5]);
-                                            Toast.makeText(Data.this, "修改成功", Toast.LENGTH_SHORT).show();
-
-                                        } else {
-                                            Toast.makeText(Data.this, "失败", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                                dialog.dismiss();
+                                tempPosition = "Cutter";
                                 break;
                             case 1:
-                                user.getMyUser().put("position", "Handler");
-                                user.getMyUser().saveInBackground(new SaveCallback() {
-                                    @Override
-                                    public void done(AVException e) {
-                                        if (e == null) {
-                                            text[5] = "Handler";
-                                            tv_5.setText(text[5]);
-                                            user.setPosition(text[5]);
-                                            Toast.makeText(Data.this, "修改成功", Toast.LENGTH_SHORT).show();
-
-                                        } else {
-                                            Toast.makeText(Data.this, "失败", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                                dialog.dismiss();
+                                tempPosition = "Handler";
                                 break;
                             case 2:
-                                user.getMyUser().put("position", "I don't know");
-                                user.getMyUser().saveInBackground(new SaveCallback() {
-                                    @Override
-                                    public void done(AVException e) {
-                                        if (e == null) {
-                                            text[5] = "I don't know";
-                                            tv_5.setText(text[5]);
-                                            user.setPosition(text[5]);
-                                            Toast.makeText(Data.this, "修改成功", Toast.LENGTH_SHORT).show();
-
-                                        } else {
-                                            Toast.makeText(Data.this, "失败", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                                dialog.dismiss();
+                                tempPosition = "I don't know";
                                 break;
                             case 3:
-                                user.getMyUser().put("position", "Cutter & Handler");
-                                user.getMyUser().saveInBackground(new SaveCallback() {
-                                    @Override
-                                    public void done(AVException e) {
-                                        if (e == null) {
-                                            text[5] = "Cutter & Handler";
-                                            tv_5.setText(text[5]);
-                                            user.setPosition(text[5]);
-                                            Toast.makeText(Data.this, "修改成功", Toast.LENGTH_SHORT).show();
-
-                                        } else {
-                                            Toast.makeText(Data.this, "失败", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                                dialog.dismiss();
+                                tempPosition = "Cutter & Handler";
                                 break;
+                                default:
+                                    tempPosition = "Cutter";
+                                    break;
                         }
+                        DataManager.user.getMyUser().put("position", tempPosition);
+                        final String temp = tempPosition;
+                        DataManager.user.getMyUser().saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(AVException e) {
+                                if (e == null) {
+                                    text[5] = temp;
+                                    tvPosition.setText(text[5]);
+                                    DataManager.user.setPosition(text[5]);
+                                    Toast.makeText(Data.this, "修改成功", Toast.LENGTH_SHORT).show();
+
+                                } else {
+                                    Toast.makeText(Data.this, "失败", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        dialog.dismiss();
                     }
                 }).show();
     }
@@ -478,13 +424,13 @@ public class Data extends Activity implements View.OnClickListener {
         intent.putExtra("outputX", 350);
         intent.putExtra("outputY", 350);
         intent.putExtra("return-data", true);
-        startActivityForResult(intent, PankerHelper.REQUEST_BY_CROP);
+        startActivityForResult(intent, PostmanHelper.REQUEST_BY_CROP);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
-            case PankerHelper.REQUEST_CODE_READ_EXTERNAL_STORAGE:
+            case PostmanHelper.REQUEST_CODE_READ_EXTERNAL_STORAGE:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     SetHeadFromGallery();
                 } else {
@@ -493,7 +439,7 @@ public class Data extends Activity implements View.OnClickListener {
                             .show();
                 }
                 break;
-            case PankerHelper.REQUEST_CODE_CAMERA:
+            case PostmanHelper.REQUEST_CODE_CAMERA:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     SetHeadFromCamera();
                 } else {

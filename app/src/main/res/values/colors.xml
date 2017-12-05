@@ -5,11 +5,11 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorGley">#D3D3D3</color>
     <color name="colorIvory">#FFFFFF</color>
-    <color name="PankerOrange">#EEA747</color>
-    <color name="PankerYellow">#FDEF02</color>
-    <color name="PankerButton">#FFEE40</color>
-    <color name="PankerBackground">#FFF273</color>
-    <color name="PankerRed">#ce3d3a</color>
+    <color name="PostmanOrange">#EEA747</color>
+    <color name="PostmanYellow">#FDEF02</color>
+    <color name="PostmanButton">#FFEE40</color>
+    <color name="PostmanBackground">#FFF273</color>
+    <color name="PostmanRed">#ce3d3a</color>
     <color name="red_dark">#ffb52121</color>
     <color name="red_light">#ffcd2222</color>
     <color name="red">#ce3d3a</color>
@@ -19,5 +19,5 @@
     <color name="black_light">#666666</color>
     <color name="black_not_important">#b2b2b2</color>
     <color name="black_line">#1affffff</color>
-    <color name="PankerGley">#cccccc</color>
+    <color name="PostmanGley">#cccccc</color>
 </resources>

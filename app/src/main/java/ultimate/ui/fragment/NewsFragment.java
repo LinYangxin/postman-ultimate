@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 
-import ultimate.bean.News;
 import ultimate.bean.Rollpage;
 import ultimate.ui.adapter.NewsAdapter;
 
@@ -24,11 +23,11 @@ import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
-import com.example.panker.ultimate.R;
+import com.example.postman.ultimate.R;
 import ultimate.ui.activity.Web;
 import ultimate.uilt.mylistview.MyListView;
 import ultimate.uilt.tools.DataManager;
-import ultimate.uilt.tools.PankerHelper;
+import ultimate.uilt.tools.PostmanHelper;
 import ultimate.uilt.rollviewpager.OnItemClickListener;
 import ultimate.uilt.rollviewpager.RollPagerView;
 import ultimate.uilt.rollviewpager.adapter.LoopPagerAdapter;
@@ -47,7 +46,7 @@ import static java.lang.Thread.sleep;
  * 天才兜儿又来啦！！！
  * hahahaha
  */
-public class News extends BaseFragment implements View.OnClickListener {
+public class NewsFragment extends BaseFragment implements View.OnClickListener {
     private View mContent;//视图
     private RollPagerView mLoopViewPager;//轮播图
     private TestLoopAdapter mLoopAdapter;//轮播图的适配器
@@ -120,7 +119,7 @@ public class News extends BaseFragment implements View.OnClickListener {
         });
 
         //这几个刷新Label的设置
-        pullToRefreshScrollView.getLoadingLayoutProxy().setLastUpdatedLabel(PankerHelper.SystemTime2String((DataManager.lastUpdateAt)));
+        pullToRefreshScrollView.getLoadingLayoutProxy().setLastUpdatedLabel(PostmanHelper.SystemTime2String((DataManager.lastUpdateAt)));
         pullToRefreshScrollView.getLoadingLayoutProxy().setPullLabel("拉动加载更多");
         pullToRefreshScrollView.getLoadingLayoutProxy().setRefreshingLabel("正在刷新");
         pullToRefreshScrollView.getLoadingLayoutProxy().setReleaseLabel("aaa");
@@ -136,7 +135,7 @@ public class News extends BaseFragment implements View.OnClickListener {
                 System.out.println("ddddddddddd下拉nnnnnnnnn");
                 //new GetDataTask().execute();
                 if(DataManager.getNewsData()==true){
-                    pullToRefreshScrollView.getLoadingLayoutProxy().setLastUpdatedLabel(PankerHelper.SystemTime2String((DataManager.lastUpdateAt)));
+                    pullToRefreshScrollView.getLoadingLayoutProxy().setLastUpdatedLabel(PostmanHelper.SystemTime2String((DataManager.lastUpdateAt)));
                     mAdapter.notifyDataSetChanged();
                     new GetDataTask().execute();
 //                    mAdapter.notifyDataSetChanged();
@@ -155,7 +154,7 @@ public class News extends BaseFragment implements View.OnClickListener {
                 System.out.println("上拉fffffffffffffffffff");
 //                 new GetDataTask().execute();
                 if (DataManager.getNewsData() == true) {
-                    pullToRefreshScrollView.getLoadingLayoutProxy().setLastUpdatedLabel(PankerHelper.SystemTime2String((DataManager.lastUpdateAt)));
+                    pullToRefreshScrollView.getLoadingLayoutProxy().setLastUpdatedLabel(PostmanHelper.SystemTime2String((DataManager.lastUpdateAt)));
                     mAdapter.notifyDataSetChanged();
                     new GetDataTask().execute();
 

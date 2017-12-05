@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/login_logo"
+        android:id="@+id/imgLogo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="6"
@@ -31,7 +31,7 @@
             android:src="@drawable/user" />
 
         <EditText
-            android:id="@+id/login_id"
+            android:id="@+id/etId"
             style="@style/login_EditText_long"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
 
         <EditText
             style="@style/login_EditText"
-            android:id="@+id/login_pw"
+            android:id="@+id/etPassword"
             android:hint="@string/login_password"
             android:inputType="textPassword"
             android:layout_width="wrap_content"
@@ -71,7 +71,7 @@
         android:layout_weight="0.4"/>
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/btnLogin"
         style="@style/common_button_style"
         android:layout_width="250dp"
         android:layout_height="0dp"
@@ -92,7 +92,7 @@
         android:orientation="horizontal"
         android:gravity="center">
         <TextView
-            android:id="@+id/Login_forgetpw"
+            android:id="@+id/tvForgetPassword"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/login_fogetpw"
@@ -100,7 +100,7 @@
             android:clickable="true"
             android:gravity="center"/>
         <TextView
-            android:id="@+id/Login_sign"
+            android:id="@+id/tvSign"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/login_sign"

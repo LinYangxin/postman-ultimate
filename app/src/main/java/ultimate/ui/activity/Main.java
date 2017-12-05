@@ -22,11 +22,14 @@ import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.AVOSCloud;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SaveCallback;
-import com.example.panker.ultimate.R;
+import com.example.postman.ultimate.R;
 //import com.example.ultimate.ultimate.uilt.Tools.Head;
-import ultimate.ui.fragment.News;
-import ultimate.uilt.tools.PankerHelper;
-import ultimate.uilt.tools.TittleManager;
+import ultimate.ui.fragment.GameFragment;
+import ultimate.ui.fragment.NewsFragment;
+import ultimate.ui.fragment.ShoppingFragment;
+import ultimate.uilt.tools.DataManager;
+import ultimate.uilt.tools.PostmanHelper;
+import ultimate.uilt.tools.TitleManager;
 import ultimate.bean.User;
 import ultimate.uilt.tools.BaseViewPager;
 import ultimate.uilt.localdatabase.SQLiteHelper;
@@ -36,9 +39,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ultimate.ui.fragment.Game;
-import ultimate.ui.fragment.Me;
-import ultimate.ui.fragment.Shopping;
+import ultimate.ui.fragment.MeFragment;
 
 /**
  * Created by user on 2016/8/20.
@@ -48,17 +49,13 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
     private List<Fragment> fragments;
     // private BottomNavigationBar mBottomNavigationBar;
     private long firstTime = 0;
-    private ultimate.ui.fragment.Me Me = new Me();
-    private ultimate.ui.fragment.Game Game = new Game();
-    private Shopping Shop = new Shopping();
-    private ultimate.ui.fragment.News News = new News();
-    private User user;
+    private MeFragment meFragment = new MeFragment();
+    private GameFragment gameFragment = new GameFragment();
+    private ShoppingFragment shoppingFragment = new ShoppingFragment();
+    private NewsFragment newsFragment = new NewsFragment();
     private TextView mTNews, mTShop, mTGame, mTMe;
-    private TittleManager tittleManager;
+    private TitleManager titleManager;
     public static SQLiteHelper helper;
-    //private SystemBarTintManagerHelper tintManagerHelper;
-    private final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 1, REQUEST_CODE_CAMERA = 2;//用以动态获取权限
-    private final int REQUEST_BY_CAMERA = 110, REQUEST_BY_GALLERY = 111, REQUEST_BY_CROP = 112;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,17 +63,17 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         AVOSCloud.setDebugLogEnabled(true);
         setContentView(R.layout.guide);
-        user = new User(this);
+        DataManager.user = new User(this);
         initView();
         initEvent();
     }
 
     private void initView() {
         fragments = new ArrayList<>();
-        fragments.add(News);
-        fragments.add(Shop);
-        fragments.add(Game);
-        fragments.add(Me);
+        fragments.add(newsFragment);
+        fragments.add(shoppingFragment);
+        fragments.add(gameFragment);
+        fragments.add(meFragment);
         viewPager = (BaseViewPager) findViewById(R.id.fragments_container);
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             public int getCount() {
@@ -90,13 +87,13 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
         });
 
         viewPager.addOnPageChangeListener(this);
-        tittleManager = new TittleManager(this);
-        tittleManager.setTitleStyle(TittleManager.TitleStyle.ONLY_SETTING, "极限飞盘");
+        titleManager = new TitleManager(this);
+        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_SETTING, "极限飞盘");
         helper = new SQLiteHelper(this);
-        mTNews = (TextView) findViewById(R.id.tv_news);
-        mTShop = (TextView) findViewById(R.id.tv_shop);
-        mTGame = (TextView) findViewById(R.id.tv_game);
-        mTMe = (TextView) findViewById(R.id.tv_me);
+        mTNews = (TextView) findViewById(R.id.tvNews);
+        mTShop = (TextView) findViewById(R.id.tvShop);
+        mTGame = (TextView) findViewById(R.id.tvGame);
+        mTMe = (TextView) findViewById(R.id.tvMe);
     }
 
     private void initEvent() {
@@ -110,7 +107,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
     private void setDefaultFragment() {
         //set the defalut tab state
         setTabState(mTNews, R.drawable.news_black, ContextCompat.getColor(this, R.color.colorPrimary));
-        tittleManager.setLeftImage(View.GONE);
+        titleManager.setLeftImage(View.GONE);
     }
 
     private void setTabState(TextView textView, int image, int color) {
@@ -122,23 +119,23 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
     public void onClick(View view) {
         resetTabState();
         switch (view.getId()) {
-            case R.id.tv_news:
-                tittleManager.setLeftImage(View.GONE);
+            case R.id.tvNews:
+                titleManager.setLeftImage(View.GONE);
                 setTabState(mTNews, R.drawable.news_black, ContextCompat.getColor(this, R.color.colorPrimary));
                 viewPager.setCurrentItem(0, true);
                 break;
-            case R.id.tv_shop:
-                tittleManager.setLeftImage(View.GONE);
+            case R.id.tvShop:
+                titleManager.setLeftImage(View.GONE);
                 setTabState(mTShop, R.drawable.shoping_black, ContextCompat.getColor(this, R.color.colorPrimary));
                 viewPager.setCurrentItem(1, true);
                 break;
-            case R.id.tv_game:
-                tittleManager.setLeftImage(View.GONE);
+            case R.id.tvGame:
+                titleManager.setLeftImage(View.GONE);
                 setTabState(mTGame, R.drawable.game_black, ContextCompat.getColor(this, R.color.colorPrimary));
                 viewPager.setCurrentItem(2, true);
                 break;
-            case R.id.tv_me:
-                tittleManager.setLeftImage(View.VISIBLE);
+            case R.id.tvMe:
+                titleManager.setLeftImage(View.VISIBLE);
                 setTabState(mTMe, R.drawable.me_black, ContextCompat.getColor(this, R.color.colorPrimary));
                 viewPager.setCurrentItem(3, true);
                 break;
@@ -192,12 +189,12 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
         super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode) {
             case 1:
-                String tmp = user.getNickname();
-                Me.tv_nickname.setText(tmp);
-                String string = user.getTeam();
-                Me.tv_team.setText(string);
-                Me.me_head.setImageBitmap(PankerHelper.toRoundCornerImage(user.getHead(), 180));
-                Me.tv_myself.setText(user.getMyself());
+                String tmp = DataManager.user.getNickname();
+                meFragment.tv_nickname.setText(tmp);
+                String string = DataManager.user.getTeam();
+                meFragment.tv_team.setText(string);
+                meFragment.me_head.setImageBitmap(PostmanHelper.toRoundCornerImage(DataManager.user.getHead(), 180));
+                meFragment.tv_myself.setText(DataManager.user.getMyself());
                 break;
             case 2:
                 fragments.clear();
@@ -207,7 +204,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
                 finish();
                 break;
             case RESULT_OK:
-                if (requestCode == PankerHelper.REQUEST_CODE_CAMERA) {
+                if (requestCode == PostmanHelper.REQUEST_CODE_CAMERA) {
                     saveBackground_camera(data);
                 } else {
                     saveBackground(data);
@@ -222,8 +219,8 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
         } else {
             Bundle extras = data.getExtras();
             final Bitmap bm = extras.getParcelable("data");
-            user.setBackground(bm);
-            Me.me_data.setBackground(PankerHelper.bitmap2drawable(user.getBackground()));
+            DataManager.user.setBackground(bm);
+            meFragment.me_data.setBackground(PostmanHelper.bitmap2drawable(DataManager.user.getBackground()));
             byte[] img_data;
 //压缩成PNG
             final ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -232,13 +229,13 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
             img_data = os.toByteArray();
 
             AVFile file = new AVFile("head.png", img_data);
-            user.getMyUser().put("bg", file);
-            user.getMyUser().put("hasBackground", true);
-            user.getMyUser().saveInBackground(new SaveCallback() {
+            DataManager.user.getMyUser().put("bg", file);
+            DataManager.user.getMyUser().put("hasBackground", true);
+            DataManager.user.getMyUser().saveInBackground(new SaveCallback() {
                 @Override
                 public void done(AVException e) {
-                    user.setBackground(bm);
-                    user.setHasBackground(true);
+                    DataManager.user.setBackground(bm);
+                    DataManager.user.setHasBackground(true);
                     Toast.makeText(Main.this, "保存成功", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -250,8 +247,8 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
         ContentResolver cr = this.getContentResolver();
         try {
             final Bitmap bm = BitmapFactory.decodeStream(cr.openInputStream(uri));
-            user.setBackground(bm);
-            Me.me_data.setBackground(PankerHelper.bitmap2drawable(user.getBackground()));
+            DataManager.user.setBackground(bm);
+            meFragment.me_data.setBackground(PostmanHelper.bitmap2drawable(DataManager.user.getBackground()));
             byte[] img_data;
 //压缩成PNG
             final ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -260,13 +257,13 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
             img_data = os.toByteArray();
 
             AVFile file = new AVFile("bg.png", img_data);
-            user.getMyUser().put("bg", file);
-            user.getMyUser().put("hasBackground", true);
-            user.getMyUser().saveInBackground(new SaveCallback() {
+            DataManager.user.getMyUser().put("bg", file);
+            DataManager.user.getMyUser().put("hasBackground", true);
+            DataManager.user.getMyUser().saveInBackground(new SaveCallback() {
                 @Override
                 public void done(AVException e) {
-                    user.setBackground(bm);
-                    user.setHasBackground(true);
+                    DataManager.user.setBackground(bm);
+                    DataManager.user.setHasBackground(true);
                     Toast.makeText(Main.this, "保存成功", Toast.LENGTH_SHORT).show();
                 }
             });

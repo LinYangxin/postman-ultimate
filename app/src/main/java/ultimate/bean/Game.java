@@ -7,11 +7,11 @@ import android.graphics.Bitmap;
  */
 
 public class Game {
-    private String game_url;
-    private Bitmap game_img;
-    private String game_date;
-    private String game_state;
-    private String game_tittle;
+    private String url;
+    private Bitmap img;
+    private String date;
+    private String state;
+    private String title;
 
     public Game(String t, String u, String d, String s, Bitmap b) {
         setGame_tittle(t);
@@ -23,42 +23,42 @@ public class Game {
 
 
     private void setGame_tittle(String t) {
-        game_tittle = t;
+        title = t;
     }
 
     private void setGame_url(String u) {
-        game_url = u;
+        url = u;
     }
 
     private void setGame_date(String d) {
-        game_date = d;
+        date = d;
     }
 
     private void setGame_state(String s) {
-        game_state = s;
+        state = s;
     }
 
     private void setGame_img(Bitmap b) {
-        game_img = b;
+        img = b;
     }
 
     public Bitmap getGame_img() {
-        return game_img;
+        return img;
     }
 
     public String getGame_date() {
-        return game_date;
+        return date;
     }
 
     public String getGame_state() {
-        return game_state;
+        return state;
     }
 
     public String getGame_url() {
-        return game_url;
+        return url;
     }
 
     public String getGame_tittle() {
-        return game_tittle;
+        return title;
     }
 }

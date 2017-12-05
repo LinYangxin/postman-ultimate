@@ -10,7 +10,7 @@
         layout="@layout/tittle" />
 
     <RelativeLayout
-        android:id="@+id/rl_head"
+        android:id="@+id/rlHead"
         style="@style/sign_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
             android:text="头像" />
 
         <ImageView
-            android:id="@+id/head"
+            android:id="@+id/imgHead"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
@@ -38,7 +38,7 @@
         android:background="@color/black_not_important" />
 
     <RelativeLayout
-        android:id="@+id/rl_nickname"
+        android:id="@+id/rlNickname"
         style="@style/sign_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -51,7 +51,7 @@
             android:text="昵称" />
 
         <TextView
-            android:id="@+id/tv_0"
+            android:id="@+id/tvNickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -64,7 +64,7 @@
         android:background="@color/black_not_important" />
 
     <RelativeLayout
-        android:id="@+id/rl_phone"
+        android:id="@+id/rlPhoneNumber"
         style="@style/sign_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -76,7 +76,7 @@
             android:text="手机" />
 
         <TextView
-            android:id="@+id/tv_1"
+            android:id="@+id/tvPhoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -89,7 +89,7 @@
         android:background="@color/black_not_important" />
 
     <RelativeLayout
-        android:id="@+id/rl_email"
+        android:id="@+id/rlEmail"
         style="@style/sign_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -101,7 +101,7 @@
             android:text="邮箱" />
 
         <TextView
-            android:id="@+id/tv_2"
+            android:id="@+id/tvEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -114,7 +114,7 @@
         android:background="@color/black_not_important" />
 
     <RelativeLayout
-        android:id="@+id/rl_team"
+        android:id="@+id/rlTeam"
         style="@style/sign_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -127,7 +127,7 @@
             android:text="队伍" />
 
         <TextView
-            android:id="@+id/tv_3"
+            android:id="@+id/tvTeam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -140,7 +140,7 @@
         android:background="@color/black_not_important" />
 
     <RelativeLayout
-        android:id="@+id/rl_sex"
+        android:id="@+id/rlSex"
         style="@style/sign_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -152,7 +152,7 @@
             android:text="性别" />
 
         <TextView
-            android:id="@+id/tv_4"
+            android:id="@+id/tvSex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -165,7 +165,7 @@
         android:background="@color/black_not_important" />
 
     <RelativeLayout
-        android:id="@+id/rl_position"
+        android:id="@+id/rlPosition"
         style="@style/sign_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -177,7 +177,7 @@
             android:text="场上位置" />
 
         <TextView
-            android:id="@+id/tv_5"
+            android:id="@+id/tvPositon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -190,7 +190,7 @@
         android:background="@color/black_not_important" />
 
     <RelativeLayout
-        android:id="@+id/rl_myself"
+        android:id="@+id/rlMyself"
         style="@style/sign_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -202,7 +202,7 @@
             android:text="个人宣言" />
 
         <TextView
-            android:id="@+id/tv_6"
+            android:id="@+id/tvMyself"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -215,7 +215,7 @@
         android:background="@color/black_not_important" />
 
     <RelativeLayout
-        android:id="@+id/rl_power"
+        android:id="@+id/rlPower"
         style="@style/sign_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp">

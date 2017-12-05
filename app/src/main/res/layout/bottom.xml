@@ -17,25 +17,25 @@
     android:orientation="horizontal"
     >
     <TextView
-        android:id="@+id/tv_news"
+        android:id="@+id/tvNews"
         style="@style/viewpager_navigation_bar_tab_style"
         android:drawableTop="@drawable/news_glay"
         android:text="@string/item_news"/>
 
     <TextView
-        android:id="@+id/tv_shop"
+        android:id="@+id/tvShop"
         style="@style/viewpager_navigation_bar_tab_style"
         android:drawableTop="@drawable/shoping_glay"
         android:text="@string/item_shop"/>
 
     <TextView
-        android:id="@+id/tv_game"
+        android:id="@+id/tvGame"
         style="@style/viewpager_navigation_bar_tab_style"
         android:drawableTop="@drawable/game_glay"
         android:text="@string/item_game" />
 
     <TextView
-        android:id="@+id/tv_me"
+        android:id="@+id/tvMe"
         style="@style/viewpager_navigation_bar_tab_style"
         android:drawableTop="@drawable/me_glay"
         android:text="@string/item_me"/>

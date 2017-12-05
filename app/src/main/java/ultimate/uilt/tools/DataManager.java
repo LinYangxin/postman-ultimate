@@ -13,6 +13,7 @@ import com.avos.avoscloud.GetDataCallback;
 import ultimate.bean.Game;
 import ultimate.bean.News;
 import ultimate.bean.Rollpage;
+import ultimate.bean.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class DataManager {
     private static List<Game> game = new ArrayList<>();//存放比赛实体的List
     public static int getTimes = -1;
     public static long lastUpdateAt = 0;
+    public static User user;
     //构造函数
     public  DataManager(){
     }
@@ -45,7 +47,7 @@ public class DataManager {
 
         if(!game.isEmpty())
             game.clear();
-        AVQuery<AVObject> avQuery = new AVQuery<>("Game");
+        AVQuery<AVObject> avQuery = new AVQuery<>("GameFragment");
         avQuery.orderByDescending("updatedAt");
 
         avQuery.findInBackground(new FindCallback<AVObject>() {
@@ -82,7 +84,7 @@ public class DataManager {
         getTimes++;
         if(getTimes==0 && !news.isEmpty())
             news.clear();
-        AVQuery<AVObject> avQuery = new AVQuery<>("News");//使用AVQuery查询服务器中news表
+        AVQuery<AVObject> avQuery = new AVQuery<>("NewsFragment");//使用AVQuery查询服务器中news表
         avQuery.orderByDescending("updatedAt");//以更新顺序排列
         avQuery.skip(getTimes * 8);
         avQuery.limit(8);
@@ -94,7 +96,7 @@ public class DataManager {
                         final String temp_tittle = t.getString("tittle");
                         final String temp_sum = t.getString("news_Sumarize");
                         final String temp_url = t.getString("news_URL");
-                        final String temp_date = PankerHelper.Date2String(t.getDate("updatedAt"));
+                        final String temp_date = PostmanHelper.Date2String(t.getDate("updatedAt"));
                         AVFile img = t.getAVFile("Pic_news");
                         img.getDataInBackground(new GetDataCallback() {
                             @Override

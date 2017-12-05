@@ -7,38 +7,38 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.LogInCallback;
-import com.example.panker.ultimate.R;
-import ultimate.uilt.tools.PankerHelper;
+import com.example.postman.ultimate.R;
+import ultimate.uilt.tools.PostmanHelper;
 
 /**
  * Created by user on 2016/7/14
  */
 public class Login extends Activity implements View.OnClickListener {
-    private TextView fogetpw, sign;
-    private Button Login;
+    private TextView forgetPassword, sign;
+    private Button btnLogin;
     private String id;
-    private TextView UserPw;
-    private TextView UserId;
+    private EditText userPassword , userId;
 
     //    private config c =new config();
     private void initView() {
-        fogetpw = (TextView) findViewById(R.id.Login_forgetpw);
-        sign = (TextView) findViewById(R.id.Login_sign);
-        Login = (Button) findViewById(R.id.login);
-        UserId = (TextView) findViewById(R.id.login_id);
-        UserPw = (TextView) findViewById(R.id.login_pw);
+        forgetPassword = (TextView) findViewById(R.id.tvForgetPassword);
+        sign = (TextView) findViewById(R.id.tvSign);
+        btnLogin = (Button) findViewById(R.id.btnLogin);
+        userId = (EditText) findViewById(R.id.etId);
+        userPassword = (EditText) findViewById(R.id.etPassword);
     }
 
     private void initEvents() {
-        fogetpw.setOnClickListener(this);
+        forgetPassword.setOnClickListener(this);
         sign.setOnClickListener(this);
-        Login.setOnClickListener(this);
+        btnLogin.setOnClickListener(this);
         // IntentFilter filter = new IntentFilter(Complete.action);
         //  registerReceiver(broadcastReceiver, filter);
     }
@@ -46,17 +46,6 @@ public class Login extends Activity implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        // 测试 SDK 是否正常工作的代码
-       /* AVObject testObject = new AVObject("TestObject");
-        testObject.put("words","Hello World!");
-        testObject.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(AVException e) {
-                if(e == null){
-                    Log.d("saved","success!");
-                }
-            }
-        });*/
         initView();
         initEvents();
 
@@ -64,18 +53,18 @@ public class Login extends Activity implements View.OnClickListener {
 
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.Login_forgetpw:
+            case R.id.tvForgetPassword:
                 //Toast.makeText(this, "forget", Toast.LENGTH_SHORT).show();
                 Intent intent1 = new Intent(ultimate.ui.activity.Login.this, ResetPassword.class);
                 startActivity(intent1);
                 break;
-            case R.id.Login_sign:
+            case R.id.tvSign:
                 //Toast.makeText(this,"sign",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ultimate.ui.activity.Login.this, Sign.class);
                 startActivity(intent);
                 break;
-            case R.id.login:
-                login();
+            case R.id.btnLogin:
+                doLogin();
         }
     }
 
@@ -86,13 +75,13 @@ public class Login extends Activity implements View.OnClickListener {
 
     ;
 
-    private void login() {
-        id = UserId.getText().toString();
+    private void doLogin() {
+        id = userId.getText().toString();
         if (id.isEmpty()) {
             Toast.makeText(ultimate.ui.activity.Login.this, "账号密码不能为空", Toast.LENGTH_SHORT).show();
         } else {
-            if (PankerHelper.isMobileNumberValid(id)) {
-                AVUser.loginByMobilePhoneNumberInBackground(id, UserPw.getText().toString(), new LogInCallback<AVUser>() {
+            if (PostmanHelper.isMobileNumberValid(id)) {
+                AVUser.loginByMobilePhoneNumberInBackground(id, userPassword.getText().toString(), new LogInCallback<AVUser>() {
                     @Override
                     public void done(AVUser avUser, AVException e) {
                         if (e == null) {
@@ -100,13 +89,13 @@ public class Login extends Activity implements View.OnClickListener {
                             startActivity(intent);
                             ultimate.ui.activity.Login.this.finish();
                         } else {
-                            Toast.makeText(ultimate.ui.activity.Login.this, PankerHelper.getCodeFromServer(e), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ultimate.ui.activity.Login.this, PostmanHelper.getCodeFromServer(e), Toast.LENGTH_SHORT).show();
                             AVUser.logOut();
                         }
                     }
                 });
             } else {
-                AVUser.logInInBackground(id, UserPw.getText().toString(), new LogInCallback<AVUser>() {
+                AVUser.logInInBackground(id, userPassword.getText().toString(), new LogInCallback<AVUser>() {
                     @Override
                     public void done(AVUser avUser, AVException e) {
                         if (e == null) {
@@ -115,7 +104,7 @@ public class Login extends Activity implements View.OnClickListener {
                             startActivity(intent);
                             ultimate.ui.activity.Login.this.finish();
                         } else {
-                            Toast.makeText(ultimate.ui.activity.Login.this, PankerHelper.getCodeFromServer(e), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ultimate.ui.activity.Login.this, PostmanHelper.getCodeFromServer(e), Toast.LENGTH_SHORT).show();
                             AVUser.logOut();
                         }
                     }

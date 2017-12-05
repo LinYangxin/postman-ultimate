@@ -15,61 +15,50 @@ import android.widget.Toast;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SaveCallback;
-import com.example.panker.ultimate.R;
-import ultimate.uilt.tools.PankerHelper;
-import ultimate.uilt.tools.TittleManager;
+import com.example.postman.ultimate.R;
+import ultimate.uilt.tools.PostmanHelper;
+import ultimate.uilt.tools.TitleManager;
 
 /**
  * Created by user on 2016/7/19...
  */
 public class Complete extends Activity implements View.OnClickListener, RatingBar.OnRatingBarChangeListener {
-    private TittleManager tittleManager;
-    private RatingBar throwing;
-    private RatingBar catching;
-    private RatingBar D;
-    private RatingBar O;
-    private RatingBar speed;
-    private float throwing_num;
-    private float catching_num;
-    private float D_num;
-    private float O_num;
-    private float speed_num;
-    private EditText nickname;
-    private EditText email;
-    private EditText team;
+    private TitleManager titleManager;
+    private RatingBar throwing,catching,defense,offensive,speed;
+    private float throwingNum,catchingNum,defenseNum,offensiveNum,speedNum;
+    private EditText nickname,email,team;
     private RadioGroup radioGroup;
     private boolean isMan = true;
     private Button summit;
-   // public static final String action = "Panker.broadcast.complete";
 
     private void initView() {
-        tittleManager = new TittleManager(this);
-        tittleManager.setTitleStyle(TittleManager.TitleStyle.ONLY_TITLE, "完善资料");
-        throwing = (RatingBar) findViewById(R.id.throwing);
-        catching = (RatingBar) findViewById(R.id.catching);
-        D = (RatingBar) findViewById(R.id.D);
-        O = (RatingBar) findViewById(R.id.O);
-        speed = (RatingBar) findViewById(R.id.speed);
-        nickname = (EditText) findViewById(R.id.sign_nickname);
-        email = (EditText) findViewById(R.id.sign_email);
-        team = (EditText) findViewById(R.id.sign_team);
-        radioGroup = (RadioGroup) findViewById(R.id.sign_sex);
-        summit = (Button) findViewById(R.id.sign_btn_summit);
+        titleManager = new TitleManager(this);
+        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_TITLE, "完善资料");
+        throwing = (RatingBar) findViewById(R.id.rb_throwing);
+        catching = (RatingBar) findViewById(R.id.rb_catching);
+        defense = (RatingBar) findViewById(R.id.rb_defense);
+        offensive = (RatingBar) findViewById(R.id.rb_offensive);
+        speed = (RatingBar) findViewById(R.id.rb_speed);
+        nickname = (EditText) findViewById(R.id.et_nickname);
+        email = (EditText) findViewById(R.id.et_email);
+        team = (EditText) findViewById(R.id.et_team);
+        radioGroup = (RadioGroup) findViewById(R.id.rg_sex);
+        summit = (Button) findViewById(R.id.btn_summit);
     }
 
     private void initEvent() {
         throwing.setOnRatingBarChangeListener(this);
         catching.setOnRatingBarChangeListener(this);
-        D.setOnRatingBarChangeListener(this);
-        O.setOnRatingBarChangeListener(this);
+        defense.setOnRatingBarChangeListener(this);
+        offensive.setOnRatingBarChangeListener(this);
         speed.setOnRatingBarChangeListener(this);
         summit.setOnClickListener(this);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup arg0, int checkId) {
-                if (checkId == R.id.man) {
+                if (checkId == R.id.rbtn_man) {
                     isMan = true;
-                } else if (checkId == R.id.woman) {
+                } else if (checkId == R.id.rbtn_woman) {
                     isMan = false;
                 }
             }
@@ -92,15 +81,15 @@ public class Complete extends Activity implements View.OnClickListener, RatingBa
         String tmp_team = team.getText().toString();
         if (tmp_email == null || tmp_nickname == null || tmp_email == null || tmp_email.isEmpty() || tmp_nickname.isEmpty() || tmp_team.isEmpty() || TextUtils.isEmpty(tmp_email) || TextUtils.isEmpty(tmp_email) || TextUtils.isEmpty(tmp_nickname)) {
             Toast.makeText(this, "请完善资料", Toast.LENGTH_SHORT).show();
-        } else if (PankerHelper.isEmailValid(tmp_email)) {
+        } else if (PostmanHelper.isEmailValid(tmp_email)) {
             AVUser.getCurrentUser().put("nickname", tmp_nickname);
             AVUser.getCurrentUser().setEmail(tmp_email);
             AVUser.getCurrentUser().put("team", tmp_team);
-            AVUser.getCurrentUser().put("throwing", throwing_num);
-            AVUser.getCurrentUser().put("catching", catching_num);
-            AVUser.getCurrentUser().put("O", O_num);
-            AVUser.getCurrentUser().put("D", D_num);
-            AVUser.getCurrentUser().put("speed", speed_num);
+            AVUser.getCurrentUser().put("throwing", throwingNum);
+            AVUser.getCurrentUser().put("catching", catchingNum);
+            AVUser.getCurrentUser().put("O", offensiveNum);
+            AVUser.getCurrentUser().put("D", defenseNum);
+            AVUser.getCurrentUser().put("speed", speedNum);
             AVUser.getCurrentUser().put("isMan", isMan);
             AVUser.getCurrentUser().saveInBackground(new SaveCallback() {
                 @Override
@@ -129,27 +118,20 @@ public class Complete extends Activity implements View.OnClickListener, RatingBa
     public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
         switch (ratingBar.getId()) {
             case R.id.throwing:
-                throwing_num = throwing.getRating();
+                throwingNum = throwing.getRating();
                 break;
             case R.id.catching:
-                catching_num = catching.getRating();
+                catchingNum = catching.getRating();
                 break;
             case R.id.D:
-                D_num = D.getRating();
+                defenseNum = defense.getRating();
                 break;
             case R.id.O:
-                O_num = O.getRating();
+                offensiveNum = offensive.getRating();
                 break;
             case R.id.speed:
-                speed_num = speed.getRating();
+                speedNum = speed.getRating();
                 break;
         }
     }
-
-//    //验证是否为邮箱
-//    public static boolean isEmailValid(String email) {
-//        Pattern p = Pattern.compile("^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$");
-//        Matcher m = p.matcher(email);
-//        return m.matches();
-//    }
 }

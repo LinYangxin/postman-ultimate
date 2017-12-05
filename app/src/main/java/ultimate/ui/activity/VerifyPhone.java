@@ -12,8 +12,9 @@ import android.widget.Toast;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVMobilePhoneVerifyCallback;
 import com.avos.avoscloud.AVUser;
-import com.example.panker.ultimate.R;
-import ultimate.uilt.tools.TittleManager;
+import com.example.postman.ultimate.R;
+
+import ultimate.uilt.tools.TitleManager;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,7 +24,7 @@ import java.util.regex.Pattern;
  */
 public class VerifyPhone extends Activity implements View.OnClickListener{
     private EditText mEditText;
-    private TittleManager tittleManager;
+    private TitleManager titleManager;
     private Button verify_btn;
     private  boolean FromSignIn=true;
     @Override
@@ -39,8 +40,8 @@ public class VerifyPhone extends Activity implements View.OnClickListener{
         FromSignIn=intent.getBooleanExtra("FromSignIn",true);
     }
     private void initView(){
-        tittleManager = new TittleManager(this);
-        tittleManager.setTitleStyle(TittleManager.TitleStyle.ONLY_TITLE, "手机验证");
+        titleManager = new TitleManager(this);
+        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_TITLE, "手机验证");
         verify_btn=(Button)findViewById(R.id.btn_verify);
         mEditText=(EditText)findViewById(R.id.edit_verify);
     }

@@ -23,8 +23,10 @@ import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.GetDataCallback;
-import com.example.panker.ultimate.R;
+import com.example.postman.ultimate.R;
+
 import ultimate.uilt.tools.DataManager;
+import ultimate.uilt.tools.PostmanHelper;
 
 import java.util.List;
 
@@ -63,7 +65,7 @@ public class Splash extends Activity {
             public void onAnimationEnd(Animation animation) {
 
                 AVUser currentUser = AVUser.getCurrentUser();
-                if (currentUser != null&&currentUser.isMobilePhoneVerified()) {
+                if (currentUser != null && currentUser.isMobilePhoneVerified()) {
                     // 跳转到首页
                     startActivity(Main.class);
                 } else {

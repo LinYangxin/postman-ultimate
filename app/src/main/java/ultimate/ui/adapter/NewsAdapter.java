@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import ultimate.bean.News;
-import com.example.panker.ultimate.R;
+import com.example.postman.ultimate.R;
 
 import java.util.List;
 

@@ -9,15 +9,16 @@ import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.SaveCallback;
-import com.example.panker.ultimate.R;
-import ultimate.uilt.tools.TittleManager;
+import com.example.postman.ultimate.R;
+
+import ultimate.uilt.tools.TitleManager;
 import ultimate.bean.User;
 
 /**
  * Created by user on 2016/8/25.
  */
 public class Team extends Activity {
-    private TittleManager tittleManager;
+    private TitleManager titleManager;
   //  private AVUser myUser;
     private String new_team;
     private EditText editText;
@@ -38,15 +39,15 @@ public class Team extends Activity {
     }
 
     private void initView() {
-        tittleManager=new TittleManager(this);
-        tittleManager.setTitleStyle(TittleManager.TitleStyle.BACK_AND_SAVE,"设置队伍");
+        titleManager =new TitleManager(this);
+        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE,"设置队伍");
         editText=(EditText)findViewById(R.id.et);
         editText.setText(new_team);
 
     }
 
     private void initEvent() {
-        tittleManager.setRightTitleListener(new View.OnClickListener() {
+        titleManager.setRightTitleListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new_team=editText.getText().toString();
@@ -72,7 +73,7 @@ public class Team extends Activity {
                 }
             }
         });
-        tittleManager.setLeftTitleListener(new View.OnClickListener() {
+        titleManager.setLeftTitleListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();

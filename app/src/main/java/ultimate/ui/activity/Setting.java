@@ -7,16 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.panker.ultimate.R;
+import com.example.postman.ultimate.R;
 
 import ultimate.uilt.tools.SystemBarTintManagerHelper;
-import ultimate.uilt.tools.TittleManager;
+import ultimate.uilt.tools.TitleManager;
 
 /**
  * Created by user on 2016/9/10.
  */
 public class Setting extends Activity implements View.OnClickListener {
-    private TittleManager tittleManager;
+    private TitleManager titleManager;
     private SystemBarTintManagerHelper systemBarTintManagerHelper;
     private Button btn_logout;
     @Override
@@ -28,8 +28,8 @@ public class Setting extends Activity implements View.OnClickListener {
         initEvent();
     }
     private void initView(){
-        tittleManager=new TittleManager(this);
-        tittleManager.setTitleStyle(TittleManager.TitleStyle.ONLY_BACK,"设置");
+        titleManager =new TitleManager(this);
+        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_BACK,"设置");
         btn_logout=(Button)findViewById(R.id.btn_logout);
     }
     private void initEvent(){

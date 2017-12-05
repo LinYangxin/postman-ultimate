@@ -6,7 +6,7 @@ import android.os.Build;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.example.panker.ultimate.R;
+import com.example.postman.ultimate.R;
 import ultimate.uilt.tools.SystemBarTintManager;
 
 /**

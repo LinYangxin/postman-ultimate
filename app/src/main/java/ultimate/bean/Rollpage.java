@@ -6,8 +6,8 @@ package ultimate.bean;
  */
 
 public class Rollpage {
-    private String imgs = new String();
-    private String url = new String();
+    private String imgs;
+    private String url;
     public Rollpage(String url,String img){
         this.imgs = img;
         this.url = url;

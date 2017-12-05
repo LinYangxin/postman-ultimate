@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.panker.ultimate">
+    package="com.example.postman.ultimate">
     <!--leancloud-->
     <!-- 基础模块（必须加入以下声明）START -->
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -11,14 +11,14 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 基础模块 END -->
     <application
-        android:name="com.example.panker.ultimate.ultimate.leancloud.MyleanCloudApp"
+        android:name="ultimate.leancloud.MyleanCloudApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name="com.example.panker.ultimate.ultimate.ui.activity.Activity_splash"
+            android:name="ultimate.ui.activity.Splash"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/Mytheme">
@@ -28,67 +28,67 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.panker.ultimate.ultimate.ui.activity.Activity_Login"
+            android:name="ultimate.ui.activity.Login"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.panker.ultimate.ultimate.ui.activity.Activity_Sign"
+            android:name="ultimate.ui.activity.Sign"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.panker.ultimate.ultimate.ui.activity.Activity_verifyPhone"
+            android:name="ultimate.ui.activity.VerifyPhone"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.panker.ultimate.ultimate.ui.activity.Activity_complete"
+            android:name="ultimate.ui.activity.Complete"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.panker.ultimate.ultimate.ui.activity.Activity_resetPassword"
+            android:name="ultimate.ui.activity.ResetPassword"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.panker.ultimate.ultimate.ui.activity.Activity_main"
+            android:name="ultimate.ui.activity.Main"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.panker.ultimate.ultimate.ui.activity.Activity_me_power"
+            android:name="ultimate.ui.activity.Power"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.panker.ultimate.ultimate.ui.activity.Activity_me_data"
+            android:name="ultimate.ui.activity.Data"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.panker.ultimate.ultimate.ui.activity.Activity_me_data_nickname"
+            android:name="ultimate.ui.activity.Nickname"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.panker.ultimate.ultimate.ui.activity.Activity_me_data_myself"
+            android:name="ultimate.ui.activity.Myself"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.panker.ultimate.ultimate.ui.activity.Activity_me_data_team"
+            android:name="ultimate.ui.activity.Team"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.panker.ultimate.ultimate.ui.activity.Activity_me_data_verifyPhone"
+            android:name="ultimate.ui.activity.ResetPhone"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.panker.ultimate.ultimate.ui.activity.Activity_me_data_email"
+            android:name="ultimate.ui.activity.Email"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.panker.ultimate.ultimate.ui.activity.Activity_me_setting"
+            android:name="ultimate.ui.activity.Setting"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.panker.ultimate.ultimate.ui.activity.Activity_showhead"
+            android:name="ultimate.ui.activity.ShowHead"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.panker.ultimate.ultimate.ui.activity.Activity_web"
+            android:name="ultimate.ui.activity.Web"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
     </application>

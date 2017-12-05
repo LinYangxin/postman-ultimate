@@ -9,7 +9,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.example.panker.ultimate.R;
+import com.example.postman.ultimate.R;
 
 import java.io.IOException;
 
@@ -79,7 +79,7 @@ import java.io.IOException;
 //        mDrawerList.setItemChecked(position, true);
 ////        setTitle(mPlanetTitles[position]);
 //        mDrawerTitle=mDrawerList.getAdapter().getItem(position).toString();
-//        Activity_main.tittleManager.setTitleStyle(TittleManager.TitleStyle.ONLY_BACK,mDrawerTitle.toString());
+//        Activity_main.tittleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_BACK,mDrawerTitle.toString());
 //        mDrawerLayout.closeDrawer(mDrawerList);
 //    }
 //
@@ -126,7 +126,7 @@ import java.io.IOException;
 //
 //
 //}
-public class Shopping extends BaseFragment {
+public class ShoppingFragment extends BaseFragment {
     private View mContent;
     private WebView webView;
     private static final String url = "http://bong.m.tmall.com/?spm=a220m.6910245.0.0.1mIxQn&shop_id=125704545";

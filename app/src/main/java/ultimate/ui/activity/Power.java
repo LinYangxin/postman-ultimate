@@ -8,8 +8,9 @@ import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.SaveCallback;
-import com.example.panker.ultimate.R;
-import ultimate.uilt.tools.TittleManager;
+import com.example.postman.ultimate.R;
+
+import ultimate.uilt.tools.TitleManager;
 import ultimate.bean.User;
 
 
@@ -22,7 +23,7 @@ public class Power extends Activity implements RatingBar.OnRatingBarChangeListen
    // private AVUser User;
     private User user;
     private RatingBar ratingBar_O,ratingBar_D,ratingBar_S,ratingBar_C,ratingBar_T;
-    private TittleManager tittleManager;
+    private TitleManager titleManager;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +51,8 @@ public class Power extends Activity implements RatingBar.OnRatingBarChangeListen
         ratingBar_S.setRating((float)Speed);
         ratingBar_C.setRating((float)Catching);
         ratingBar_T.setRating((float)Throwing);
-        tittleManager=new TittleManager(this);
-        tittleManager.setTitleStyle(TittleManager.TitleStyle.BACK_AND_SAVE,"能力值");
+        titleManager =new TitleManager(this);
+        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE,"能力值");
     }
     private void initEvent(){
         ratingBar_O.setOnRatingBarChangeListener(this);
@@ -59,7 +60,7 @@ public class Power extends Activity implements RatingBar.OnRatingBarChangeListen
         ratingBar_S.setOnRatingBarChangeListener(this);
         ratingBar_T.setOnRatingBarChangeListener(this);
         ratingBar_C.setOnRatingBarChangeListener(this);
-        tittleManager.setRightTitleListener(new View.OnClickListener() {
+        titleManager.setRightTitleListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 user.getMyUser().put("O",O);
@@ -86,7 +87,7 @@ public class Power extends Activity implements RatingBar.OnRatingBarChangeListen
                 });
             }
         });
-        tittleManager.setLeftTitleListener(new View.OnClickListener() {
+        titleManager.setLeftTitleListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();

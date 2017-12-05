@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.panker.ultimate.R;
+import com.example.postman.ultimate.R;
 import ultimate.bean.Game;
 
 import java.util.List;
@@ -33,16 +33,16 @@ public class GameAdapter extends ArrayAdapter<Game> {
         if (convertView == null) {
             view = LayoutInflater.from(getContext()).inflate(resourceId, null);
             viewHolder=new GameAdapter.ViewHolder();
-            viewHolder.tittle=(TextView)view.findViewById(R.id.game_title);
-            viewHolder.date= (TextView)view.findViewById(R.id.game_date);
-            viewHolder.img = (ImageView)view.findViewById(R.id.game_img);
-            viewHolder.state = (TextView)view.findViewById(R.id.game_state);
+            viewHolder.title=(TextView)view.findViewById(R.id.tvTitle);
+            viewHolder.date= (TextView)view.findViewById(R.id.tvGame);
+            viewHolder.img = (ImageView)view.findViewById(R.id.imgGame);
+            viewHolder.state = (TextView)view.findViewById(R.id.tvState);
             view.setTag(viewHolder);
         } else {
             view = convertView;
             viewHolder=(GameAdapter.ViewHolder)view.getTag();
         }
-        viewHolder.tittle.setText(game.getGame_tittle());
+        viewHolder.title.setText(game.getGame_tittle());
         viewHolder.date.setText(game.getGame_date());
         viewHolder.img.setImageBitmap(game.getGame_img());
         viewHolder.state.setText(game.getGame_state());
@@ -50,7 +50,7 @@ public class GameAdapter extends ArrayAdapter<Game> {
     }
     //内部类，用以提高读取效率。
     class ViewHolder {
-        TextView tittle;
+        TextView title;
         TextView date;
         ImageView img;
         TextView state;

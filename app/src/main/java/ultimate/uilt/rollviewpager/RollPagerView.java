@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 
-import com.example.panker.ultimate.R;
+import com.example.postman.ultimate.R;
 import ultimate.uilt.rollviewpager.adapter.LoopPagerAdapter;
 import ultimate.uilt.rollviewpager.hintview.ColorPointHintView;
 

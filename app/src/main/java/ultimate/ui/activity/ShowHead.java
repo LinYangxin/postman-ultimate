@@ -10,8 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.panker.ultimate.R;
-import ultimate.uilt.tools.TittleManager;
+import com.example.postman.ultimate.R;
+import ultimate.uilt.tools.TitleManager;
 import ultimate.bean.User;
 
 import java.io.File;
@@ -25,7 +25,7 @@ import static android.os.Environment.getExternalStorageDirectory;
  * Created by user on 2016/9/27.
  */
 public class ShowHead extends Activity {
-    private TittleManager tittleManager;
+    private TitleManager titleManager;
     private User myUser;
     private ImageView head;
     @Override
@@ -36,9 +36,9 @@ public class ShowHead extends Activity {
         initView();
     }
     private void initView(){
-        tittleManager=new TittleManager(this);
-        tittleManager.setTitleStyle(TittleManager.TitleStyle.BACK_AND_SAVE,"头像");
-        tittleManager.setRightTitleListener(new View.OnClickListener() {
+        titleManager =new TitleManager(this);
+        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE,"头像");
+        titleManager.setRightTitleListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveHead();
@@ -49,7 +49,7 @@ public class ShowHead extends Activity {
         head.setImageBitmap(myUser.getHead());
     }
     private void saveHead(){
-        File appDir = new File(getExternalStorageDirectory(), "Panker");
+        File appDir = new File(getExternalStorageDirectory(), "Postman");
         if (!appDir.exists()) {
             appDir.mkdir();
         }

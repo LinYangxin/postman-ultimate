@@ -8,8 +8,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.example.panker.ultimate.R;
-import ultimate.uilt.tools.TittleManager;
+import com.example.postman.ultimate.R;
+
+import ultimate.uilt.tools.TitleManager;
 
 /**
  * Created by user on 2017/1/17.
@@ -17,7 +18,7 @@ import ultimate.uilt.tools.TittleManager;
 
 public class Web extends Activity {
     private WebView webView;
-    private TittleManager tittleManager;
+    private TitleManager titleManager;
     private String url;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class Web extends Activity {
         url=intent.getStringExtra("url");
     }
     private void initEvent(){
-        tittleManager.setRightTitleListener(new View.OnClickListener() {
+        titleManager.setRightTitleListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -41,8 +42,8 @@ public class Web extends Activity {
         });
     }
     private void initView(){
-        tittleManager=new TittleManager(this);
-        tittleManager.setTitleStyle(TittleManager.TitleStyle.BACK_AND_FAVORITE,"Panker");
+        titleManager =new TitleManager(this);
+        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_FAVORITE,"Postman");
     }
     private void initWeb() {
         webView = (WebView) findViewById(R.id.ww);

@@ -15,8 +15,8 @@ import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.RequestMobileCodeCallback;
 import com.avos.avoscloud.RequestPasswordResetCallback;
 import com.avos.avoscloud.UpdatePasswordCallback;
-import com.example.panker.ultimate.R;
-import ultimate.uilt.tools.TittleManager;
+import com.example.postman.ultimate.R;
+import ultimate.uilt.tools.TitleManager;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
  * Created by user on 2016/8/6.
  */
 public class ResetPassword extends Activity {
-    private TittleManager tittleManager;
+    private TitleManager titleManager;
     private Button next;
     private LinearLayout verify;
     private EditText inputID;
@@ -41,8 +41,8 @@ public class ResetPassword extends Activity {
     }
 
     private void initView() {
-        tittleManager = new TittleManager(this);
-        tittleManager.setTitleStyle(TittleManager.TitleStyle.ONLY_BACK, "重置密码");
+        titleManager = new TitleManager(this);
+        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_BACK, "重置密码");
         next = (Button) findViewById(R.id.reset_btn);
         verify = (LinearLayout) findViewById(R.id.reset_ll);
         inputID = (EditText) findViewById(R.id.edit_id);

@@ -11,11 +11,11 @@ import android.graphics.Color;
  */
 
 public class News {
-    private String tittle;
-    private String news_url;
-    private Bitmap news_img;
+    private String title;
+    private String url;
+    private Bitmap img;
     private String sumarize;
-    private String news_date;
+    private String date;
     public News(String t, String u, String s,String a,Bitmap i) {
         setTittl(t);
         setNews_url(u);
@@ -28,41 +28,41 @@ public class News {
     }
 
     public String getNews_date() {
-        return news_date;
+        return date;
     }
 
-    public void setNews_date(String news_date) {
-        this.news_date = news_date;
+    public void setNews_date(String date) {
+        this.date = date;
     }
 
     public String getTittle() {
-        return tittle;
+        return title;
     }
 
-    public void setTittl(String tittle) {
-        this.tittle = tittle;
+    public void setTittl(String title) {
+        this.title = title;
     }
 
     public String getNews_url() {
-        return news_url;
+        return url;
     }
 
-    public void setNews_url(String news_url) {
-        this.news_url = news_url;
+    public void setNews_url(String url) {
+        this.url = url;
     }
 
     public Bitmap getNews_img() {
-        if(news_img==null){
+        if(img==null){
             Bitmap bitmap = Bitmap.createBitmap(100 ,100,
                     Bitmap.Config.ARGB_8888);
             bitmap.eraseColor(Color.parseColor("#ce3d3a"));//填充颜色
             return bitmap;
         }
-        return news_img;
+        return img;
     }
 
-    public void setNews_img(Bitmap news_img) {
-        this.news_img = news_img;
+    public void setNews_img(Bitmap img) {
+        this.img = img;
     }
 
     public String getSumarize() {

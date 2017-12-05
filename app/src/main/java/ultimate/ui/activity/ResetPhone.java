@@ -10,8 +10,8 @@ import android.widget.Toast;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SaveCallback;
-import com.example.panker.ultimate.R;
-import ultimate.uilt.tools.TittleManager;
+import com.example.postman.ultimate.R;
+import ultimate.uilt.tools.TitleManager;
 import ultimate.bean.User;
 
 import java.util.regex.Matcher;
@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
  * Created by user on 2016/8/25.
  */
 public class ResetPhone extends Activity {
-    private TittleManager tittleManager;
+    private TitleManager titleManager;
     private AVUser myUser;
     private String new_phone;
     private EditText editText;
@@ -38,19 +38,19 @@ public class ResetPhone extends Activity {
 
     private void initData() {
         user=new User();
-        new_phone=user.getPhonenumber();
+        new_phone=user.getPhoneNumber();
     }
 
     private void initView() {
-        tittleManager=new TittleManager(this);
-        tittleManager.setTitleStyle(TittleManager.TitleStyle.BACK_AND_STEP,"设置手机");
+        titleManager =new TitleManager(this);
+        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_STEP,"设置手机");
         editText=(EditText)findViewById(R.id.et);
         editText.setText(new_phone);
 
     }
 
     private void initEvent() {
-        tittleManager.setRightTitleListener(new View.OnClickListener() {
+        titleManager.setRightTitleListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final String string=editText.getText().toString();
@@ -79,7 +79,7 @@ public class ResetPhone extends Activity {
                 }
             }
         });
-        tittleManager.setLeftTitleListener(new View.OnClickListener() {
+        titleManager.setLeftTitleListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();

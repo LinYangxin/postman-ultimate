@@ -17,22 +17,24 @@ import android.widget.Toast;
 import ultimate.ui.activity.ShowHead;
 import ultimate.bean.User;
 import ultimate.ui.activity.Data;
-import com.example.panker.ultimate.R;
-import ultimate.uilt.tools.PankerHelper;
+import com.example.postman.ultimate.R;
+
+import ultimate.uilt.tools.DataManager;
+import ultimate.uilt.tools.PostmanHelper;
 
 /**
  * Created by Ivory on 2016/7/19.
  * 天才兜儿又来啦！！！
  * hahahaha
  */
-public class Me extends BaseFragment implements View.OnClickListener {
+public class MeFragment extends BaseFragment implements View.OnClickListener {
     private View mContent;
     private String nickname,team,myself;
     public TextView tv_nickname, tv_team, tv_myself,mEdit;
 //    private LinearLayout me_power, me_setting;
     public RelativeLayout me_data;
     public ImageView me_head;
-    private User user;
+   // private User user;
     private Cursor cursor;
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,8 +52,8 @@ public class Me extends BaseFragment implements View.OnClickListener {
 //        me_setting = (LinearLayout) mContent.findViewById(R.id.me_setting);
         me_data = (RelativeLayout) mContent.findViewById(R.id.rl);
 //        Toast.makeText(mActivity,user.getBackground().toString(),Toast.LENGTH_LONG).show();
-        me_data.setBackground(PankerHelper.bitmap2drawable(user.getBackground()));
-        me_head.setImageBitmap(PankerHelper.toRoundCornerImage(user.getHead(), 180));
+        me_data.setBackground(PostmanHelper.bitmap2drawable(DataManager.user.getBackground()));
+        me_head.setImageBitmap(PostmanHelper.toRoundCornerImage(DataManager.user.getHead(), 180));
         return mContent;
     }
 
@@ -59,10 +61,9 @@ public class Me extends BaseFragment implements View.OnClickListener {
     protected void initData() {
         // head=new Head(0);
         super.initData();
-        user = new User(mActivity);
-        nickname = user.getNickname();
-        team = user.getTeam();
-        myself = user.getMyself();
+        nickname = DataManager.user.getNickname();
+        team = DataManager.user.getTeam();
+        myself = DataManager.user.getMyself();
     }
 
     @Override
@@ -101,10 +102,10 @@ public class Me extends BaseFragment implements View.OnClickListener {
                         if( which == 0 ){
                             Intent intent = new Intent(Intent.ACTION_PICK);
                             intent.setType("image/*");
-                            startActivityForResult(intent, PankerHelper.REQUEST_BY_GALLERY);
+                            startActivityForResult(intent, PostmanHelper.REQUEST_BY_GALLERY);
                         }else{
                             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            startActivityForResult(intent, PankerHelper.REQUEST_CODE_CAMERA);
+                            startActivityForResult(intent, PostmanHelper.REQUEST_CODE_CAMERA);
                         }
                     }
                 })

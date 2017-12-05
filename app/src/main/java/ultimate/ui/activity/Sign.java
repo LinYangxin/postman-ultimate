@@ -14,16 +14,16 @@ import com.avos.avoscloud.AVMobilePhoneVerifyCallback;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.SignUpCallback;
-import com.example.panker.ultimate.R;
-import ultimate.uilt.tools.PankerHelper;
+import com.example.postman.ultimate.R;
+import ultimate.uilt.tools.PostmanHelper;
 import ultimate.uilt.tools.TimerCount;
-import ultimate.uilt.tools.TittleManager;
+import ultimate.uilt.tools.TitleManager;
 
 /**
  * Created by user on 2016/7/15.
  */
 public class Sign extends Activity implements View.OnClickListener {
-    private TittleManager tittleManager;
+    private TitleManager titleManager;
     private EditText mPhonenumber;//手机号码
     private EditText mPw;//设置密码
     private EditText mPwcheck;//确认密码
@@ -38,8 +38,8 @@ public class Sign extends Activity implements View.OnClickListener {
     //private boolean check_verify = false;//验证码验证状态
     //初始化界面ui
     private void initView() {
-        tittleManager = new TittleManager(this);
-        tittleManager.setTitleStyle(TittleManager.TitleStyle.ONLY_BACK, "账号注册");
+        titleManager = new TitleManager(this);
+        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_BACK, "账号注册");
         mPhonenumber = (EditText) findViewById(R.id.sign_mobilephonenumber);
         mPw = (EditText) findViewById(R.id.sign_pw);
         mPwcheck = (EditText) findViewById(R.id.sign_pwcheck);
@@ -113,18 +113,18 @@ public class Sign extends Activity implements View.OnClickListener {
                     Toast.makeText(Sign.this, "邮箱不能为空", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                if (!PankerHelper.isEmailValid(t3)) {
+                if (!PostmanHelper.isEmailValid(t3)) {
                     Toast.makeText(Sign.this, "邮箱格式有误", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                if (PankerHelper.isRightPassword(t1, t2)) {
+                if (PostmanHelper.isRightPassword(t1, t2)) {
                     SignUp();
                 } else
                     Toast.makeText(Sign.this, "密码前后不一致或不符合格式要求", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.sign_btn_getVerifyNumber:
                 String p = mPhonenumber.getText().toString();
-                if (PankerHelper.isMobileNumberValid(p) && !p.isEmpty()) {
+                if (PostmanHelper.isMobileNumberValid(p) && !p.isEmpty()) {
                     final AVUser user = new AVUser();
                     user.setUsername(mPhonenumber.getText().toString());
                     user.setPassword("888888888");

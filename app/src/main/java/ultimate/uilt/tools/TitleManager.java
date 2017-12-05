@@ -6,7 +6,7 @@ package ultimate.uilt.tools;
  * Fenrir
  */
 
-import com.example.panker.ultimate.R;
+import com.example.postman.ultimate.R;
 import ultimate.ui.activity.Setting;
 
 import android.app.Activity;
@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class TittleManager {
+public class TitleManager {
     private Activity mActivity;
     private LinearLayout mLeftLayout, mRightLayout;
     private SystemBarTintManagerHelper systemBarTintManagerHelper;
@@ -50,7 +50,7 @@ public class TittleManager {
 //     *
 //     * @param view
 //     */
-//    public TittleManager(View view) {
+//    public TitleManager(View view) {
 //        mTitleName = (TextView) view.findViewById(R.id.title_name);
 //        mLeftLayout = (LinearLayout) view.findViewById(R.id.tittle_left_layout);
 //        mRightLayout = (LinearLayout) view.findViewById(R.id.tltie_right_layout);
@@ -61,7 +61,7 @@ public class TittleManager {
 //
 //    }
 
-    public TittleManager(Activity activity) {
+    public TitleManager(Activity activity) {
         mActivity = activity;
         mTitleName = (TextView) activity.findViewById(R.id.title_name);
         mLeftLayout = (LinearLayout) activity.findViewById(R.id.tittle_left_layout);

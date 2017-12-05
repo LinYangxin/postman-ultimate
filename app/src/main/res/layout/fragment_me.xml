@@ -48,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="nickname"
-                    android:textColor="@color/PankerGley" />
+                    android:textColor="@color/PostmanGley" />
             </LinearLayout>
 
             <TextView
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="   |   "
-                android:textColor="@color/PankerGley" />
+                android:textColor="@color/PostmanGley" />
 
             <LinearLayout
                 android:layout_width="100dp"
@@ -73,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="team"
-                    android:textColor="@color/PankerGley" />
+                    android:textColor="@color/PostmanGley" />
             </LinearLayout>
 
             <TextView
@@ -85,7 +85,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="3dp"
                 android:text="这个人很懒，什么都没留下"
-                android:textColor="@color/PankerGley" />
+                android:textColor="@color/PostmanGley" />
         </RelativeLayout>
     </RelativeLayout>
 

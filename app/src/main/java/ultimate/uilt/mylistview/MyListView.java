@@ -5,8 +5,7 @@ import android.util.AttributeSet;
 import android.widget.ListView;
 
 /**
- * Created by user on 2017/3/18.
- * 重写ListView以实现高度自适应
+ * Created by user on 2017/12/5.
  */
 
 public class MyListView extends ListView {
@@ -26,3 +25,4 @@ public class MyListView extends ListView {
         super.onMeasure(widthMeasureSpec, expandSpec);
     }
 }
+

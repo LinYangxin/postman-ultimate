@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:text="sumarize"
-                android:textColor="@color/PankerRed"
+                android:textColor="@color/PostmanRed"
                 android:textSize="12sp"
                 android:drawableStart="@drawable/pin"
                 android:gravity="center_vertical"
