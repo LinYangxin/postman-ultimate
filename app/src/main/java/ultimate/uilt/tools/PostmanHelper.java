@@ -51,6 +51,12 @@ public class PostmanHelper {
         else
             return a.equals(b);
     }
+    //检验验证码长度
+    public static boolean isVerifyNumberValid(String verify) {
+        Pattern p = Pattern.compile("^\\d{6}$");
+        Matcher m = p.matcher(verify);
+        return m.matches();
+    }
     //处理服务器返回值错误代码
     public static String getCodeFromServer(AVException e){
         int code = e.getCode();

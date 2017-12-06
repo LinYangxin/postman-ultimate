@@ -17,6 +17,7 @@ import android.widget.Toast;
 import ultimate.ui.activity.ShowHead;
 import ultimate.bean.User;
 import ultimate.ui.activity.Data;
+
 import com.example.postman.ultimate.R;
 
 import ultimate.uilt.tools.DataManager;
@@ -24,36 +25,33 @@ import ultimate.uilt.tools.PostmanHelper;
 
 /**
  * Created by Ivory on 2016/7/19.
- * 天才兜儿又来啦！！！
  * hahahaha
  */
 public class MeFragment extends BaseFragment implements View.OnClickListener {
     private View mContent;
-    private String nickname,team,myself;
-    public TextView tv_nickname, tv_team, tv_myself,mEdit;
-//    private LinearLayout me_power, me_setting;
-    public RelativeLayout me_data;
-    public ImageView me_head;
-   // private User user;
-    private Cursor cursor;
+    private String nickname, team, myself;
+    public TextView tvNickname, tvTeam, tvMyself, tvEdit;
+    public RelativeLayout rlMeData;
+    public ImageView imgHead;
+
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContent = inflater.inflate(R.layout.fragment_me, container, false);
-        me_head = (ImageView) mContent.findViewById(R.id.me_head);
-        tv_nickname = (TextView) mContent.findViewById(R.id.me_nickname);
-        tv_team = (TextView) mContent.findViewById(R.id.me_team);
-        tv_myself = (TextView) mContent.findViewById(R.id.me_myself);
-        mEdit = (TextView)mContent.findViewById(R.id.me_edit);
-        tv_nickname.setText(nickname);
-        tv_team.setText(team);
-        tv_myself.setText(myself);
+        imgHead = (ImageView) mContent.findViewById(R.id.me_head);
+        tvNickname = (TextView) mContent.findViewById(R.id.me_nickname);
+        tvTeam = (TextView) mContent.findViewById(R.id.me_team);
+        tvMyself = (TextView) mContent.findViewById(R.id.me_myself);
+        tvEdit = (TextView) mContent.findViewById(R.id.me_edit);
+        tvNickname.setText(nickname);
+        tvTeam.setText(team);
+        tvMyself.setText(myself);
 
 //        me_power = (LinearLayout) mContent.findViewById(R.id.me_power);
 //        me_setting = (LinearLayout) mContent.findViewById(R.id.me_setting);
-        me_data = (RelativeLayout) mContent.findViewById(R.id.rl);
+        rlMeData = (RelativeLayout) mContent.findViewById(R.id.rl);
 //        Toast.makeText(mActivity,user.getBackground().toString(),Toast.LENGTH_LONG).show();
-        me_data.setBackground(PostmanHelper.bitmap2drawable(DataManager.user.getBackground()));
-        me_head.setImageBitmap(PostmanHelper.toRoundCornerImage(DataManager.user.getHead(), 180));
+        rlMeData.setBackground(PostmanHelper.bitmap2drawable(DataManager.user.getBackground()));
+        imgHead.setImageBitmap(PostmanHelper.toRoundCornerImage(DataManager.user.getHead(), 180));
         return mContent;
     }
 
@@ -69,10 +67,10 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     @Override
     protected void initEvent() {
 //        me_power.setOnClickListener(this);
-        me_data.setOnClickListener(this);
+        rlMeData.setOnClickListener(this);
 //        me_setting.setOnClickListener(this);
-        me_head.setOnClickListener(this);
-        mEdit.setOnClickListener(this);
+        imgHead.setOnClickListener(this);
+        tvEdit.setOnClickListener(this);
     }
 
     @Override
@@ -88,22 +86,23 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 startActivityForResult(intent, 0);
                 break;
             case R.id.rl:
-                Toast.makeText(mActivity,"hahah",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mActivity, "hahah", Toast.LENGTH_SHORT).show();
                 setBackground();
                 break;
         }
     }
+
     private void setBackground() {
         CharSequence[] items = {"相册", "相机"};
         new AlertDialog.Builder(mActivity)
                 .setTitle("选择图片来源")
                 .setItems(items, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        if( which == 0 ){
+                        if (which == 0) {
                             Intent intent = new Intent(Intent.ACTION_PICK);
                             intent.setType("image/*");
                             startActivityForResult(intent, PostmanHelper.REQUEST_BY_GALLERY);
-                        }else{
+                        } else {
                             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                             startActivityForResult(intent, PostmanHelper.REQUEST_CODE_CAMERA);
                         }

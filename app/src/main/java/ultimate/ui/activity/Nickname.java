@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.SaveCallback;
 import com.example.postman.ultimate.R;
+
+import ultimate.uilt.tools.DataManager;
 import ultimate.uilt.tools.TitleManager;
 import ultimate.bean.User;
 
@@ -19,9 +21,8 @@ import ultimate.bean.User;
 public class Nickname extends Activity {
     private TitleManager titleManager;
     //private AVUser myUser;
-    private String new_nickname;
+    private String nickname;
     private EditText editText;
-    private User user;
     private final int REQUEST_NICKNAME=0,NOTHING=999;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,16 +34,15 @@ public class Nickname extends Activity {
     }
 
     private void initData() {
-      //  myUser=AVUser.getCurrentUser();
-        user=new User();
-        new_nickname=user.getNickname();
+      //  myUser=AVUser.getCurrentUser();;
+        nickname= DataManager.user.getNickname();
     }
 
     private void initView() {
         titleManager =new TitleManager(this);
         titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE,"设置昵称");
         editText=(EditText)findViewById(R.id.et);
-        editText.setText(new_nickname);
+        editText.setText(nickname);
 
     }
 
@@ -50,21 +50,21 @@ public class Nickname extends Activity {
         titleManager.setRightTitleListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new_nickname=editText.getText().toString();
-                if(TextUtils.isEmpty(new_nickname)||new_nickname.isEmpty()){
+                nickname=editText.getText().toString();
+                if(TextUtils.isEmpty(nickname)||nickname.isEmpty()){
                     Toast.makeText(Nickname.this,"不能为空!",Toast.LENGTH_SHORT).show();
                 }
                 else{
 
-                    user.getMyUser().put("nickname",new_nickname);
-                    user.getMyUser().saveInBackground(new SaveCallback() {
+                    DataManager.user.getMyUser().put("nickname",nickname);
+                    DataManager.user.getMyUser().saveInBackground(new SaveCallback() {
                         @Override
                         public void done(AVException e) {
                             if(e==null){
                                 Toast.makeText(Nickname.this,"保存成功!",Toast.LENGTH_SHORT).show();
                                // Intent intent=new Intent();
-                                //intent.putExtra("new_nickname",new_nickname);
-                                user.setNickname(new_nickname);
+                                //intent.putExtra("nickname",nickname);
+                                DataManager.user.setNickname(nickname);
                                 Nickname.this.setResult(REQUEST_NICKNAME);
                                 Nickname.this.finish();
                             }

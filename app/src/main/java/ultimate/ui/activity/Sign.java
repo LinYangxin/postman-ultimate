@@ -24,15 +24,14 @@ import ultimate.uilt.tools.TitleManager;
  */
 public class Sign extends Activity implements View.OnClickListener {
     private TitleManager titleManager;
-    private EditText mPhonenumber;//手机号码
-    private EditText mPw;//设置密码
-    private EditText mPwcheck;//确认密码
+    private EditText mPhoneNumber;//手机号码
+    private EditText mPassword;//设置密码
+    private EditText mPasswordCheck;//确认密码
     private EditText mVerifyNumber;
     private EditText mEmail;
-    private Button btn_nextstep;//下一步
-    private Button btn_VerifyNumber;
-    private TimerCount btn_getVerifyNumber;
-    private boolean hadVerified = false;
+    private Button btnNextStep;//下一步
+    private Button btnVerifyNumber;
+    private TimerCount btnGetVerifyNumber;
 
     //private  AVUser user;
     //private boolean check_verify = false;//验证码验证状态
@@ -40,20 +39,20 @@ public class Sign extends Activity implements View.OnClickListener {
     private void initView() {
         titleManager = new TitleManager(this);
         titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_BACK, "账号注册");
-        mPhonenumber = (EditText) findViewById(R.id.sign_mobilephonenumber);
-        mPw = (EditText) findViewById(R.id.sign_pw);
-        mPwcheck = (EditText) findViewById(R.id.sign_pwcheck);
+        mPhoneNumber = (EditText) findViewById(R.id.sign_mobilephonenumber);
+        mPassword = (EditText) findViewById(R.id.sign_pw);
+        mPasswordCheck = (EditText) findViewById(R.id.sign_pwcheck);
         mEmail = (EditText) findViewById(R.id.sign_email);
-        btn_nextstep = (Button) findViewById(R.id.sign_btn_nextstep);
-        btn_VerifyNumber = (Button) findViewById(R.id.sign_btn_getVerifyNumber);
-        btn_getVerifyNumber = new TimerCount(60000, 1000, btn_VerifyNumber);
+        btnNextStep = (Button) findViewById(R.id.sign_btn_nextstep);
+        btnVerifyNumber = (Button) findViewById(R.id.sign_btn_getVerifyNumber);
+        btnGetVerifyNumber = new TimerCount(60000, 1000, btnVerifyNumber);
         mVerifyNumber = (EditText) findViewById(R.id.sign_verifyNumber);
     }
 
     //初始化事件
     private void initEvent() {
-        btn_nextstep.setOnClickListener(this);
-        btn_VerifyNumber.setOnClickListener(this);
+        btnNextStep.setOnClickListener(this);
+        btnVerifyNumber.setOnClickListener(this);
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -70,8 +69,7 @@ public class Sign extends Activity implements View.OnClickListener {
             @Override
             public void done(AVException e) {
                 if (e == null) {
-                    user.setPassword(mPw.getText().toString());// 设置密码
-//            user.setMobilePhoneNumber(mPhonenumber.getText().toString());
+                    user.setPassword(mPassword.getText().toString());// 设置密码
                     user.setEmail(mEmail.getText().toString());
                     user.saveInBackground(new SaveCallback() {
                         @Override
@@ -87,7 +85,7 @@ public class Sign extends Activity implements View.OnClickListener {
                         }
                     });
                 } else {
-                    Toast.makeText(Sign.this, "验证码有误", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Sign.this, PostmanHelper.getCodeFromServer(e), Toast.LENGTH_SHORT).show();
                     try {
                         user.delete();
                     } catch (AVException E) {
@@ -102,8 +100,8 @@ public class Sign extends Activity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.sign_btn_nextstep://下一步
-                String t1 = mPw.getText().toString();
-                String t2 = mPwcheck.getText().toString();
+                String t1 = mPassword.getText().toString();
+                String t2 = mPasswordCheck.getText().toString();
                 String t3 = mEmail.getText().toString();
                 if (t1.isEmpty() || t2.isEmpty()) {
                     Toast.makeText(Sign.this, "密码不能为空", Toast.LENGTH_SHORT).show();
@@ -123,12 +121,12 @@ public class Sign extends Activity implements View.OnClickListener {
                     Toast.makeText(Sign.this, "密码前后不一致或不符合格式要求", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.sign_btn_getVerifyNumber:
-                String p = mPhonenumber.getText().toString();
+                String p = mPhoneNumber.getText().toString();
                 if (PostmanHelper.isMobileNumberValid(p) && !p.isEmpty()) {
                     final AVUser user = new AVUser();
-                    user.setUsername(mPhonenumber.getText().toString());
+                    user.setUsername(mPhoneNumber.getText().toString());
                     user.setPassword("888888888");
-                    user.setMobilePhoneNumber(mPhonenumber.getText().toString());
+                    user.setMobilePhoneNumber(mPhoneNumber.getText().toString());
                     user.signUpInBackground(new SignUpCallback() {
                         @Override
                         public void done(AVException e) {
@@ -140,40 +138,16 @@ public class Sign extends Activity implements View.OnClickListener {
 
                                 }
                             } else {
-                                btn_getVerifyNumber.start();
+                                btnGetVerifyNumber.start();
                                 Toast.makeText(Sign.this, "已发送验证码", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-//                        AVOSCloud.requestSMSCodeInBackground(mPhonenumber.getText().toString(), new RequestMobileCodeCallback() {
-//                            @Override
-//                            public void done(AVException e) {
-//                                btn_getVerifyNumber.start();
-//                                Toast.makeText(Sign.this, "已发送验证码", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//                    } catch (Exception e) {
-//                    }
                 } else {
                     Toast.makeText(Sign.this, "手机号码格式错误", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
     }
-
-
-//    /**
-//     * 验证手机号是否符合大陆的标准格式
-//     *
-//     * @param mobiles
-//     * @return
-//     */
-//
-//    public static boolean isMobileNumberValid(String mobiles) {
-//        Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(17[1,3,5-8])|(14[5,7,9])|(18[0,2-9]))\\d{8}$");
-//        Matcher m = p.matcher(mobiles);
-//        return m.matches();
-//    }
-
 }
 

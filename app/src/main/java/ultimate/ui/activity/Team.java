@@ -11,6 +11,8 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.SaveCallback;
 import com.example.postman.ultimate.R;
 
+import ultimate.uilt.tools.DataManager;
+import ultimate.uilt.tools.PostmanHelper;
 import ultimate.uilt.tools.TitleManager;
 import ultimate.bean.User;
 
@@ -19,11 +21,11 @@ import ultimate.bean.User;
  */
 public class Team extends Activity {
     private TitleManager titleManager;
-  //  private AVUser myUser;
-    private String new_team;
+    //  private AVUser myUser;
+    private String team;
     private EditText editText;
-    private User user;
-    private final int REQUEST_NICKNAME=0,REQUEST_TEAM=3,NOTHING=999;
+    private final int REQUEST_NICKNAME = 0, REQUEST_TEAM = 3, NOTHING = 999;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,15 +36,14 @@ public class Team extends Activity {
     }
 
     private void initData() {
-        user=new User();
-        new_team=user.getTeam();
+        team = DataManager.user.getTeam();
     }
 
     private void initView() {
-        titleManager =new TitleManager(this);
-        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE,"设置队伍");
-        editText=(EditText)findViewById(R.id.et);
-        editText.setText(new_team);
+        titleManager = new TitleManager(this);
+        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE, "设置队伍");
+        editText = (EditText) findViewById(R.id.et);
+        editText.setText(team);
 
     }
 
@@ -50,23 +51,21 @@ public class Team extends Activity {
         titleManager.setRightTitleListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new_team=editText.getText().toString();
-                if(TextUtils.isEmpty(new_team)||new_team.isEmpty()){
-                    Toast.makeText(Team.this,"不能为空!",Toast.LENGTH_SHORT).show();
-                }
-                else{
-                   user.getMyUser().put("team",new_team);
-                    user.getMyUser().saveInBackground(new SaveCallback() {
+                team = editText.getText().toString();
+                if (TextUtils.isEmpty(team) || team.isEmpty()) {
+                    Toast.makeText(Team.this, "不能为空!", Toast.LENGTH_SHORT).show();
+                } else {
+                    DataManager.user.getMyUser().put("team", team);
+                    DataManager.user.getMyUser().saveInBackground(new SaveCallback() {
                         @Override
                         public void done(AVException e) {
-                            if(e==null){
-                                Toast.makeText(Team.this,"保存成功!",Toast.LENGTH_SHORT).show();
-                               user.setTeam(new_team);
+                            if (e == null) {
+                                Toast.makeText(Team.this, "保存成功!", Toast.LENGTH_SHORT).show();
+                                DataManager.user.setTeam(team);
                                 Team.this.setResult(REQUEST_TEAM);
                                 Team.this.finish();
-                            }
-                            else{
-                                Toast.makeText(Team.this,"失败!请检查网络",Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(Team.this, PostmanHelper.getCodeFromServer(e), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -80,7 +79,8 @@ public class Team extends Activity {
             }
         });
     }
-    public void onBackPressed(){
+
+    public void onBackPressed() {
         Team.this.setResult(NOTHING);
         Team.this.finish();
     }

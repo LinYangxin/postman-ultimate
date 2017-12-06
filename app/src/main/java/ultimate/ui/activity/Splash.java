@@ -35,8 +35,8 @@ import java.util.List;
  * Created by user on 2016/8/5.
  */
 public class Splash extends Activity {
-    private final String TAG = this.getClass().getSimpleName();
-    private ImageView iv_start;
+    // private final String TAG = this.getClass().getSimpleName();
+    private ImageView ivStart;
     private final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 1, REQUEST_CODE_CAMERA = 2;//用以动态获取权限
     private static DataManager dataManager;//此处从服务器处加载数据。
 
@@ -79,7 +79,7 @@ public class Splash extends Activity {
 
             }
         });
-        iv_start.startAnimation(scaleAnim);
+        ivStart.startAnimation(scaleAnim);
     }
 
     private void startActivity(Class cls) {
@@ -136,7 +136,7 @@ public class Splash extends Activity {
     }
 
     private void Continued() {
-        iv_start = (ImageView) findViewById(R.id.iv_start);
+        ivStart = (ImageView) findViewById(R.id.iv_start);
         AVQuery<AVObject> avQuery = new AVQuery<>("Splash");
         avQuery.findInBackground(new FindCallback<AVObject>() {
             @Override
@@ -147,13 +147,13 @@ public class Splash extends Activity {
                         @Override
                         public void done(byte[] bytes, AVException e) {
                             if (e == null) {
-                                iv_start.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                                ivStart.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
                                 initImage();
                             }
                         }
                     });
                 } else {
-                    iv_start.setImageResource(R.drawable.start);
+                    ivStart.setImageResource(R.drawable.start);
                     initImage();
                 }
             }

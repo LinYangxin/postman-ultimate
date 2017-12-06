@@ -14,7 +14,7 @@ import ultimate.ui.activity.Main;
  * Created by user on 2016/8/20.
  */
 public abstract class BaseFragment extends Fragment {
-    protected final String TAG = this.getClass().getSimpleName();
+    //protected final String TAG = this.getClass().getSimpleName();
     protected Main mActivity;
 
     @Nullable

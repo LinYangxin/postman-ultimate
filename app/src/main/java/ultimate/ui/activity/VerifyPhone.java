@@ -14,6 +14,7 @@ import com.avos.avoscloud.AVMobilePhoneVerifyCallback;
 import com.avos.avoscloud.AVUser;
 import com.example.postman.ultimate.R;
 
+import ultimate.uilt.tools.PostmanHelper;
 import ultimate.uilt.tools.TitleManager;
 
 import java.util.regex.Matcher;
@@ -25,8 +26,8 @@ import java.util.regex.Pattern;
 public class VerifyPhone extends Activity implements View.OnClickListener{
     private EditText mEditText;
     private TitleManager titleManager;
-    private Button verify_btn;
-    private  boolean FromSignIn=true;
+    private Button btnVerify;
+    private  boolean fromSignIn=true;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,26 +38,26 @@ public class VerifyPhone extends Activity implements View.OnClickListener{
     }
     private void initData(){
         Intent intent=getIntent();
-        FromSignIn=intent.getBooleanExtra("FromSignIn",true);
+        fromSignIn=intent.getBooleanExtra("FromSignIn",true);
     }
     private void initView(){
         titleManager = new TitleManager(this);
         titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_TITLE, "手机验证");
-        verify_btn=(Button)findViewById(R.id.btn_verify);
+        btnVerify=(Button)findViewById(R.id.btn_verify);
         mEditText=(EditText)findViewById(R.id.edit_verify);
     }
     private void initEvent(){
-        verify_btn.setOnClickListener(this);
+        btnVerify.setOnClickListener(this);
     }
     @Override
     public void onClick(View view) {
         String verifynumber=mEditText.getText().toString();
-        if(isVerifyNumberValid(verifynumber)) {
+        if(PostmanHelper.isVerifyNumberValid(verifynumber)) {
             AVUser.verifyMobilePhoneInBackground(verifynumber, new AVMobilePhoneVerifyCallback() {
                 @Override
                 public void done(AVException e) {
                     if (e == null) {
-                        if(FromSignIn) {
+                        if(fromSignIn) {
                             Intent intent = new Intent(VerifyPhone.this, Complete.class);
                             startActivity(intent);
                             VerifyPhone.this.finish();
@@ -67,17 +68,12 @@ public class VerifyPhone extends Activity implements View.OnClickListener{
                         }
                     } else {
                         Log.d("SMS", "Verified failed!");
-                        Toast.makeText(VerifyPhone.this,"验证码有误",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(VerifyPhone.this, PostmanHelper.getCodeFromServer(e),Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
         else
-            Toast.makeText(VerifyPhone.this,"验证码有误",Toast.LENGTH_SHORT).show();
-    }
-    public static boolean isVerifyNumberValid(String verify) {
-        Pattern p = Pattern.compile("^\\d{6}$");
-        Matcher m = p.matcher(verify);
-        return m.matches();
+            Toast.makeText(VerifyPhone.this,"验证码格式有误",Toast.LENGTH_SHORT).show();
     }
 }

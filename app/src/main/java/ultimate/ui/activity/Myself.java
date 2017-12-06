@@ -10,6 +10,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.SaveCallback;
 import com.example.postman.ultimate.R;
 
+import ultimate.uilt.tools.DataManager;
 import ultimate.uilt.tools.TitleManager;
 import ultimate.bean.User;
 
@@ -19,9 +20,8 @@ import ultimate.bean.User;
 public class Myself extends Activity {
     private TitleManager titleManager;
   //  private AVUser myUser;
-    private String new_myself;
+    private String myself;
     private EditText editText;
-    private User user;
     private final int REQUEST_myself = 0,REQUEST_MYSELF=6,NOTHING=999;
 
     @Override
@@ -34,29 +34,28 @@ public class Myself extends Activity {
     }
 
     private void initData() {
-        user=new User();
-        new_myself = user.getMyself();
+        myself = DataManager.user.getMyself();
     }
 
     private void initView() {
         titleManager = new TitleManager(this);
         titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE, "个人宣言");
         editText = (EditText) findViewById(R.id.et);
-        editText.setText(new_myself);
+        editText.setText(myself);
     }
 
     private void initEvent() {
         titleManager.setRightTitleListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new_myself = editText.getText().toString();
-                user.getMyUser().put("myself", new_myself);
-                user.getMyUser().saveInBackground(new SaveCallback() {
+                myself = editText.getText().toString();
+                DataManager.user.getMyUser().put("myself", myself);
+                DataManager.user.getMyUser().saveInBackground(new SaveCallback() {
                     @Override
                     public void done(AVException e) {
                         if (e == null) {
                             Toast.makeText(Myself.this, "保存成功!", Toast.LENGTH_SHORT).show();
-                           user.setMyself(new_myself);
+                            DataManager.user.setMyself(myself);
                             Myself.this.setResult(REQUEST_MYSELF);
                             Myself.this.finish();
                         } else {

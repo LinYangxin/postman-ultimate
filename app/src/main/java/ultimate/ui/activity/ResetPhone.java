@@ -11,6 +11,9 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SaveCallback;
 import com.example.postman.ultimate.R;
+
+import ultimate.uilt.tools.DataManager;
+import ultimate.uilt.tools.PostmanHelper;
 import ultimate.uilt.tools.TitleManager;
 import ultimate.bean.User;
 
@@ -22,10 +25,8 @@ import java.util.regex.Pattern;
  */
 public class ResetPhone extends Activity {
     private TitleManager titleManager;
-    private AVUser myUser;
-    private String new_phone;
+    private String phone;
     private EditText editText;
-    private User user;
     private final int REQUEST_NICKNAME=0,REQUEST_PHONE=1,REQUEST_TEAM=3,NOTHING=999;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,15 +38,14 @@ public class ResetPhone extends Activity {
     }
 
     private void initData() {
-        user=new User();
-        new_phone=user.getPhoneNumber();
+        phone= DataManager.user.getPhoneNumber();
     }
 
     private void initView() {
         titleManager =new TitleManager(this);
         titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_STEP,"设置手机");
         editText=(EditText)findViewById(R.id.et);
-        editText.setText(new_phone);
+        editText.setText(phone);
 
     }
 
@@ -54,21 +54,21 @@ public class ResetPhone extends Activity {
             @Override
             public void onClick(View view) {
                 final String string=editText.getText().toString();
-                if(isMobileNumberValid(string)) {
-                    user.getMyUser().setMobilePhoneNumber(string);
-                    user.getMyUser().setUsername(string);
-                    user.getMyUser().saveInBackground(new SaveCallback() {
+                if(PostmanHelper.isMobileNumberValid(string)) {
+                    DataManager.user.getMyUser().setMobilePhoneNumber(string);
+                    DataManager.user.getMyUser().setUsername(string);
+                    DataManager.user.getMyUser().saveInBackground(new SaveCallback() {
                         @Override
                         public void done(AVException e) {
                             if (e == null) {
                                 Intent intent = new Intent(ResetPhone.this, VerifyPhone.class);
                                 intent.putExtra("FromSignIn", false);
                                 startActivity(intent);
-                                user.setPhonenumber(string);
+                                DataManager.user.setPhonenumber(string);
                                 ResetPhone.this.setResult(REQUEST_PHONE);
                                 ResetPhone.this.finish();
                             } else {
-                                Toast.makeText(ResetPhone.this, "失败", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ResetPhone.this, PostmanHelper.getCodeFromServer(e), Toast.LENGTH_SHORT).show();
 
                             }
                         }
@@ -89,10 +89,5 @@ public class ResetPhone extends Activity {
     public void onBackPressed(){
         ResetPhone.this.setResult(NOTHING);
         ResetPhone.this.finish();
-    }
-    public static boolean isMobileNumberValid(String mobiles) {
-        Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(17[1,3,5-8])|(14[5,7,9])|(18[0,2-9]))\\d{8}$");
-        Matcher m = p.matcher(mobiles);
-        return m.matches();
     }
 }

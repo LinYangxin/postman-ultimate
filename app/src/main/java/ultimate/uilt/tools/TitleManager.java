@@ -22,13 +22,12 @@ import android.widget.TextView;
 public class TitleManager {
     private Activity mActivity;
     private LinearLayout mLeftLayout, mRightLayout;
-    private SystemBarTintManagerHelper systemBarTintManagerHelper;
     private ImageView mLeftTitleView;
     private TextView mLeftTitleText;
     private ImageView mRightTitleView;
     private TextView mRightTitleText;
     private TextView mTitleName;
-    private OnClickListener mDefaultlistener =  new OnClickListener() {
+    private OnClickListener mDefaultListener =  new OnClickListener() {
         @Override
         public void onClick(View v) {
             mActivity.finish();
@@ -71,7 +70,7 @@ public class TitleManager {
         mLeftTitleText = (TextView) activity.findViewById(R.id.tittle_left_text);
         mRightTitleView = (ImageView) activity.findViewById(R.id.title_right_image);
         mRightTitleText = (TextView) activity.findViewById(R.id.title_right_text);
-        systemBarTintManagerHelper = new SystemBarTintManagerHelper(activity);
+        
     }
 
     public void setTitleStyle(TitleStyle flag, String titleName) {
@@ -82,19 +81,19 @@ public class TitleManager {
                 break;
             case ONLY_BACK:
                 setCustomTitle(R.drawable.tittle_image_back, "", titleName, 0, "");
-                setLeftTitleListener(mDefaultlistener);
+                setLeftTitleListener(mDefaultListener);
                 break;
             case BACK_AND_FAVORITE:
                 setCustomTitle(R.drawable.tittle_image_back, "", titleName, R.drawable.tittle_yes_favorite, "");
-                setLeftTitleListener(mDefaultlistener);
+                setLeftTitleListener(mDefaultListener);
                 break;
             case BACK_AND_SAVE:
                 setCustomTitle(R.drawable.tittle_image_back, "", titleName, 0, "保存");
-                setLeftTitleListener(mDefaultlistener);
+                setLeftTitleListener(mDefaultListener);
                 break;
             case BACK_AND_STEP:
                 setCustomTitle(R.drawable.tittle_image_back,"",titleName,0,"下一步");
-                setRightTitleListener(mDefaultlistener);
+                setRightTitleListener(mDefaultListener);
                 break;
             case ONLY_SETTING:
                 setCustomTitle(R.drawable.tools, "", titleName, 0, "");
@@ -108,7 +107,7 @@ public class TitleManager {
                 break;
             case LEFT_WITHOUT_IMG:
                 setCustomTitle(0, "", titleName, 0, "");
-                setLeftTitleListener(mDefaultlistener);
+                setLeftTitleListener(mDefaultListener);
                 break;
         }
     }

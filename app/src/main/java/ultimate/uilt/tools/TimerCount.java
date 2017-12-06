@@ -7,11 +7,11 @@ import android.os.CountDownTimer;
 import android.widget.Button;
 
 public class TimerCount extends CountDownTimer {
-    private Button bnt;
+    private Button btn;
 
-    public TimerCount(long millisInFuture, long countDownInterval, Button bnt) {
+    public TimerCount(long millisInFuture, long countDownInterval, Button btn) {
         super(millisInFuture, countDownInterval);
-        this.bnt = bnt;
+        this.btn = btn;
     }
 
     public TimerCount(long millisInFuture, long countDownInterval) {
@@ -22,14 +22,14 @@ public class TimerCount extends CountDownTimer {
     @Override
     public void onFinish() {
         // TODO Auto-generated method stub
-        bnt.setClickable(true);
-        bnt.setText("获取验证码");
+        btn.setClickable(true);
+        btn.setText("获取验证码");
     }
 
     @Override
     public void onTick(long arg0) {
         // TODO Auto-generated method stub
-        bnt.setClickable(false);
-        bnt.setText(arg0 / 1000 + "秒后重试");
+        btn.setClickable(false);
+        btn.setText(arg0 / 1000 + "秒后重试");
     }
 }

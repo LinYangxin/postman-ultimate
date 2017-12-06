@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.postman.ultimate.R;
+
+import ultimate.uilt.tools.DataManager;
 import ultimate.uilt.tools.TitleManager;
 import ultimate.bean.User;
 
@@ -26,13 +28,11 @@ import static android.os.Environment.getExternalStorageDirectory;
  */
 public class ShowHead extends Activity {
     private TitleManager titleManager;
-    private User myUser;
     private ImageView head;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_showhead);
-        myUser=new User();
         initView();
     }
     private void initView(){
@@ -46,7 +46,7 @@ public class ShowHead extends Activity {
             }
         });
         head=(ImageView)findViewById(R.id.head);
-        head.setImageBitmap(myUser.getHead());
+        head.setImageBitmap(DataManager.user.getHead());
     }
     private void saveHead(){
         File appDir = new File(getExternalStorageDirectory(), "Postman");
@@ -57,7 +57,7 @@ public class ShowHead extends Activity {
         File file = new File(appDir, fileName);
         try {
             FileOutputStream fos = new FileOutputStream(file);
-            myUser.getHead().compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            DataManager.user.getHead().compress(Bitmap.CompressFormat.JPEG, 100, fos);
             fos.flush();
             fos.close();
         } catch (FileNotFoundException e) {

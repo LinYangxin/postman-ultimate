@@ -17,27 +17,29 @@ import ultimate.uilt.tools.TitleManager;
  */
 public class Setting extends Activity implements View.OnClickListener {
     private TitleManager titleManager;
-    private SystemBarTintManagerHelper systemBarTintManagerHelper;
-    private Button btn_logout;
+    private Button btnLogout;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-        systemBarTintManagerHelper=new SystemBarTintManagerHelper(this);
         initView();
         initEvent();
     }
-    private void initView(){
-        titleManager =new TitleManager(this);
-        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_BACK,"设置");
-        btn_logout=(Button)findViewById(R.id.btn_logout);
+
+    private void initView() {
+        titleManager = new TitleManager(this);
+        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_BACK, "设置");
+        btnLogout = (Button) findViewById(R.id.btn_logout);
     }
-    private void initEvent(){
-        btn_logout.setOnClickListener(this);
+
+    private void initEvent() {
+        btnLogout.setOnClickListener(this);
     }
+
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.btn_logout:
                 AlertDialog.Builder ab = new AlertDialog.Builder(Setting.this);
                 ab.setTitle("提示").setMessage("确认要退出吗").setPositiveButton("是", new DialogInterface.OnClickListener() {
@@ -46,7 +48,9 @@ public class Setting extends Activity implements View.OnClickListener {
                         Setting.this.setResult(2);
                         finish();
                     }
-                }).setNegativeButton("否",null).show();
+                }).setNegativeButton("否", null).show();
+                break;
+            default:
                 break;
         }
     }

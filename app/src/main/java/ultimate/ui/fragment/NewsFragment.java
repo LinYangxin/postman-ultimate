@@ -43,7 +43,6 @@ import static java.lang.Thread.sleep;
 
 /**
  * Created by Ivory on 2016/7/19.
- * 天才兜儿又来啦！！！
  * hahahaha
  */
 public class NewsFragment extends BaseFragment implements View.OnClickListener {

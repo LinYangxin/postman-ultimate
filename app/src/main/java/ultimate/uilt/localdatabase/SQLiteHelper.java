@@ -94,7 +94,7 @@ public class SQLiteHelper extends SQLiteOpenHelper{
         return cursor;
     }
 
-    public long insert_news(String title, String summary, String url, byte[] picture) {
+    public long insertNews(String title, String summary, String url, byte[] picture) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("title", title);
@@ -105,7 +105,7 @@ public class SQLiteHelper extends SQLiteOpenHelper{
         return row;
     }
 
-    public long insert_rollpages(String url, byte[] picture) {
+    public long insertRollpages(String url, byte[] picture) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("url", url);
@@ -113,7 +113,7 @@ public class SQLiteHelper extends SQLiteOpenHelper{
         long row = db.insert(TABLE_NAME_RollPages, null, cv);
         return row;
     }
-    public long insert_games(String url, byte[] picture) {
+    public long insertGames(String url, byte[] picture) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("url", url);
@@ -121,7 +121,7 @@ public class SQLiteHelper extends SQLiteOpenHelper{
         long row = db.insert(TABLE_NAME_Games, null, cv);
         return row;
     }
-    public long insert_users(String telephone, String email, String nickname, int isMan,int isNew, byte[] head,String myself) {
+    public long insertUsers(String telephone, String email, String nickname, int isMan,int isNew, byte[] head,String myself) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("telephone", telephone);
@@ -134,7 +134,7 @@ public class SQLiteHelper extends SQLiteOpenHelper{
         long row = db.insert(TABLE_NAME_Users, null, cv);
         return row;
     }
-    public long insert_skills(String telephone, String team, String url,String position,int throwing,int catching,int speed, int offence,int defence ) {
+    public long insertSkills(String telephone, String team, String url,String position,int throwing,int catching,int speed, int offence,int defence ) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("telephone", telephone);

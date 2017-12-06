@@ -9,7 +9,7 @@ import android.view.MotionEvent;
  * Created by Ivory on 2016/10/2.
  */
 public class BaseViewPager extends ViewPager {
-    private boolean nosroll=true;
+    private boolean noSroll=true;
     public BaseViewPager(Context context){
         super(context);
     }
@@ -24,7 +24,7 @@ public class BaseViewPager extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent arg0){
-        if(nosroll)
+        if(noSroll)
             return false;
         else
             return super.onTouchEvent(arg0);
@@ -34,7 +34,7 @@ public class BaseViewPager extends ViewPager {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent arg0)
     {
-        if(nosroll)
+        if(noSroll)
             return false;
         else
             return super.onInterceptTouchEvent(arg0);
