@@ -122,6 +122,4 @@ public class PostmanHelper {
         Date date = new Date(time);
         return formatter.format(date);
     }
-
-
 }

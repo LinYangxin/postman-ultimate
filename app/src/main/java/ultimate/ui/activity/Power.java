@@ -11,6 +11,7 @@ import com.avos.avoscloud.SaveCallback;
 import com.example.postman.ultimate.R;
 
 import ultimate.uilt.tools.DataManager;
+import ultimate.uilt.tools.PostmanHelper;
 import ultimate.uilt.tools.TitleManager;
 import ultimate.bean.User;
 
@@ -51,7 +52,7 @@ public class Power extends Activity implements RatingBar.OnRatingBarChangeListen
         ratingBarCatching.setRating((float)Catching);
         ratingBarThrowing.setRating((float)Throwing);
         titleManager =new TitleManager(this);
-        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE,"能力值");
+        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE,getString(R.string.power_title));
     }
     private void initEvent(){
         ratingBarOffensive.setOnRatingBarChangeListener(this);
@@ -71,16 +72,15 @@ public class Power extends Activity implements RatingBar.OnRatingBarChangeListen
                     @Override
                     public void done(AVException e) {
                         if(e==null){
-                            Toast.makeText(Power.this,"更新成功！",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Power.this,getString(R.string.save_success),Toast.LENGTH_SHORT).show();
                             DataManager.user.setO((float)Offensive);
                             DataManager.user.setD((float)Defense);
                             DataManager.user.setSpeed((float)Speed);
                             DataManager.user.setCatching((float)Catching);
                             DataManager.user.setThrowing((float)Throwing);
                             Power.this.finish();
-                        }
-                        else{
-                            Toast.makeText(Power.this,"失败",Toast.LENGTH_SHORT).show();
+                        } else{
+                            Toast.makeText(Power.this, PostmanHelper.getCodeFromServer(e),Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

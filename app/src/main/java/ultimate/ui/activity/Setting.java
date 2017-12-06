@@ -29,7 +29,7 @@ public class Setting extends Activity implements View.OnClickListener {
 
     private void initView() {
         titleManager = new TitleManager(this);
-        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_BACK, "设置");
+        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_BACK, getString(R.string.setting_title));
         btnLogout = (Button) findViewById(R.id.btn_logout);
     }
 
@@ -42,13 +42,13 @@ public class Setting extends Activity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.btn_logout:
                 AlertDialog.Builder ab = new AlertDialog.Builder(Setting.this);
-                ab.setTitle("提示").setMessage("确认要退出吗").setPositiveButton("是", new DialogInterface.OnClickListener() {
+                ab.setTitle(getString(R.string.tips)).setMessage(getString(R.string.setting_msg)).setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Setting.this.setResult(2);
                         finish();
                     }
-                }).setNegativeButton("否", null).show();
+                }).setNegativeButton(getString(R.string.no), null).show();
                 break;
             default:
                 break;

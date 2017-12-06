@@ -1,52 +1,134 @@
 <resources>
-    <!--登陆界面-->
+    <!--命名规则：小写下划线，类名_名称-->
     <string name="app_name">Postman</string>
+    <!--leanCloud-->
+    <string name="applicationId">7V4zq0wjN4yJdvwAbLABnd9f-gzGzoHsz</string>
+    <string name="clientKey">xYj2q0pv51pVgeB4EBFWdoPk</string>
+    <!--主界面-->
+    <string name="title">极限飞盘</string>
+    <string name="back_msg">再按一次退出</string>
+    <!--登陆界面-->
+    <string name="login">登录</string>
     <string name="login_user">手机号码/邮箱</string>
     <string name="login_password">密码</string>
-    <string name="login">登录</string>
     <string name="login_fogetpw">忘记密码?</string>
     <string name="login_sign">新用户注册</string>
     <string name="login_other">其他账户登录</string>
+    <string name="login_msg">账号密码不能为空</string>
     <!--资料完善-->
+    <string name="complete">完成注册</string>
+    <string name="complete_title">完善资料</string>
+    <string name="complete_msg">请完善资料</string>
+    <string name="complete_msg_checkemail">资料补充完成，请查收邮箱，完成邮箱核验</string>
+    <string name="complete_error_msg_email">邮箱格式有误</string>
     <string name="complete_nickname">您的昵称</string>
     <string name="complete_email">您的邮箱</string>
     <string name="complete_team">效力队伍</string>
     <string name="complete_team1">您效力队伍</string>
     <string name="complete_sex">您的性别</string>
-    <string name="throwing">扔盘</string>
-    <string name="catching">接盘</string>
-    <string name="speed">速度</string>
-    <string name="offence">进攻</string>
-    <string name="deffence">防守</string>
-    <string name="complete">完成注册</string>
+    <string name="complete_throwing">扔盘</string>
+    <string name="complete_catching">接盘</string>
+    <string name="complete_speed">速度</string>
+    <string name="complete_offensive">进攻</string>
+    <string name="complete_defense">防守</string>
+    <!--个人资料-->
+    <string name="data_title">个人资料</string>
+    <string name="data_get_permission_failed">获取权限失败</string>
+    <string name="data_position">Cutter;Handler;I don\'t know;Cutter and Handler</string>
+    <string name="data_public_msg">拍照;图库;男;女</string>
+    <string name="data_no_save_address">没有找到储存目录</string>
+    <string name="data_set_head">设置头像</string>
+    <string name="data_sex">性别</string>
+    <string name="data_position_title">场上位置</string>
+    <string name="data_diliver">&#160;&#160;&#160;|&#160;&#160;&#160;</string>
+    <string name="data_default_myself">盘不落地，决不放弃</string>
+    <!--email-->
+    <string name="email_title">设置邮箱</string>
+    <string name="email_erroe_msg_email">邮箱格式有误</string>
+    <string name="email_msg_checkemail">资料补充完成，请查收邮箱，完成邮箱核验</string>
+    <!--myself-->
+    <string name="myself_title">个人宣言</string>
+    <!--nickname-->
+    <string name="nickname_title">设置昵称</string>
+    <!--power-->
+    <string name="power_title">能力值</string>
+    <!--resetpassword-->
+    <string name="resetpasseord_title">重置密码</string>
     <!--验证手机号码-->
-    <string name="verifyphone_text">我们已发送号码至你的手机，请输入验证码</string>
+    <string name="verifyphone_text">我们已发送验证码至您的手机，请输入验证码</string>
     <string name="verifyphone_hint">请输入验证码</string>
     <string name="verifyphone_btn">验证手机</string>
+    <string name="verifyphone_error_msg">验证码格式有误</string>
+    <string name="verifyphone_title">手机验证</string>
     <!--重置密码-->
     <string name="resetpassword">输入您要重置密码账户所绑定的手机号码或邮箱</string>
     <string name="resetpassword_input">手机号码/邮箱</string>
     <string name="resetpassword_nextstep">下一步</string>
     <string name="resetpassword_newpw">新的6-20位密码</string>
-    <string name="help">&#x0009;&#x0009;&#x0009;&#x0009;&#x0009;短信验证由于运营商和渠道的限制，遵循以下原则:&#x000A;&#x000A;
-        一、1 分钟只能向同一个手机号码发送 1 条短信。&#x000A;&#x000A;
-        二、验证码短信每 30 分钟只能向同一个手机号码最多发送 2 条短信。&#x000A;&#x000A;
-        三、每天只能向同一个手机号码发送 5 条验证类短信、15 条通知类短信。&#x000A;&#x000A;
-        若造成不便，请谅解。</string>
-    <string name="drawer_open">Open navigation drawer</string>
-    <string name="drawer_close">Close navigation drawer</string>
-    <string-array name="classify">
-        <item>全部商品</item>
-        <item>上衣</item>
-        <item>裤子</item>
-        <item>手套</item>
-        <item>袖套</item>
-        <item>鞋子</item>
-        <item>飞盘</item>
-        <item>角标</item>
-    </string-array>
+    <string name="resetpassword_msg_phone">我们已发送验证码至您的手机，请注意查收，按操作完成密码重置</string>
+    <string name="resetpassword_msg_email">我们已发送邮件至该邮箱，请注意查收，按操作完成密码重置</string>
+    <string name="resetpassword_error_msg">验证码或新密码格式错误</string>
+    <!--重置手机-->
+    <string name="resetphone_title">设置手机</string>
+    <string name="resetphone_error_msg">手机格式有误</string>
+    <!--setting-->
+    <string name="setting_title">设置</string>
+    <string name="setting_msg">确定要退出吗?</string>
+    <!--showHead-->
+    <string name="showhead_title">头像</string>
+    <!--注册-->
+    <string name="sign_title">账号注册</string>
+    <string name="sign_error_msg">密码前后不一致或不符合格式要求</string>
+    <!--队伍-->
+    <string name="team_title">设置队伍</string>
+    <!--底部导航栏-->
     <string name="item_news">发现</string>
     <string name="item_shop">商店</string>
     <string name="item_game">比赛</string>
     <string name="item_me">我的</string>
+    <!--公共的信息-->
+    <string name="success">成功</string>
+    <string name="failed">失败</string>
+    <string name="save_success">保存成功</string>
+    <string name="save_failed">保存失败</string>
+    <string name="not_null">不能为空</string>
+    <string name="password_not_null">密码不能为空</string>
+    <string name="email_not_null">邮箱不能为空</string>
+    <string name="phone_not_null">手机不能为空</string>
+    <string name="reset_success">重置成功</string>
+    <string name="reset_failed">重置失败</string>
+    <string name="tips">提示</string>
+    <string name="i_know">知道了</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="image_from">选择图片来源</string>
+    <string name="sava">保存</string>
+    <string name="next_step">下一步</string>
+    <string name="nickname">昵称</string>
+    <string name="phone">手机</string>
+    <string name="email">邮箱</string>
+    <string name="team">队伍</string>
+    <string name="sex">性别</string>
+    <string name="position">场上位置</string>
+    <string name="no_pic">省流量模式</string>
+    <string name="clear_cache">清除缓存</string>
+    <string name="check_update">检查更新</string>
+    <string name="feed_back">意见反馈</string>
+    <string name="contect_us">联系我们</string>
+    <string name="about_us">关于我们</string>
+    <string name="exit">退出当前账号</string>
+    <string name="country_location">国家和地区</string>
+    <string name="China">中国大陆</string>
+    <string name="phonenumber">手机号码&#160;&#160;&#160;</string>
+    <string name="verifynumber">&#160;&#160;&#160;验证码&#160;&#160;&#160;</string>
+    <string name="get_verfigynumber">获取验证码</string>
+    <string name="set_password">设置密码&#160;&#160;</string>
+    <string name="verify_password">确认密码&#160;&#160;</string>
+    <string name="email_special">&#160;&#160;&#160;&#160;邮&#160;&#160;箱&#160;&#160;</string>
+    <string name="sign_complete">完成注册</string>
+    <string name="conecter">联系人</string>
+    <string name="game_record">比赛记录</string>
+    <string name="shopping_record">交易记录</string>
+    <string name="collection">收藏</string>
+    <string name="edit_data">编辑资料</string>
 </resources>

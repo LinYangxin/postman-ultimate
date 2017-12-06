@@ -42,7 +42,7 @@ public class VerifyPhone extends Activity implements View.OnClickListener{
     }
     private void initView(){
         titleManager = new TitleManager(this);
-        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_TITLE, "手机验证");
+        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_TITLE, getString(R.string.verifyphone_title));
         btnVerify=(Button)findViewById(R.id.btn_verify);
         mEditText=(EditText)findViewById(R.id.edit_verify);
     }
@@ -63,7 +63,7 @@ public class VerifyPhone extends Activity implements View.OnClickListener{
                             VerifyPhone.this.finish();
                         }
                         else {
-                            Toast.makeText(VerifyPhone.this,"修改成功",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(VerifyPhone.this,getString(R.string.save_success),Toast.LENGTH_SHORT).show();
                             VerifyPhone.this.finish();
                         }
                     } else {
@@ -74,6 +74,6 @@ public class VerifyPhone extends Activity implements View.OnClickListener{
             });
         }
         else
-            Toast.makeText(VerifyPhone.this,"验证码格式有误",Toast.LENGTH_SHORT).show();
+            Toast.makeText(VerifyPhone.this,getString(R.string.verifyphone_error_msg),Toast.LENGTH_SHORT).show();
     }
 }

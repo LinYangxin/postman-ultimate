@@ -116,7 +116,7 @@ public class Splash extends Activity {
                     Continued();
                 } else {
                     // Permission Denied
-                    Toast.makeText(this, "获取权限失败", Toast.LENGTH_SHORT)
+                    Toast.makeText(this, getString(R.string.data_get_permission_failed), Toast.LENGTH_SHORT)
                             .show();
                 }
                 break;
@@ -126,7 +126,7 @@ public class Splash extends Activity {
                     GetPomitssion(1);
                 } else {
                     // Permission Denied
-                    Toast.makeText(this, "获取权限失败", Toast.LENGTH_SHORT)
+                    Toast.makeText(this, getString(R.string.data_get_permission_failed), Toast.LENGTH_SHORT)
                             .show();
                 }
                 break;

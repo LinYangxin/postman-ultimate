@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="头像" />
+            android:text="@string/showhead_title" />
 
         <ImageView
             android:id="@+id/imgHead"
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="昵称" />
+            android:text="@string/nickname" />
 
         <TextView
             android:id="@+id/tvNickname"
@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="手机" />
+            android:text="@string/phone" />
 
         <TextView
             android:id="@+id/tvPhoneNumber"
@@ -98,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="邮箱" />
+            android:text="@string/email" />
 
         <TextView
             android:id="@+id/tvEmail"
@@ -124,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="队伍" />
+            android:text="@string/team" />
 
         <TextView
             android:id="@+id/tvTeam"
@@ -149,7 +149,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="性别" />
+            android:text="@string/sex" />
 
         <TextView
             android:id="@+id/tvSex"
@@ -174,7 +174,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="场上位置" />
+            android:text="@string/position" />
 
         <TextView
             android:id="@+id/tvPositon"
@@ -199,7 +199,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="个人宣言" />
+            android:text="@string/myself_title" />
 
         <TextView
             android:id="@+id/tvMyself"
@@ -224,7 +224,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="能力值" />
+            android:text="@string/power_title" />
     </RelativeLayout>
     <View
         android:layout_width="fill_parent"

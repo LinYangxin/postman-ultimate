@@ -43,7 +43,7 @@ public class ResetPhone extends Activity {
 
     private void initView() {
         titleManager =new TitleManager(this);
-        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_STEP,"设置手机");
+        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_STEP,getString(R.string.resetphone_title));
         editText=(EditText)findViewById(R.id.et);
         editText.setText(phone);
 
@@ -75,7 +75,7 @@ public class ResetPhone extends Activity {
                     });
                 }
                 else{
-                    Toast.makeText(ResetPhone.this,"手机格式有误",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ResetPhone.this,getString(R.string.resetphone_error_msg),Toast.LENGTH_SHORT).show();
                 }
             }
         });

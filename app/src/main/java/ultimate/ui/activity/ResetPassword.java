@@ -44,7 +44,7 @@ public class ResetPassword extends Activity {
 
     private void initView() {
         titleManager = new TitleManager(this);
-        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_BACK, "重置密码");
+        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_BACK, getString(R.string.resetpasseord_title));
         btnNext = (Button) findViewById(R.id.reset_btn);
         linearLayoutVerify = (LinearLayout) findViewById(R.id.reset_ll);
         inputID = (EditText) findViewById(R.id.edit_id);
@@ -58,7 +58,7 @@ public class ResetPassword extends Activity {
             public void onClick(View view) {
                 String tmp = inputID.getText().toString();
                 if (tmp.isEmpty()) {
-                    Toast.makeText(ResetPassword.this, "不能为空！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ResetPassword.this, getString(R.string.not_null), Toast.LENGTH_SHORT).show();
                 } else {
                     if (PostmanHelper.isMobileNumberValid(tmp)&&step%2==1) {
                         linearLayoutVerify.setVisibility(View.VISIBLE);
@@ -68,7 +68,7 @@ public class ResetPassword extends Activity {
                             public void done(AVException e) {
                                 if (e == null) {
                                     AlertDialog.Builder ab = new AlertDialog.Builder(ResetPassword.this);
-                                    ab.setTitle("提示").setMessage("我们已发送验证码至您的手机，请注意查收，按操作完成密码重置").setPositiveButton("知道了", null).show();
+                                    ab.setTitle(getString(R.string.tips)).setMessage(getString(R.string.resetpassword_msg_phone)).setPositiveButton(getString(R.string.i_know), null).show();
                                 } else {
                                     e.printStackTrace();
                                 }
@@ -82,7 +82,7 @@ public class ResetPassword extends Activity {
                                 @Override
                                 public void done(AVException e) {
                                     if (e == null) {
-                                        Toast.makeText(ResetPassword.this, "重置成功", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ResetPassword.this, getString(R.string.reset_success), Toast.LENGTH_SHORT).show();
                                         finish();
                                     } else {
                                         Toast.makeText(ResetPassword.this,PostmanHelper.getCodeFromServer(e),Toast.LENGTH_SHORT).show();
@@ -91,7 +91,7 @@ public class ResetPassword extends Activity {
                             });
                         }
                         else{
-                            Toast.makeText(ResetPassword.this,"验证码或新密码格式错误",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ResetPassword.this,getString(R.string.resetpassword_error_msg),Toast.LENGTH_SHORT).show();
                         }
                     }
                     else if (PostmanHelper.isEmailValid(tmp)) {
@@ -102,7 +102,7 @@ public class ResetPassword extends Activity {
                             public void done(AVException e) {
                                 if (e == null) {
                                     AlertDialog.Builder ab = new AlertDialog.Builder(ResetPassword.this);
-                                    ab.setTitle("提示").setMessage("我们已发送邮件至该邮箱，请注意查收，按操作完成密码重置").setPositiveButton("知道了", new DialogInterface.OnClickListener() {
+                                    ab.setTitle(getString(R.string.tips)).setMessage(getString(R.string.resetpassword_msg_email)).setPositiveButton(getString(R.string.i_know), new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             ResetPassword.this.finish();
@@ -115,7 +115,7 @@ public class ResetPassword extends Activity {
                             }
                         });
                     } else {
-                        Toast.makeText(ResetPassword.this, "输入格式有误", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ResetPassword.this, getString(R.string.resetpassword_error_msg), Toast.LENGTH_SHORT).show();
                     }
                 }
             }

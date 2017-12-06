@@ -41,7 +41,7 @@ public class Team extends Activity {
 
     private void initView() {
         titleManager = new TitleManager(this);
-        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE, "设置队伍");
+        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE, getString(R.string.team_title));
         editText = (EditText) findViewById(R.id.et);
         editText.setText(team);
 
@@ -53,14 +53,14 @@ public class Team extends Activity {
             public void onClick(View view) {
                 team = editText.getText().toString();
                 if (TextUtils.isEmpty(team) || team.isEmpty()) {
-                    Toast.makeText(Team.this, "不能为空!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Team.this, getString(R.string.not_null), Toast.LENGTH_SHORT).show();
                 } else {
                     DataManager.user.getMyUser().put("team", team);
                     DataManager.user.getMyUser().saveInBackground(new SaveCallback() {
                         @Override
                         public void done(AVException e) {
                             if (e == null) {
-                                Toast.makeText(Team.this, "保存成功!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Team.this, getString(R.string.save_success), Toast.LENGTH_SHORT).show();
                                 DataManager.user.setTeam(team);
                                 Team.this.setResult(REQUEST_TEAM);
                                 Team.this.finish();

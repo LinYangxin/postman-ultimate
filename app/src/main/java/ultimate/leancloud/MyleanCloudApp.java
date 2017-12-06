@@ -3,6 +3,7 @@ package ultimate.leancloud;
 import android.app.Application;
 
 import com.avos.avoscloud.AVOSCloud;
+import com.example.postman.ultimate.R;
 
 /**
  * Created by user on 2016/7/15.
@@ -15,6 +16,6 @@ public class MyleanCloudApp extends Application {
         super.onCreate();
 
         // 初始化参数依次为 this, AppId, AppKey
-        AVOSCloud.initialize(this,"7V4zq0wjN4yJdvwAbLABnd9f-gzGzoHsz","xYj2q0pv51pVgeB4EBFWdoPk");
+        AVOSCloud.initialize(this, getString(R.string.applicationId), getString(R.string.clientKey));
     }
 }

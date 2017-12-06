@@ -123,7 +123,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/throwing"
+            android:text="@string/complete_throwing"
             style="@style/complete_tv"/>
         <RatingBar
             android:id="@+id/rb_throwing"
@@ -145,7 +145,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/catching"
+            android:text="@string/complete_catching"
             style="@style/complete_tv" />
         <RatingBar
             android:id="@+id/rb_catching"
@@ -167,7 +167,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/deffence"
+            android:text="@string/complete_defense"
             style="@style/complete_tv" />
         <RatingBar
             android:id="@+id/rb_defense"
@@ -189,7 +189,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/offence"
+            android:text="@string/complete_offensive"
             style="@style/complete_tv" />
         <RatingBar
             android:id="@+id/rb_offensive"
@@ -211,7 +211,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/speed"
+            android:text="@string/complete_speed"
             style="@style/complete_tv" />
         <RatingBar
             android:id="@+id/rb_speed"

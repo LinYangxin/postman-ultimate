@@ -12,6 +12,7 @@ import com.avos.avoscloud.SaveCallback;
 import com.example.postman.ultimate.R;
 
 import ultimate.uilt.tools.DataManager;
+import ultimate.uilt.tools.PostmanHelper;
 import ultimate.uilt.tools.TitleManager;
 import ultimate.bean.User;
 
@@ -40,7 +41,7 @@ public class Nickname extends Activity {
 
     private void initView() {
         titleManager =new TitleManager(this);
-        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE,"设置昵称");
+        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE,getString(R.string.nickname_title));
         editText=(EditText)findViewById(R.id.et);
         editText.setText(nickname);
 
@@ -52,7 +53,7 @@ public class Nickname extends Activity {
             public void onClick(View view) {
                 nickname=editText.getText().toString();
                 if(TextUtils.isEmpty(nickname)||nickname.isEmpty()){
-                    Toast.makeText(Nickname.this,"不能为空!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Nickname.this,getString(R.string.not_null),Toast.LENGTH_SHORT).show();
                 }
                 else{
 
@@ -61,7 +62,7 @@ public class Nickname extends Activity {
                         @Override
                         public void done(AVException e) {
                             if(e==null){
-                                Toast.makeText(Nickname.this,"保存成功!",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Nickname.this,getString(R.string.save_success),Toast.LENGTH_SHORT).show();
                                // Intent intent=new Intent();
                                 //intent.putExtra("nickname",nickname);
                                 DataManager.user.setNickname(nickname);
@@ -69,7 +70,7 @@ public class Nickname extends Activity {
                                 Nickname.this.finish();
                             }
                             else{
-                                Toast.makeText(Nickname.this,"失败!请检查网络",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Nickname.this, PostmanHelper.getCodeFromServer(e),Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

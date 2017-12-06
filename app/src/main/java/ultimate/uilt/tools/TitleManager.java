@@ -70,7 +70,7 @@ public class TitleManager {
         mLeftTitleText = (TextView) activity.findViewById(R.id.tittle_left_text);
         mRightTitleView = (ImageView) activity.findViewById(R.id.title_right_image);
         mRightTitleText = (TextView) activity.findViewById(R.id.title_right_text);
-        
+
     }
 
     public void setTitleStyle(TitleStyle flag, String titleName) {

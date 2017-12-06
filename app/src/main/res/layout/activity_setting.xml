@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="省流量模式"
+            android:text="@string/no_pic"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"/>
 
@@ -38,7 +38,7 @@
         style="@style/setting_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="清空缓存" />
+        android:text="@string/clear_cache" />
 
     <View
         android:layout_width="fill_parent"
@@ -49,7 +49,7 @@
         style="@style/setting_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="检查更新" />
+        android:text="@string/check_update" />
 
     <View
         android:layout_width="fill_parent"
@@ -60,7 +60,7 @@
         style="@style/setting_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="意见反馈" />
+        android:text="@string/feed_back" />
 
 
     <TextView
@@ -68,7 +68,7 @@
         style="@style/setting_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="联系我们" />
+        android:text="@string/contect_us" />
 
     <View
         android:layout_width="fill_parent"
@@ -79,7 +79,7 @@
         style="@style/setting_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="关于我们" />
+        android:text="@string/about_us" />
 
     <View
         android:layout_width="fill_parent"
@@ -91,6 +91,6 @@
         android:background="@color/PostmanRed"
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:text="退出当前账号"
+        android:text="@string/exit"
         android:id="@+id/btn_logout"/>
 </LinearLayout>

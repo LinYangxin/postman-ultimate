@@ -16,6 +16,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SaveCallback;
 import com.example.postman.ultimate.R;
+
 import ultimate.uilt.tools.PostmanHelper;
 import ultimate.uilt.tools.TitleManager;
 
@@ -24,16 +25,16 @@ import ultimate.uilt.tools.TitleManager;
  */
 public class Complete extends Activity implements View.OnClickListener, RatingBar.OnRatingBarChangeListener {
     private TitleManager titleManager;
-    private RatingBar throwing,catching,defense,offensive,speed;
-    private float throwingNum,catchingNum,defenseNum,offensiveNum,speedNum;
-    private EditText nickname,email,team;
+    private RatingBar throwing, catching, defense, offensive, speed;
+    private float throwingNum, catchingNum, defenseNum, offensiveNum, speedNum;
+    private EditText nickname, email, team;
     private RadioGroup radioGroup;
     private boolean isMan = true;
     private Button summit;
 
     private void initView() {
         titleManager = new TitleManager(this);
-        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_TITLE, "完善资料");
+        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_TITLE, getString(R.string.complete_title));
         throwing = (RatingBar) findViewById(R.id.rb_throwing);
         catching = (RatingBar) findViewById(R.id.rb_catching);
         defense = (RatingBar) findViewById(R.id.rb_defense);
@@ -80,7 +81,7 @@ public class Complete extends Activity implements View.OnClickListener, RatingBa
         String tmp_email = email.getText().toString();
         String tmp_team = team.getText().toString();
         if (tmp_email == null || tmp_nickname == null || tmp_email == null || tmp_email.isEmpty() || tmp_nickname.isEmpty() || tmp_team.isEmpty() || TextUtils.isEmpty(tmp_email) || TextUtils.isEmpty(tmp_email) || TextUtils.isEmpty(tmp_nickname)) {
-            Toast.makeText(this, "请完善资料", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.complete_msg), Toast.LENGTH_SHORT).show();
         } else if (PostmanHelper.isEmailValid(tmp_email)) {
             AVUser.getCurrentUser().put("nickname", tmp_nickname);
             AVUser.getCurrentUser().setEmail(tmp_email);
@@ -95,9 +96,9 @@ public class Complete extends Activity implements View.OnClickListener, RatingBa
                 @Override
                 public void done(AVException e) {
                     if (e == null) {
-                      //  sendBroadcast(new Intent(action));
+                        //  sendBroadcast(new Intent(action));
                         AlertDialog.Builder ab = new AlertDialog.Builder(Complete.this);
-                        ab.setTitle("提示").setMessage("资料补充完成，请查收邮箱，完成邮箱核验").setPositiveButton("知道了", new DialogInterface.OnClickListener() {
+                        ab.setTitle(getString(R.string.tips)).setMessage(getString(R.string.complete_msg_checkemail)).setPositiveButton(getString(R.string.i_know), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 AVUser.logOut();
@@ -106,11 +107,11 @@ public class Complete extends Activity implements View.OnClickListener, RatingBa
                         }).show();
 
                     } else
-                        Toast.makeText(Complete.this, "失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Complete.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                 }
             });
-        }else {
-            Toast.makeText(this, "邮箱格式有误", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, getString(R.string.complete_error_msg_email), Toast.LENGTH_SHORT).show();
         }
     }
 

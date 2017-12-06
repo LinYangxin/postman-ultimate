@@ -88,7 +88,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
 
         viewPager.addOnPageChangeListener(this);
         titleManager = new TitleManager(this);
-        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_SETTING, "极限飞盘");
+        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_SETTING, getString(R.string.title));
         helper = new SQLiteHelper(this);
         mTNews = (TextView) findViewById(R.id.tvNews);
         mTShop = (TextView) findViewById(R.id.tvShop);
@@ -177,7 +177,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
     public void onBackPressed() {
         long secondTime = System.currentTimeMillis();
         if (secondTime - firstTime > 2000) {
-            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.back_msg), Toast.LENGTH_SHORT).show();
             firstTime = secondTime;
         } else {
             finish();
@@ -190,11 +190,11 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
         switch (resultCode) {
             case 1:
                 String tmp = DataManager.user.getNickname();
-                meFragment.tv_nickname.setText(tmp);
+                meFragment.tvNickname.setText(tmp);
                 String string = DataManager.user.getTeam();
-                meFragment.tv_team.setText(string);
-                meFragment.me_head.setImageBitmap(PostmanHelper.toRoundCornerImage(DataManager.user.getHead(), 180));
-                meFragment.tv_myself.setText(DataManager.user.getMyself());
+                meFragment.tvTeam.setText(string);
+                meFragment.imgHead.setImageBitmap(PostmanHelper.toRoundCornerImage(DataManager.user.getHead(), 180));
+                meFragment.tvMyself.setText(DataManager.user.getMyself());
                 break;
             case 2:
                 fragments.clear();
@@ -220,7 +220,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
             Bundle extras = data.getExtras();
             final Bitmap bm = extras.getParcelable("data");
             DataManager.user.setBackground(bm);
-            meFragment.me_data.setBackground(PostmanHelper.bitmap2drawable(DataManager.user.getBackground()));
+            meFragment.rlMeData.setBackground(PostmanHelper.bitmap2drawable(DataManager.user.getBackground()));
             byte[] img_data;
 //压缩成PNG
             final ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -236,7 +236,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
                 public void done(AVException e) {
                     DataManager.user.setBackground(bm);
                     DataManager.user.setHasBackground(true);
-                    Toast.makeText(Main.this, "保存成功", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Main.this, getString(R.string.save_success), Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -248,7 +248,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
         try {
             final Bitmap bm = BitmapFactory.decodeStream(cr.openInputStream(uri));
             DataManager.user.setBackground(bm);
-            meFragment.me_data.setBackground(PostmanHelper.bitmap2drawable(DataManager.user.getBackground()));
+            meFragment.rlMeData.setBackground(PostmanHelper.bitmap2drawable(DataManager.user.getBackground()));
             byte[] img_data;
 //压缩成PNG
             final ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -264,7 +264,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
                 public void done(AVException e) {
                     DataManager.user.setBackground(bm);
                     DataManager.user.setHasBackground(true);
-                    Toast.makeText(Main.this, "保存成功", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Main.this, getString(R.string.save_success), Toast.LENGTH_SHORT).show();
                 }
             });
             if(bm!=null)

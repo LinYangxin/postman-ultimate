@@ -37,19 +37,19 @@ public class ShowHead extends Activity {
     }
     private void initView(){
         titleManager =new TitleManager(this);
-        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE,"头像");
+        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE,getString(R.string.showhead_title));
         titleManager.setRightTitleListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveHead();
-                Toast.makeText(ShowHead.this,"保存头像成功",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ShowHead.this,getString(R.string.save_success),Toast.LENGTH_SHORT).show();
             }
         });
         head=(ImageView)findViewById(R.id.head);
         head.setImageBitmap(DataManager.user.getHead());
     }
     private void saveHead(){
-        File appDir = new File(getExternalStorageDirectory(), "Postman");
+        File appDir = new File(getExternalStorageDirectory(), getString(R.string.app_name));
         if (!appDir.exists()) {
             appDir.mkdir();
         }

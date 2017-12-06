@@ -38,7 +38,7 @@ public class Sign extends Activity implements View.OnClickListener {
     //初始化界面ui
     private void initView() {
         titleManager = new TitleManager(this);
-        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_BACK, "账号注册");
+        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_BACK, getString(R.string.sign_title));
         mPhoneNumber = (EditText) findViewById(R.id.sign_mobilephonenumber);
         mPassword = (EditText) findViewById(R.id.sign_pw);
         mPasswordCheck = (EditText) findViewById(R.id.sign_pwcheck);
@@ -75,7 +75,7 @@ public class Sign extends Activity implements View.OnClickListener {
                         @Override
                         public void done(AVException e) {
                             AlertDialog.Builder ab = new AlertDialog.Builder(Sign.this);
-                            ab.setTitle("提示").setMessage("资料补充完成，请查收邮箱，完成邮箱核验").setPositiveButton("知道了", new DialogInterface.OnClickListener() {
+                            ab.setTitle(getString(R.string.tips)).setMessage(getString(R.string.email_msg_checkemail)).setPositiveButton(getString(R.string.i_know), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     AVUser.logOut();
@@ -104,21 +104,21 @@ public class Sign extends Activity implements View.OnClickListener {
                 String t2 = mPasswordCheck.getText().toString();
                 String t3 = mEmail.getText().toString();
                 if (t1.isEmpty() || t2.isEmpty()) {
-                    Toast.makeText(Sign.this, "密码不能为空", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Sign.this, getString(R.string.password_not_null), Toast.LENGTH_SHORT).show();
                     break;
                 }
                 if (t3.isEmpty()) {
-                    Toast.makeText(Sign.this, "邮箱不能为空", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Sign.this, getString(R.string.email_not_null), Toast.LENGTH_SHORT).show();
                     break;
                 }
                 if (!PostmanHelper.isEmailValid(t3)) {
-                    Toast.makeText(Sign.this, "邮箱格式有误", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Sign.this, getString(R.string.email_erroe_msg_email), Toast.LENGTH_SHORT).show();
                     break;
                 }
                 if (PostmanHelper.isRightPassword(t1, t2)) {
                     SignUp();
                 } else
-                    Toast.makeText(Sign.this, "密码前后不一致或不符合格式要求", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Sign.this, getString(R.string.sign_error_msg), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.sign_btn_getVerifyNumber:
                 String p = mPhoneNumber.getText().toString();
@@ -132,19 +132,19 @@ public class Sign extends Activity implements View.OnClickListener {
                         public void done(AVException e) {
                             if (e != null) {
                                 try {
-                                    Toast.makeText(Sign.this, "用户已存在", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Sign.this, PostmanHelper.getCodeFromServer(e), Toast.LENGTH_SHORT).show();
                                     user.delete();
                                 } catch (AVException E) {
 
                                 }
                             } else {
                                 btnGetVerifyNumber.start();
-                                Toast.makeText(Sign.this, "已发送验证码", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Sign.this, getString(R.string.verifyphone_text), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
                 } else {
-                    Toast.makeText(Sign.this, "手机号码格式错误", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Sign.this, getString(R.string.resetphone_error_msg), Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

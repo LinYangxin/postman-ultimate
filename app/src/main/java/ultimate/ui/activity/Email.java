@@ -48,7 +48,7 @@ public class Email extends Activity {
 
     private void initView() {
         titleManager = new TitleManager(this);
-        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE, "设置邮箱");
+        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE, getString(R.string.email_title));
         editText = (EditText) findViewById(R.id.et);
         editText.setText(email);
     }
@@ -57,9 +57,10 @@ public class Email extends Activity {
         titleManager.setRightTitleListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               // final String[] msg = getString(R.string.email_public_msg).split(";");
                 email = editText.getText().toString();
                 if (TextUtils.isEmpty(email) || email.isEmpty() || !PostmanHelper.isEmailValid(email)) {
-                    Toast.makeText(Email.this, "不能为空或格式有误!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Email.this, getString(R.string.email_erroe_msg_email), Toast.LENGTH_SHORT).show();
                 } else {
                     DataManager.user.getMyUser().setEmail(email);
                     DataManager.user.getMyUser().saveInBackground(new SaveCallback() {
@@ -67,7 +68,7 @@ public class Email extends Activity {
                         public void done(AVException e) {
                             if (e == null) {
                                 AlertDialog.Builder ab = new AlertDialog.Builder(Email.this);
-                                ab.setTitle("提示").setMessage("资料补充完成，请查收邮箱，完成邮箱核验").setPositiveButton("知道了", new DialogInterface.OnClickListener() {
+                                ab.setTitle(getString(R.string.tips)).setMessage(getString(R.string.complete_msg_checkemail)).setPositiveButton(getString(R.string.i_know), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         DataManager.user.setEmail(email);
@@ -77,7 +78,7 @@ public class Email extends Activity {
                                 }).show();
 
                             } else {
-                                Toast.makeText(Email.this, "失败!请检查网络", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Email.this, PostmanHelper.getCodeFromServer(e), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

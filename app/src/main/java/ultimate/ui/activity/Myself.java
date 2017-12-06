@@ -11,6 +11,7 @@ import com.avos.avoscloud.SaveCallback;
 import com.example.postman.ultimate.R;
 
 import ultimate.uilt.tools.DataManager;
+import ultimate.uilt.tools.PostmanHelper;
 import ultimate.uilt.tools.TitleManager;
 import ultimate.bean.User;
 
@@ -39,7 +40,7 @@ public class Myself extends Activity {
 
     private void initView() {
         titleManager = new TitleManager(this);
-        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE, "个人宣言");
+        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_SAVE, getString(R.string.myself_title));
         editText = (EditText) findViewById(R.id.et);
         editText.setText(myself);
     }
@@ -54,12 +55,12 @@ public class Myself extends Activity {
                     @Override
                     public void done(AVException e) {
                         if (e == null) {
-                            Toast.makeText(Myself.this, "保存成功!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Myself.this, getString(R.string.save_success), Toast.LENGTH_SHORT).show();
                             DataManager.user.setMyself(myself);
                             Myself.this.setResult(REQUEST_MYSELF);
                             Myself.this.finish();
                         } else {
-                            Toast.makeText(Myself.this, "失败!请检查网络", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Myself.this, PostmanHelper.getCodeFromServer(e), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

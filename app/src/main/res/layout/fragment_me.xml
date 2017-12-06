@@ -47,7 +47,7 @@
                     android:id="@+id/me_nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="nickname"
+                    android:text="@string/nickname"
                     android:textColor="@color/PostmanGley" />
             </LinearLayout>
 
@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="   |   "
+                android:text="@string/data_diliver"
                 android:textColor="@color/PostmanGley" />
 
             <LinearLayout
@@ -72,7 +72,7 @@
                     android:id="@+id/me_team"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="team"
+                    android:text="@string/team"
                     android:textColor="@color/PostmanGley" />
             </LinearLayout>
 
@@ -84,7 +84,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="3dp"
-                android:text="这个人很懒，什么都没留下"
+                android:text="@string/data_default_myself"
                 android:textColor="@color/PostmanGley" />
         </RelativeLayout>
     </RelativeLayout>
@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/note"
         android:drawableStart="@drawable/note"
-        android:text="联系人" />
+        android:text="@string/conecter" />
 
     <View
         android:layout_width="fill_parent"
@@ -118,7 +118,7 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/scales"
         android:drawableStart="@drawable/scales"
-        android:text="比赛记录" />
+        android:text="@string/game_record" />
 
     <View
         android:layout_width="fill_parent"
@@ -133,7 +133,7 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/record_game"
         android:drawableStart="@drawable/record_game"
-        android:text="交易记录" />
+        android:text="@string/shopping_record" />
 
     <View
         android:layout_width="fill_parent"
@@ -148,7 +148,7 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/heart"
         android:drawableStart="@drawable/heart"
-        android:text="收藏" />
+        android:text="@string/collection" />
 
     <View
         android:layout_width="fill_parent"
@@ -164,7 +164,7 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/pencil"
         android:drawableStart="@drawable/pencil"
-        android:text="编辑资料" />
+        android:text="@string/edit_data" />
 
     <View
         android:layout_width="fill_parent"

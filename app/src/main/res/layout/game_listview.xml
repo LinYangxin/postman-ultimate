@@ -31,7 +31,6 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="10dp"
                 android:maxLines="1"
-                android:text="时间:2017.04.26--04.27"
                 android:textColor="@color/black_light" />
 
             <TextView
@@ -41,7 +40,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:maxLines="1"
-                android:text="类型:OPEN"
                 android:textColor="@color/black_light" />
 
             <ImageView
@@ -63,7 +61,6 @@
                 android:layout_centerHorizontal="true"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:text="中国极限飞盘公开赛"
                 android:textColor="@color/black_dark"
                 android:textSize="16sp"/>
         </RelativeLayout>

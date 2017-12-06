@@ -78,7 +78,7 @@ public class Login extends Activity implements View.OnClickListener {
     private void doLogin() {
         id = userId.getText().toString();
         if (id.isEmpty()) {
-            Toast.makeText(ultimate.ui.activity.Login.this, "账号密码不能为空", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ultimate.ui.activity.Login.this, getString(R.string.login_msg), Toast.LENGTH_SHORT).show();
         } else {
             if (PostmanHelper.isMobileNumberValid(id)) {
                 AVUser.loginByMobilePhoneNumberInBackground(id, userPassword.getText().toString(), new LogInCallback<AVUser>() {
@@ -99,7 +99,7 @@ public class Login extends Activity implements View.OnClickListener {
                     @Override
                     public void done(AVUser avUser, AVException e) {
                         if (e == null) {
-                            Toast.makeText(ultimate.ui.activity.Login.this, "login success", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ultimate.ui.activity.Login.this, getString(R.string.success), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(ultimate.ui.activity.Login.this, Main.class);
                             startActivity(intent);
                             ultimate.ui.activity.Login.this.finish();

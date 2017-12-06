@@ -43,7 +43,7 @@ public class Web extends Activity {
     }
     private void initView(){
         titleManager =new TitleManager(this);
-        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_FAVORITE,"Postman");
+        titleManager.setTitleStyle(TitleManager.TitleStyle.BACK_AND_FAVORITE,getString(R.string.app_name));
     }
     private void initWeb() {
         webView = (WebView) findViewById(R.id.ww);

@@ -86,16 +86,16 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 startActivityForResult(intent, 0);
                 break;
             case R.id.rl:
-                Toast.makeText(mActivity, "hahah", Toast.LENGTH_SHORT).show();
                 setBackground();
                 break;
         }
     }
 
     private void setBackground() {
-        CharSequence[] items = {"相册", "相机"};
+        final String[] msg = getString(R.string.data_public_msg).split(";");
+        CharSequence[] items = {msg[0], msg[1]};
         new AlertDialog.Builder(mActivity)
-                .setTitle("选择图片来源")
+                .setTitle(getString(R.string.image_from))
                 .setItems(items, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         if (which == 0) {

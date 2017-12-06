@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="8"
-            android:text="国家和地区"
+            android:text="@string/country_location"
             android:textColor="@color/black_text" />
 
         <TextView
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="2"
-            android:text="中国大陆"
+            android:text="@string/China"
             android:textColor="@color/colorPrimary" />
     </LinearLayout>
 
@@ -48,7 +48,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="手机号码   "
+            android:text="@string/phonenumber"
             android:textColor="@color/black_text" />
 
         <EditText
@@ -70,7 +70,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="   验证码   "
+            android:text="@string/verifynumber"
             android:textColor="@color/black_text" />
 
         <EditText
@@ -87,7 +87,7 @@
             android:layout_height="45dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="0dp"
-            android:text="获取验证码" />
+            android:text="@string/get_verfigynumber" />
     </LinearLayout>
 
 
@@ -103,7 +103,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="设置密码  "
+            android:text="@string/set_password"
             android:textColor="@color/black_text" />
 
         <EditText
@@ -124,7 +124,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="确认密码  "
+            android:text="@string/verify_password"
             android:textColor="@color/black_text" />
 
         <EditText
@@ -146,7 +146,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="    邮  箱  "
+            android:text="@string/email_special"
             android:textColor="@color/black_text" />
 
         <EditText
@@ -165,5 +165,5 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginTop="20dp"
-        android:text="完成注册" />
+        android:text="@string/sign_complete" />
 </LinearLayout>

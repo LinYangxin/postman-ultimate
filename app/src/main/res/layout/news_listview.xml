@@ -40,7 +40,6 @@
                 android:layout_toRightOf="@+id/news_img"
                 android:maxLines="2"
                 android:minLines="2"
-                android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
                 android:textColor="@color/black_light"
                 android:textSize="15sp" />
             <TextView
@@ -48,7 +47,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:text="sumarize"
                 android:textColor="@color/PostmanRed"
                 android:textSize="12sp"
                 android:drawableStart="@drawable/pin"
@@ -61,7 +59,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:text="2017.5.1"
                 android:textColor="@color/black_not_important"
                 android:textSize="12sp"
                 android:layout_alignBaseline="@+id/sumarize"

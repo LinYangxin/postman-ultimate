@@ -45,10 +45,11 @@ public class Data extends Activity implements View.OnClickListener {
     //private AVUser myUser;
     private String[] text = new String[7];
     private TextView tvNickname, tvPhoneNumber, tvEmail, tvTeam, tvSex, tvPosition, tvMyself;
-    private RelativeLayout rlHead, rlNickname, rlMyself, rlTeam, rlSex, rlPosition, rlPhone, rlEmail,rlPower;
+    private RelativeLayout rlHead, rlNickname, rlMyself, rlTeam, rlSex, rlPosition, rlPhone, rlEmail, rlPower;
     private ImageView head;
     //private Head new_head;
     protected static Uri tempUri;
+    private final String[] msg = getString(R.string.data_public_msg).split(";");
     //private User user;
 
     @Override
@@ -62,7 +63,7 @@ public class Data extends Activity implements View.OnClickListener {
     }
 
     private void initData() {
-       // new_head = new Head(0);
+        // new_head = new Head(0);
         for (int i = 0; i < 7; i++) {
             text[i] = new String();
         }
@@ -77,7 +78,7 @@ public class Data extends Activity implements View.OnClickListener {
 
     private void initView() {
         titleManager = new TitleManager(this);
-        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_BACK, "个人资料");
+        titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_BACK, getString(R.string.data_title));
         head = (ImageView) findViewById(R.id.head);
         tvNickname = (TextView) findViewById(R.id.tvNickname);
         tvPhoneNumber = (TextView) findViewById(R.id.tvPhoneNumber);
@@ -135,7 +136,7 @@ public class Data extends Activity implements View.OnClickListener {
             startActivityForResult(intent, PostmanHelper.REQUEST_BY_CAMERA);
         } catch (ActivityNotFoundException e) {
 
-            Toast.makeText(Data.this, "没有找到储存目录", Toast.LENGTH_LONG).show();
+            Toast.makeText(Data.this, getString(R.string.data_no_save_address), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -146,9 +147,9 @@ public class Data extends Activity implements View.OnClickListener {
     }
 
     public void GetPomitssion() {
-        new AlertDialog.Builder(this).setTitle("设置头像").setIcon(
+        new AlertDialog.Builder(this).setTitle(getString(R.string.data_set_head)).setIcon(
                 android.R.drawable.ic_dialog_info).setSingleChoiceItems(
-                new String[]{"拍照", "图库"}, 0,
+                new String[]{msg[0], msg[1]}, 0,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
@@ -254,12 +255,12 @@ public class Data extends Activity implements View.OnClickListener {
                 }
                 break;
             case PostmanHelper.REQUEST_BY_CAMERA:
-                if(resultCode==RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     File f = new File(Environment.getExternalStorageDirectory()
                             + "/" + "Postman" + "/" + "head.png");
                     try {
                         Uri u = Uri.parse(android.provider.MediaStore.Images.Media.insertImage(getContentResolver(),
-                                        f.getAbsolutePath(), null, null));
+                                f.getAbsolutePath(), null, null));
                         //u就是拍摄获得的原始图片的uri，剩下的你想干神马坏事请便……
                         startImageZoom(u);
                     } catch (FileNotFoundException e) {
@@ -297,7 +298,7 @@ public class Data extends Activity implements View.OnClickListener {
                         public void done(AVException e) {
                             DataManager.user.setHead(bm);
                             DataManager.user.setHasHead(true);
-                            Toast.makeText(Data.this, "保存成功", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Data.this, getString(R.string.save_success), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -314,12 +315,12 @@ public class Data extends Activity implements View.OnClickListener {
 
     private void setSex() {
         int selected;
-        if (DataManager.user.getSex()=="男")
+        if (DataManager.user.getSex() == "男")
             selected = 0;
         else
             selected = 1;
-        new AlertDialog.Builder(this).setTitle("性别").setSingleChoiceItems(
-                new String[]{"男", "女"}, selected,
+        new AlertDialog.Builder(this).setTitle(getString(R.string.data_sex)).setSingleChoiceItems(
+                new String[]{msg[2], msg[3]}, selected,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         String tempSex;
@@ -331,9 +332,9 @@ public class Data extends Activity implements View.OnClickListener {
                                 tempSex = "男";
                                 break;
                         }
-                        Boolean temp = tempSex=="男"?true:false;
+                        Boolean temp = tempSex == "男" ? true : false;
                         DataManager.user.getMyUser().put("isMan", temp);
-                        final  String  t = tempSex;
+                        final String t = tempSex;
                         DataManager.user.getMyUser().saveInBackground(new SaveCallback() {
                             @Override
                             public void done(AVException e) {
@@ -341,10 +342,10 @@ public class Data extends Activity implements View.OnClickListener {
                                     text[4] = t;
                                     tvSex.setText(text[4]);
                                     DataManager.user.setSex(true);
-                                    Toast.makeText(Data.this, "修改成功", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Data.this, getString(R.string.save_success), Toast.LENGTH_SHORT).show();
 
                                 } else {
-                                    Toast.makeText(Data.this, "失败", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Data.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -354,6 +355,7 @@ public class Data extends Activity implements View.OnClickListener {
     }
 
     private void setPosition() {
+        final String[] position = getString(R.string.data_position).split(";");
         int p;
         switch (DataManager.user.getPosition()) {
             case "Cutter":
@@ -365,34 +367,34 @@ public class Data extends Activity implements View.OnClickListener {
             case "I don't know":
                 p = 2;
                 break;
-            case "Cutter & Handler":
+            case "Cutter and Handler":
                 p = 3;
                 break;
             default:
                 p = 0;
                 break;
         }
-        new AlertDialog.Builder(this).setTitle("场上位置").setSingleChoiceItems(
-                new String[]{"Cutter", "Handler", "I don't know", "Cutter & Handler"}, p,
+        new AlertDialog.Builder(this).setTitle(getString(R.string.data_position_title)).setSingleChoiceItems(
+                new String[]{position[0], position[1], position[2], position[3]}, p,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         String tempPosition;
                         switch (which) {
                             case 0:
-                                tempPosition = "Cutter";
+                                tempPosition = position[0];
                                 break;
                             case 1:
-                                tempPosition = "Handler";
+                                tempPosition = position[1];
                                 break;
                             case 2:
-                                tempPosition = "I don't know";
+                                tempPosition = position[2];
                                 break;
                             case 3:
-                                tempPosition = "Cutter & Handler";
+                                tempPosition = position[3];
                                 break;
-                                default:
-                                    tempPosition = "Cutter";
-                                    break;
+                            default:
+                                tempPosition = position[0];
+                                break;
                         }
                         DataManager.user.getMyUser().put("position", tempPosition);
                         final String temp = tempPosition;
@@ -403,10 +405,10 @@ public class Data extends Activity implements View.OnClickListener {
                                     text[5] = temp;
                                     tvPosition.setText(text[5]);
                                     DataManager.user.setPosition(text[5]);
-                                    Toast.makeText(Data.this, "修改成功", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Data.this, getString(R.string.save_success), Toast.LENGTH_SHORT).show();
 
                                 } else {
-                                    Toast.makeText(Data.this, "失败", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Data.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -435,7 +437,7 @@ public class Data extends Activity implements View.OnClickListener {
                     SetHeadFromGallery();
                 } else {
                     // Permission Denied
-                    Toast.makeText(this, "获取权限失败", Toast.LENGTH_SHORT)
+                    Toast.makeText(this, getString(R.string.data_get_permission_failed), Toast.LENGTH_SHORT)
                             .show();
                 }
                 break;
@@ -444,7 +446,7 @@ public class Data extends Activity implements View.OnClickListener {
                     SetHeadFromCamera();
                 } else {
                     // Permission Denied
-                    Toast.makeText(this, "获取权限失败", Toast.LENGTH_SHORT)
+                    Toast.makeText(this, getString(R.string.data_get_permission_failed), Toast.LENGTH_SHORT)
                             .show();
                 }
                 break;
