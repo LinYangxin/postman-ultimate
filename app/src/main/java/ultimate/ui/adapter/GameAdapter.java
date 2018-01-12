@@ -34,7 +34,7 @@ public class GameAdapter extends ArrayAdapter<Game> {
             view = LayoutInflater.from(getContext()).inflate(resourceId, null);
             viewHolder=new GameAdapter.ViewHolder();
             viewHolder.title=(TextView)view.findViewById(R.id.tvTitle);
-            viewHolder.date= (TextView)view.findViewById(R.id.tvGame);
+            viewHolder.date= (TextView)view.findViewById(R.id.tvDate);
             viewHolder.img = (ImageView)view.findViewById(R.id.imgGame);
             viewHolder.state = (TextView)view.findViewById(R.id.tvState);
             view.setTag(viewHolder);
@@ -42,10 +42,10 @@ public class GameAdapter extends ArrayAdapter<Game> {
             view = convertView;
             viewHolder=(GameAdapter.ViewHolder)view.getTag();
         }
-        viewHolder.title.setText(game.getGame_tittle());
-        viewHolder.date.setText(game.getGame_date());
-        viewHolder.img.setImageBitmap(game.getGame_img());
-        viewHolder.state.setText(game.getGame_state());
+        viewHolder.title.setText(game.getTitle());
+        viewHolder.date.setText(game.getDate());
+        viewHolder.img.setImageBitmap(game.getImg());
+        viewHolder.state.setText(game.getState());
         return view;
     }
     //内部类，用以提高读取效率。

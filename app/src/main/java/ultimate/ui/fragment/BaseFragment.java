@@ -33,25 +33,8 @@ public abstract class BaseFragment extends Fragment {
     /**
      * 初始化数据加载
      */
-    protected void initData() {
-    }
+    protected abstract void initData() ;
 
-    /*public void startActivity(Intent intent) {
-        mActivity.startActivity(intent);
-    }
-
-    protected <T> void startActivity(Class<T> cls) {
-        mActivity.startActivity(new Intent(mActivity, cls));
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mActivity.onActivityResult(requestCode, resultCode, data);
-    }
-
-    protected void showToast(String msg) {
-        Toast.makeText(mActivity, msg, Toast.LENGTH_SHORT).show();
-    }
-*/
     @Override
     public void onDestroy() {
         super.onDestroy();

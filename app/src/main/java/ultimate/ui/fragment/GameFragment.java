@@ -41,10 +41,15 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 Game t = DataManager.getGame().get(i);
                 //Toast.makeText(mActivity, t.getNews_url(),Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(mActivity,Web.class);
-                intent.putExtra("url", t.getGame_url());
+                intent.putExtra("url", t.getUrl());
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     @Override

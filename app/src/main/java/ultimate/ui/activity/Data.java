@@ -49,7 +49,7 @@ public class Data extends Activity implements View.OnClickListener {
     private ImageView head;
     //private Head new_head;
     protected static Uri tempUri;
-    private final String[] msg = getString(R.string.data_public_msg).split(";");
+    //private final String[] msg = getString(R.string.data_public_msg).split(";");
     //private User user;
 
     @Override
@@ -79,7 +79,7 @@ public class Data extends Activity implements View.OnClickListener {
     private void initView() {
         titleManager = new TitleManager(this);
         titleManager.setTitleStyle(TitleManager.TitleStyle.ONLY_BACK, getString(R.string.data_title));
-        head = (ImageView) findViewById(R.id.head);
+        head = (ImageView) findViewById(R.id.imgHead);
         tvNickname = (TextView) findViewById(R.id.tvNickname);
         tvPhoneNumber = (TextView) findViewById(R.id.tvPhoneNumber);
         tvEmail = (TextView) findViewById(R.id.tvEmail);
@@ -149,7 +149,7 @@ public class Data extends Activity implements View.OnClickListener {
     public void GetPomitssion() {
         new AlertDialog.Builder(this).setTitle(getString(R.string.data_set_head)).setIcon(
                 android.R.drawable.ic_dialog_info).setSingleChoiceItems(
-                new String[]{msg[0], msg[1]}, 0,
+                new String[]{getString(R.string.camera), getString(R.string.storage)}, 0,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
@@ -195,23 +195,23 @@ public class Data extends Activity implements View.OnClickListener {
                 break;
             case R.id.rlNickname:
                 intent = new Intent(Data.this, Nickname.class);
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, PostmanHelper.REQUEST_CODE_SET_DATA);
                 break;
             case R.id.rlPhoneNumber:
                 intent = new Intent(Data.this, ResetPhone.class);
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, PostmanHelper.REQUEST_CODE_SET_DATA);
                 break;
             case R.id.rlMyself:
                 intent = new Intent(Data.this, Myself.class);
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, PostmanHelper.REQUEST_CODE_SET_DATA);
                 break;
             case R.id.rlTeam:
                 intent = new Intent(Data.this, Team.class);
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, PostmanHelper.REQUEST_CODE_SET_DATA);
                 break;
             case R.id.rlEmail:
                 intent = new Intent(Data.this, Email.class);
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, PostmanHelper.REQUEST_CODE_SET_DATA);
                 break;
             case R.id.rlSex:
                 setSex();
@@ -228,7 +228,7 @@ public class Data extends Activity implements View.OnClickListener {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-            case 1:
+            case PostmanHelper.REQUEST_CODE_SET_DATA:
                 switch (resultCode) {
                     case PostmanHelper.REQUEST_NICKNAME:
                         text[0] = DataManager.user.getNickname();
@@ -309,7 +309,7 @@ public class Data extends Activity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        Data.this.setResult(1);
+        Data.this.setResult(PostmanHelper.RESULT_CODE_DATA);
         Data.this.finish();
     }
 
@@ -320,7 +320,7 @@ public class Data extends Activity implements View.OnClickListener {
         else
             selected = 1;
         new AlertDialog.Builder(this).setTitle(getString(R.string.data_sex)).setSingleChoiceItems(
-                new String[]{msg[2], msg[3]}, selected,
+                new String[]{getString(R.string.man), getString(R.string.woman)}, selected,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         String tempSex;

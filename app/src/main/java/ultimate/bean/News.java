@@ -17,41 +17,41 @@ public class News {
     private String sumarize;
     private String date;
     public News(String t, String u, String s,String a,Bitmap i) {
-        setTittl(t);
-        setNews_url(u);
+        setTitle(t);
+        setUrl(u);
         setSumarize(s);
-        setNews_img(i);
-        setNews_date(a);
+        setImg(i);
+        setDate(a);
     }
 
     public News() {
     }
 
-    public String getNews_date() {
+    public String getDate() {
         return date;
     }
 
-    public void setNews_date(String date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public String getTittle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTittl(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getNews_url() {
+    public String getUrl() {
         return url;
     }
 
-    public void setNews_url(String url) {
+    public void setUrl(String url) {
         this.url = url;
     }
 
-    public Bitmap getNews_img() {
+    public Bitmap getImg() {
         if(img==null){
             Bitmap bitmap = Bitmap.createBitmap(100 ,100,
                     Bitmap.Config.ARGB_8888);
@@ -61,7 +61,7 @@ public class News {
         return img;
     }
 
-    public void setNews_img(Bitmap img) {
+    public void setImg(Bitmap img) {
         this.img = img;
     }
 

@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -29,6 +30,7 @@ import ultimate.ui.fragment.NewsFragment;
 import ultimate.ui.fragment.ShoppingFragment;
 import ultimate.uilt.tools.DataManager;
 import ultimate.uilt.tools.PostmanHelper;
+import ultimate.uilt.tools.SystemBarTintManagerHelper;
 import ultimate.uilt.tools.TitleManager;
 import ultimate.bean.User;
 import ultimate.uilt.tools.BaseViewPager;
@@ -59,11 +61,13 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        DataManager.init(this);
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         AVOSCloud.setDebugLogEnabled(true);
         setContentView(R.layout.guide);
-        DataManager.user = new User(this);
+       // DataManager.user = new User(this);
+        PostmanHelper.setSystemBarTintManager( new SystemBarTintManagerHelper(this),this);
         initView();
         initEvent();
     }
@@ -120,21 +124,25 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
         resetTabState();
         switch (view.getId()) {
             case R.id.tvNews:
+                Log.i("Main.java","点击资讯模块");
                 titleManager.setLeftImage(View.GONE);
                 setTabState(mTNews, R.drawable.news_black, ContextCompat.getColor(this, R.color.colorPrimary));
                 viewPager.setCurrentItem(0, true);
                 break;
             case R.id.tvShop:
+                Log.i("Main.java","点击商城模块");
                 titleManager.setLeftImage(View.GONE);
                 setTabState(mTShop, R.drawable.shoping_black, ContextCompat.getColor(this, R.color.colorPrimary));
                 viewPager.setCurrentItem(1, true);
                 break;
             case R.id.tvGame:
+                Log.i("Main.java","点击比赛模块");
                 titleManager.setLeftImage(View.GONE);
                 setTabState(mTGame, R.drawable.game_black, ContextCompat.getColor(this, R.color.colorPrimary));
                 viewPager.setCurrentItem(2, true);
                 break;
             case R.id.tvMe:
+                Log.i("Main.java","点击我的模块");
                 titleManager.setLeftImage(View.VISIBLE);
                 setTabState(mTMe, R.drawable.me_black, ContextCompat.getColor(this, R.color.colorPrimary));
                 viewPager.setCurrentItem(3, true);
@@ -188,7 +196,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode) {
-            case 1:
+            case PostmanHelper.RESULT_CODE_DATA:
                 String tmp = DataManager.user.getNickname();
                 meFragment.tvNickname.setText(tmp);
                 String string = DataManager.user.getTeam();
@@ -205,15 +213,15 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
                 break;
             case RESULT_OK:
                 if (requestCode == PostmanHelper.REQUEST_CODE_CAMERA) {
-                    saveBackground_camera(data);
+                    saveBackgroundByCamera(data);
                 } else {
-                    saveBackground(data);
+                    saveBackgroundByStore(data);
                 }
                 break;
         }
     }
 
-    private void saveBackground_camera(Intent data) {
+    private void saveBackgroundByCamera(Intent data) {
         if (data == null) {
             return;
         } else {
@@ -234,15 +242,21 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
             DataManager.user.getMyUser().saveInBackground(new SaveCallback() {
                 @Override
                 public void done(AVException e) {
-                    DataManager.user.setBackground(bm);
-                    DataManager.user.setHasBackground(true);
-                    Toast.makeText(Main.this, getString(R.string.save_success), Toast.LENGTH_SHORT).show();
+                    Log.i("Main.java","保存背景图片至后台服务器");
+                    if(e == null) {
+                        DataManager.user.setBackground(bm);
+                        DataManager.user.setHasBackground(true);
+                        Toast.makeText(Main.this, getString(R.string.save_success), Toast.LENGTH_SHORT).show();
+                        Log.i("Main.java","保存背景图片至后台服务器成功");
+                    }else{
+                        Log.e("Main.java","保存失败，原因为："+e.getMessage());
+                    }
                 }
             });
         }
     }
 
-    private void saveBackground(Intent data) {
+    private void saveBackgroundByStore(Intent data) {
         Uri uri = data.getData();
         ContentResolver cr = this.getContentResolver();
         try {
@@ -262,9 +276,15 @@ public class Main extends AppCompatActivity implements View.OnClickListener, Vie
             DataManager.user.getMyUser().saveInBackground(new SaveCallback() {
                 @Override
                 public void done(AVException e) {
-                    DataManager.user.setBackground(bm);
-                    DataManager.user.setHasBackground(true);
-                    Toast.makeText(Main.this, getString(R.string.save_success), Toast.LENGTH_SHORT).show();
+                    Log.i("Main.java","保存背景图片至后台服务器");
+                    if(e == null) {
+                        DataManager.user.setBackground(bm);
+                        DataManager.user.setHasBackground(true);
+                        Toast.makeText(Main.this, getString(R.string.save_success), Toast.LENGTH_SHORT).show();
+                        Log.i("Main.java","保存背景图片至后台服务器成功");
+                    }else{
+                        Log.e("Main.java","保存失败，原因为："+e.getMessage());
+                    }
                 }
             });
             if(bm!=null)

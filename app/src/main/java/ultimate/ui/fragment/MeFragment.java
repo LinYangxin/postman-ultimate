@@ -58,7 +58,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     @Override
     protected void initData() {
         // head=new Head(0);
-        super.initData();
+
         nickname = DataManager.user.getNickname();
         team = DataManager.user.getTeam();
         myself = DataManager.user.getMyself();

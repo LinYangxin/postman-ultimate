@@ -112,7 +112,7 @@ public class NewsFragment extends BaseFragment implements View.OnClickListener {
                 ultimate.bean.News t = getNews().get(i);
                 //Toast.makeText(mActivity, t.getNews_url(),Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(mActivity,Web.class);
-                intent.putExtra("url", t.getNews_url());
+                intent.putExtra("url", t.getUrl());
                 startActivity(intent);
             }
         });
@@ -121,50 +121,52 @@ public class NewsFragment extends BaseFragment implements View.OnClickListener {
         pullToRefreshScrollView.getLoadingLayoutProxy().setLastUpdatedLabel(PostmanHelper.SystemTime2String((DataManager.lastUpdateAt)));
         pullToRefreshScrollView.getLoadingLayoutProxy().setPullLabel("拉动加载更多");
         pullToRefreshScrollView.getLoadingLayoutProxy().setRefreshingLabel("正在刷新");
-        pullToRefreshScrollView.getLoadingLayoutProxy().setReleaseLabel("aaa");
+        pullToRefreshScrollView.getLoadingLayoutProxy().setReleaseLabel("松开手指刷新");
 
         //上拉、下拉设定
        // pullToRefreshScrollView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
         pullToRefreshScrollView.setMode(PullToRefreshBase.Mode.BOTH);
 
-        //上拉监听函数
+        //下拉监听函数
         pullToRefreshScrollView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
-                System.out.println("ddddddddddd下拉nnnnnnnnn");
-                //new GetDataTask().execute();
-                if(DataManager.getNewsData()==true){
-                    pullToRefreshScrollView.getLoadingLayoutProxy().setLastUpdatedLabel(PostmanHelper.SystemTime2String((DataManager.lastUpdateAt)));
-                    mAdapter.notifyDataSetChanged();
-                    new GetDataTask().execute();
-//                    mAdapter.notifyDataSetChanged();
-//                    try {
-//                        sleep(1000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                    pullToRefreshScrollView.onRefreshComplete();
-//
-                }
+               Log.d("刷新","下拉拉动");
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.i("刷新","下拉加载数据");
+                        if(DataManager.getNewsData(mAdapter)==true) {
+                            Log.i("刷新", "下拉加载数据完成");
+                            pullToRefreshScrollView.getLoadingLayoutProxy().setLastUpdatedLabel(PostmanHelper.SystemTime2String((DataManager.lastUpdateAt)));
+                            //mAdapter.notifyDataSetChanged();
+//                            mListView.refreshDrawableState();
+                        }
+                        else{
+                            Log.i("刷新", "下拉数据无更新");
+                        }
+                        pullToRefreshScrollView.onRefreshComplete();
+                    }
+                });
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
-                System.out.println("上拉fffffffffffffffffff");
-//                 new GetDataTask().execute();
-                if (DataManager.getNewsData() == true) {
-                    pullToRefreshScrollView.getLoadingLayoutProxy().setLastUpdatedLabel(PostmanHelper.SystemTime2String((DataManager.lastUpdateAt)));
-                    mAdapter.notifyDataSetChanged();
-                    new GetDataTask().execute();
-
-//                    mAdapter.notifyDataSetChanged();
-//                    try {
-//                        sleep(1000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                    pullToRefreshScrollView.onRefreshComplete();
-                }
+                Log.d("刷新","上拉拉动");
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.i("刷新","上拉加载数据");
+                        if(DataManager.getNewsData(mAdapter)==true) {
+                            Log.i("刷新", "上拉加载数据完成");
+                            pullToRefreshScrollView.getLoadingLayoutProxy().setLastUpdatedLabel(PostmanHelper.SystemTime2String((DataManager.lastUpdateAt)));
+                           // mAdapter.notifyDataSetChanged();
+                        }else{
+                            Log.i("刷新", "上拉数据无更新");
+                        }
+                        pullToRefreshScrollView.onRefreshComplete();
+                    }
+                });
             }
 
 
@@ -217,39 +219,6 @@ public class NewsFragment extends BaseFragment implements View.OnClickListener {
             return imgs.length;
         }
 
-    }
-    private class GetDataTask extends AsyncTask<Void, Void, LinearLayout> {
-
-        @Override
-        protected LinearLayout doInBackground(Void... params) {
-            // Simulates a background job.
-//            try {
-//                Thread.sleep(4000);
-//                LinearLayout lin=viewSingleItem();
-//                return lin;
-//            } catch (InterruptedException e) {
-//                Log.e("msg","GetDataTask:" + e.getMessage());
-//            }
-//            return null;
-            try {
-                sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println("asdfgghfhdjsk执行刷新函数gfhdjskbc");
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(LinearLayout result) {
-            // Call onRefreshComplete when the list has been refreshed.
-            //在更新UI后，无需其它Refresh操作，系统会自己加载新的listView
-            System.out.println("刷新完成");
-            pullToRefreshScrollView.onRefreshComplete();
-
-
-            super.onPostExecute(result);
-        }
     }
 }
 

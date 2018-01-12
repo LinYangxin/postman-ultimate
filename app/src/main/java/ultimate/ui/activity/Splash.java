@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
@@ -38,19 +39,20 @@ public class Splash extends Activity {
     // private final String TAG = this.getClass().getSimpleName();
     private ImageView ivStart;
     private final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 1, REQUEST_CODE_CAMERA = 2;//用以动态获取权限
-    private static DataManager dataManager;//此处从服务器处加载数据。
+    //private static DataManager dataManager;//此处从服务器处加载数据。
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
-        dataManager = new DataManager();
-        dataManager.init();
+        // dataManager = new DataManager();
+
         GetPomitssion(0);
     }
 
     private void initImage() {
+        Log.i("Splash.java", "初始化图片");
         final ScaleAnimation scaleAnim = new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
                 0.5f);
@@ -80,6 +82,7 @@ public class Splash extends Activity {
             }
         });
         ivStart.startAnimation(scaleAnim);
+        Log.i("Splash.java", "初始化图片完成");
     }
 
     private void startActivity(Class cls) {
@@ -91,7 +94,9 @@ public class Splash extends Activity {
     }
 
     public void GetPomitssion(int f) {
+        Log.i("Splash.java", "获取权限");
         if (Build.VERSION.SDK_INT >= 23) {
+            Log.d("Splash.java", "SDK版本大于23，需要动态获取敏感权限");
             int checkCallPhonePermission = ContextCompat.checkSelfPermission(Splash.this, Manifest.permission.CAMERA);
             int checkCallPhonePermission1 = ContextCompat.checkSelfPermission(Splash.this, Manifest.permission.READ_EXTERNAL_STORAGE);
             if (checkCallPhonePermission == PackageManager.PERMISSION_GRANTED && checkCallPhonePermission1 == PackageManager.PERMISSION_GRANTED) {
@@ -136,25 +141,36 @@ public class Splash extends Activity {
     }
 
     private void Continued() {
+        Log.i("Splash.java", "从服务器中获取欢迎页面");
         ivStart = (ImageView) findViewById(R.id.iv_start);
         AVQuery<AVObject> avQuery = new AVQuery<>("Splash");
         avQuery.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {
-                boolean flag = list.get(0).getBoolean("updata");
-                if (flag) {
-                    list.get(0).getAVFile("Pic").getDataInBackground(new GetDataCallback() {
-                        @Override
-                        public void done(byte[] bytes, AVException e) {
-                            if (e == null) {
-                                ivStart.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-                                initImage();
+                Log.i("Splash.java", "判断是否需要加载欢迎页面");
+                if (e == null) {
+                    boolean flag = list.get(0).getBoolean("updata");
+                    if (flag) {
+                        Log.i("Splash.java", "从服务器中获取欢迎页面");
+                        list.get(0).getAVFile("Pic").getDataInBackground(new GetDataCallback() {
+                            @Override
+                            public void done(byte[] bytes, AVException e) {
+                                if (e == null) {
+                                    Log.i("Splash.java", "欢迎页面获取成功");
+                                    ivStart.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                                    initImage();
+                                } else {
+                                    Log.e("Splash.java","获取图片失败，原因为："+e.getMessage());
+                                }
                             }
-                        }
-                    });
+                        });
+                    } else {
+                        Log.i("Splash.java","无需加载欢迎页面，采用默认");
+                        ivStart.setImageResource(R.drawable.start);
+                        initImage();
+                    }
                 } else {
-                    ivStart.setImageResource(R.drawable.start);
-                    initImage();
+                    Log.e("Splash.java", e.getMessage());
                 }
             }
         });

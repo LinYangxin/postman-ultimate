@@ -14,51 +14,51 @@ public class Game {
     private String title;
 
     public Game(String t, String u, String d, String s, Bitmap b) {
-        setGame_tittle(t);
-        setGame_url(u);
-        setGame_date(d);
-        setGame_img(b);
-        setGame_state(s);
+        setTitle(t);
+        setUrl(u);
+        setDate(d);
+        setImg(b);
+        setState(s);
     }
 
 
-    private void setGame_tittle(String t) {
+    private void setTitle(String t) {
         title = t;
     }
 
-    private void setGame_url(String u) {
+    private void setUrl(String u) {
         url = u;
     }
 
-    private void setGame_date(String d) {
+    private void setDate(String d) {
         date = d;
     }
 
-    private void setGame_state(String s) {
+    private void setState(String s) {
         state = s;
     }
 
-    private void setGame_img(Bitmap b) {
+    private void setImg(Bitmap b) {
         img = b;
     }
 
-    public Bitmap getGame_img() {
+    public Bitmap getImg() {
         return img;
     }
 
-    public String getGame_date() {
+    public String getDate() {
         return date;
     }
 
-    public String getGame_state() {
+    public String getState() {
         return state;
     }
 
-    public String getGame_url() {
+    public String getUrl() {
         return url;
     }
 
-    public String getGame_tittle() {
+    public String getTitle() {
         return title;
     }
 }

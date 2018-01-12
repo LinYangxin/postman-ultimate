@@ -131,4 +131,8 @@
     <string name="shopping_record">交易记录</string>
     <string name="collection">收藏</string>
     <string name="edit_data">编辑资料</string>
+    <string name="man">男</string>
+    <string name="woman">女</string>
+    <string name="camera">相机</string>
+    <string name="storage">图库</string>
 </resources>

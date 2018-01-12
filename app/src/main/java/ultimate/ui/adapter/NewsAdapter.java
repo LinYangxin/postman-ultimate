@@ -41,10 +41,10 @@ public class NewsAdapter extends ArrayAdapter<News> {
             view = convertView;
             viewHolder=(ViewHolder)view.getTag();
         }
-        viewHolder.tittle.setText(news.getTittle());
+        viewHolder.tittle.setText(news.getTitle());
         viewHolder.sumarize.setText(news.getSumarize());
-        viewHolder.img.setImageBitmap(news.getNews_img());
-        viewHolder.date.setText(news.getNews_date());
+        viewHolder.img.setImageBitmap(news.getImg());
+        viewHolder.date.setText(news.getDate());
         return view;
     }
 //内部类，用以提高读取效率。

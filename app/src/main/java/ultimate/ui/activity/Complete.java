@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -77,6 +78,7 @@ public class Complete extends Activity implements View.OnClickListener, RatingBa
 
     @Override
     public void onClick(View view) {
+        Log.i("Complete.java","点击submit");
         String tmp_nickname = nickname.getText().toString();
         String tmp_email = email.getText().toString();
         String tmp_team = team.getText().toString();
@@ -95,8 +97,10 @@ public class Complete extends Activity implements View.OnClickListener, RatingBa
             AVUser.getCurrentUser().saveInBackground(new SaveCallback() {
                 @Override
                 public void done(AVException e) {
+                    Log.i("Complete.java","保存资料");
                     if (e == null) {
                         //  sendBroadcast(new Intent(action));
+                        Log.i("Complete.java","保存资料完成");
                         AlertDialog.Builder ab = new AlertDialog.Builder(Complete.this);
                         ab.setTitle(getString(R.string.tips)).setMessage(getString(R.string.complete_msg_checkemail)).setPositiveButton(getString(R.string.i_know), new DialogInterface.OnClickListener() {
                             @Override
@@ -107,6 +111,7 @@ public class Complete extends Activity implements View.OnClickListener, RatingBa
                         }).show();
 
                     } else
+                        Log.e("Complete.java","保存资料失败，原因为："+e.getMessage());
                         Toast.makeText(Complete.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                 }
             });
@@ -117,6 +122,7 @@ public class Complete extends Activity implements View.OnClickListener, RatingBa
 
     @Override
     public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+        Log.i("Complete.java","onRatingChanged");
         switch (ratingBar.getId()) {
             case R.id.throwing:
                 throwingNum = throwing.getRating();
